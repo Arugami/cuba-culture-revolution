@@ -12,8 +12,8 @@ const Hero = () => {
             First-Ever Country Takeover ($CUBA)
           </span>
         </h1>
-        <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-          Empowering the Cuban people through decentralized finance and community-driven initiatives
+        <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Born from the Cuban government's failed attempts to launch a cryptocurrency and the community's bold response, $CUBA empowers the people to break free from oppression, reclaim their potential, and build a future of hope, unity, and freedom.
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Button
