@@ -53,9 +53,6 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           ))}
         </div>
       </div>
-      <h2 className="mt-8 text-center text-3xl font-bold text-[#FFD700]">
-        JOIN THE COMMUNITY
-      </h2>
     </div>
   );
 };
