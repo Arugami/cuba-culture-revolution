@@ -7,11 +7,11 @@ const Hero = () => {
         {/* Left side content */}
         <div className="w-full lg:w-3/5 text-left space-y-8">
           <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
-            <span className="text-white">FIRST EVER</span>
+            <span className="text-white">THE ONLY</span>
             <br />
-            <span className="text-cuba-red">COUNTRY</span>
+            <span className="text-cuba-red">OFFICIAL</span>
             <br />
-            <span className="text-white">TAKE OVER</span>
+            <span className="text-white">CUBA MEME</span>
           </h1>
           
           <p className="text-2xl lg:text-3xl text-white/80 max-w-2xl">
