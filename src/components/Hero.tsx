@@ -62,7 +62,7 @@ const Hero = () => {
       {/* Bottom text */}
       <div className="absolute bottom-8 right-8">
         <p className="text-white/60 italic text-lg sm:text-xl">
-          "Make Cuba Great Again"
+          "Make Cuba Great Again!"
         </p>
       </div>
     </section>
