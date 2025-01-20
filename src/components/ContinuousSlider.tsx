@@ -27,10 +27,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
                 />
               ) : (
-                <span className={cn(
-                  "text-3xl font-bold",
-                  item.content === "$CUBA" ? "text-[#FFD700]" : "text-white/90"
-                )}>
+                <span className="text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
@@ -48,10 +45,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
                 />
               ) : (
-                <span className={cn(
-                  "text-3xl font-bold",
-                  item.content === "$CUBA" ? "text-[#FFD700]" : "text-white/90"
-                )}>
+                <span className="text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
