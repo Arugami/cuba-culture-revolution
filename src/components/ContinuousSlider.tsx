@@ -26,7 +26,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
+                  className="h-24 w-24 rounded-full object-cover border-4 border-[#FFD700]/20"
                 />
               ) : (
                 <span className="text-3xl font-bold text-white">
@@ -44,7 +44,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
+                  className="h-24 w-24 rounded-full object-cover border-4 border-[#FFD700]/20"
                 />
               ) : (
                 <span className="text-3xl font-bold text-white">
