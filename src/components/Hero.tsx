@@ -17,6 +17,15 @@ const Hero = () => {
           <p className="text-2xl lg:text-3xl text-white/80 max-w-2xl">
             Join the Revolution. The First Ever Country Takeover!
           </p>
+
+          {/* Image shown on mobile only */}
+          <div className="block lg:hidden w-full">
+            <img 
+              src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
+              alt="Hand holding Cuban flag" 
+              className="w-full h-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
+            />
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button
@@ -40,7 +49,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right side - Image */}
+        {/* Right side - Image (desktop only) */}
         <div className="hidden lg:block w-2/5">
           <img 
             src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
