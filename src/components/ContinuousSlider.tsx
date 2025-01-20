@@ -7,9 +7,8 @@ interface ContinuousSliderProps {
 
 const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   const items = [
-    { type: "text", content: "$CUBA" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
-    { type: "text", content: "First-Ever Country Takeover" },
+    { type: "text", content: "$CUBA" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
   ];
 
