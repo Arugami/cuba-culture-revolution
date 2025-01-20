@@ -15,7 +15,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl sm:text-2xl lg:text-3xl text-white/80 max-w-2xl">
-            A New Future for Cuba Starts Here.
+            Join the Revolution. The First Ever Country Takeover!
           </p>
 
           {/* Image shown on mobile only */}
@@ -62,7 +62,7 @@ const Hero = () => {
       {/* Bottom text */}
       <div className="absolute bottom-8 right-8">
         <p className="text-white/60 italic text-lg sm:text-xl">
-          "A New Future for Cuba Starts Here!"
+          "Celebrate Freedom & Build the Future!"
         </p>
       </div>
     </section>
