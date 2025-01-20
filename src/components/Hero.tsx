@@ -15,7 +15,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl sm:text-2xl lg:text-3xl text-white/80 max-w-2xl">
-            Join the Revolution. The First Ever Country Takeover!
+            The First Ever Country Takeover. Join the Revolution!
           </p>
 
           {/* Image shown on mobile only */}
