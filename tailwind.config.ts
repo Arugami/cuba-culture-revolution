@@ -20,8 +20,8 @@ export default {
     extend: {
       colors: {
         cuba: {
-          red: "#ea384c",
-          blue: "#0EA5E9",
+          red: "#DA291C",
+          blue: "#004B87",
           white: "#FFFFFF",
         },
         border: "hsl(var(--border))",
@@ -80,7 +80,7 @@ export default {
       },
       backgroundImage: {
         "hero-pattern":
-          "linear-gradient(45deg, #ea384c 0%, #0EA5E9 50%, #FFFFFF 100%)",
+          "linear-gradient(45deg, #DA291C 0%, #004B87 50%, #FFFFFF 100%)",
       },
     },
   },
