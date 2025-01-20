@@ -15,27 +15,13 @@ const Hero = () => {
         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
           Empowering the Cuban people to break free from an oppressive regime that has stifled their potential for decades, forging a future built on hope, unity, and financial freedom.
         </p>
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <Button
             size="lg"
             className="bg-cuba-red hover:bg-cuba-red/90 text-white"
             asChild
           >
             <a href="#how-to-buy">Buy $CUBA Now</a>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-white/10 hover:bg-white/20 text-white border-white"
-            asChild
-          >
-            <a
-              href="https://t.me/CubaCoin"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join the Community
-            </a>
           </Button>
         </div>
       </div>
