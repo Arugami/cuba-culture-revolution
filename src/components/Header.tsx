@@ -13,10 +13,20 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="text-2xl font-bold text-cuba-red">$CUBA</div>
           
-          {/* Mobile menu button */}
-          <button className="md:hidden" onClick={toggleMenu}>
-            {isOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <Button
+              className="bg-cuba-red hover:bg-cuba-red/90"
+              size="sm"
+              asChild
+            >
+              <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
+                Buy Now
+              </a>
+            </Button>
+            <button onClick={toggleMenu}>
+              {isOpen ? <X /> : <Menu />}
+            </button>
+          </div>
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-6">
@@ -46,11 +56,6 @@ const Header = () => {
               <a href="#how-to-buy" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>How to Buy</a>
               <a href="#community" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>Community</a>
               <a href="#vision" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>Vision</a>
-              <Button className="bg-cuba-red hover:bg-cuba-red/90 w-full" asChild>
-                <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-                  Buy Now
-                </a>
-              </Button>
             </nav>
           </div>
         )}
