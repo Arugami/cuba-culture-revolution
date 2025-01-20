@@ -40,9 +40,13 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right side - Optional image placeholder */}
+        {/* Right side - Image */}
         <div className="hidden lg:block w-2/5">
-          {/* You can add an image here later if needed */}
+          <img 
+            src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
+            alt="Hand holding Cuban flag" 
+            className="w-full h-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
+          />
         </div>
       </div>
 
