@@ -16,10 +16,10 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   ];
 
   return (
-    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-12", className)}>
+    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-8", className)}>
       <div className="relative flex w-full">
         {/* First set of scrolling items */}
-        <div className="animate-scroll flex min-w-full justify-around gap-24">
+        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-16 px-8">
           {items.map((item, idx) => (
             <div key={`first-${idx}`} className="flex items-center">
               {item.type === "image" ? (
@@ -29,7 +29,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-24 w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
@@ -37,7 +37,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           ))}
         </div>
         {/* Duplicate set for seamless scrolling */}
-        <div className="animate-scroll flex min-w-full justify-around gap-24">
+        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-16 px-8">
           {items.map((item, idx) => (
             <div key={`second-${idx}`} className="flex items-center">
               {item.type === "image" ? (
@@ -47,7 +47,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-24 w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
