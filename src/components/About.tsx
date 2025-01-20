@@ -8,15 +8,19 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <p className="text-lg mb-6">
-              $CUBA is more than just a meme coin – it's a movement. As the first-ever
-              Country Takeover (CTO) token, we're building a decentralized,
-              community-driven platform that aims to empower the Cuban people and
-              promote financial independence.
+              $CUBA is more than just a meme coin—it's a revolutionary movement and
+              the first-ever 'Country Takeover' (CTO).
+            </p>
+            <p className="text-lg mb-6">
+              Sparked by the Cuban government's failed attempts to launch a
+              cryptocurrency—and the bold response of a global community—$CUBA is
+              on a mission to empower the Cuban people and achieve true financial
+              independence.
             </p>
             <p className="text-lg">
-              Through our innovative approach to cryptocurrency, we're creating a
-              bridge between digital assets and real-world impact, focusing on
-              humanitarian initiatives and supporting the Cuban community worldwide.
+              $CUBA bridges the gap between digital assets and humanitarian
+              initiatives, supporting the Cuban community worldwide while
+              amplifying their voices and aspirations for freedom.
             </p>
           </div>
           <div className="relative">
