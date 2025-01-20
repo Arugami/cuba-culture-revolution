@@ -10,6 +10,9 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
     { type: "text", content: "$CUBA" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
+    { type: "text", content: "First-Ever Country Takeover" },
+    { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
+    { type: "text", content: "Join The Community" },
   ];
 
   return (
