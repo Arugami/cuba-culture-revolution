@@ -13,7 +13,6 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     { type: "text", content: "First-Ever Country Takeover" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
     { type: "text", content: "Join The Community" },
-    { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
   ];
 
   return (
@@ -30,7 +29,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
                 />
               ) : (
-                <span className="text-3xl font-bold text-[#FFD700]">
+                <span className="text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
@@ -48,7 +47,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-32 w-32 rounded-full object-cover border-2 border-[#FFD700]/20"
                 />
               ) : (
-                <span className="text-3xl font-bold text-[#FFD700]">
+                <span className="text-3xl font-bold text-white">
                   {item.content}
                 </span>
               )}
