@@ -6,7 +6,10 @@ interface ContinuousSliderProps {
 }
 
 const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
-  const items = Array(6).fill("/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png");
+  const items = Array(6).fill({
+    image: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png",
+    texts: ["$CUBA", "First-Ever Country Takeover"]
+  });
 
   return (
     <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-8", className)}>
@@ -16,10 +19,14 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div key={`first-${idx}`} className="flex items-center gap-4">
               <img
-                src={item}
+                src={item.image}
                 alt="Country Takeover Logo"
                 className="h-24 w-24 rounded-full object-cover"
               />
+              <div className="flex flex-col items-start">
+                <span className="text-xl font-bold text-[#FFD700]">{item.texts[0]}</span>
+                <span className="text-sm text-white">{item.texts[1]}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -28,10 +35,14 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div key={`second-${idx}`} className="flex items-center gap-4">
               <img
-                src={item}
+                src={item.image}
                 alt="Country Takeover Logo"
                 className="h-24 w-24 rounded-full object-cover"
               />
+              <div className="flex flex-col items-start">
+                <span className="text-xl font-bold text-[#FFD700]">{item.texts[0]}</span>
+                <span className="text-sm text-white">{item.texts[1]}</span>
+              </div>
             </div>
           ))}
         </div>
