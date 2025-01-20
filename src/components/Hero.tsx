@@ -15,7 +15,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-2xl lg:text-3xl text-white/80 max-w-2xl">
-            Join the Cuban Revolution. This is History in the Making!
+            Join the Revolution. The First Ever Country Takeover!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
