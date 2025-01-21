@@ -22,7 +22,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     try {
       await onVote(id, voteType);
       toast({
-        title: "Vote recorded",
+        title: "Success",
         description: `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
       });
     } catch (error) {
@@ -35,9 +35,9 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
-      <CardContent className="p-0 h-full">
-        <div className="relative h-full aspect-square">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <CardContent className="p-0">
+        <div className="relative aspect-square">
           <img
             src={image}
             alt={title}

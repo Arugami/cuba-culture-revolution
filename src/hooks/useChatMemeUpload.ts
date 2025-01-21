@@ -26,22 +26,18 @@ export const useChatMemeUpload = ({ onUploadSuccess }: UseChatMemeUploadProps) =
       setIsUploading(true);
       const parts = message.split(" ");
       
-      // Expected format: /meme "title" "description" imageUrl
       if (parts.length < 3) {
         throw new Error('Invalid format. Use: /meme "title" "description" imageUrl');
       }
 
-      // Extract title (removing quotes)
       const titleMatch = message.match(/"([^"]+)"/);
       if (!titleMatch) throw new Error("Title must be in quotes");
       const title = titleMatch[1];
 
-      // Extract description (removing quotes)
       const descMatch = message.substring(message.indexOf(titleMatch[0]) + titleMatch[0].length).match(/"([^"]+)"/);
       if (!descMatch) throw new Error("Description must be in quotes");
       const description = descMatch[1];
 
-      // Get URL (everything after the last quote)
       const imageUrl = message.substring(message.lastIndexOf('"') + 1).trim();
       if (!imageUrl) throw new Error("Image URL is required");
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 export const useVoteManagement = () => {
@@ -53,7 +53,6 @@ export const useVoteManagement = () => {
       const { error: actionError } = await action;
       if (actionError) throw actionError;
 
-      console.log(`Vote ${voteType ? 'up' : 'down'} processed successfully`);
     } catch (error: any) {
       console.error('Error processing vote:', error);
       toast({

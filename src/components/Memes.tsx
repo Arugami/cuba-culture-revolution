@@ -1,9 +1,9 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import MemeUpload from "./MemeUpload";
-import MemeGrid from "./memes/MemeGrid";
 import { useMemes } from "@/hooks/useMemes";
 import { useVoteManagement } from "@/hooks/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
+import MemeUpload from "./MemeUpload";
+import MemeGrid from "./memes/MemeGrid";
 
 const Memes = () => {
   const { t } = useLanguage();
@@ -12,17 +12,8 @@ const Memes = () => {
   const { handleMemeCommand } = useChatMemeUpload({ onUploadSuccess: fetchMemes });
 
   return (
-    <section 
-      className="w-full py-12 md:py-24 lg:py-32 bg-cuba-blue/5 relative"
-      style={{
-        backgroundImage: "url('/lovable-uploads/f079d44d-7232-4120-828e-03b0afa074f5.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        transform: 'scaleY(-1)'
-      }}
-    >
-      <div className="container px-4 md:px-6 relative z-10" style={{ transform: 'scaleY(-1)' }}>
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-cuba-blue/5 to-white">
+      <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
             {t('memes.title')}
@@ -35,12 +26,12 @@ const Memes = () => {
           </p>
         </div>
         
-        {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
+        <div className="mb-8">
+          {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
+        </div>
         
-        <div className="mt-16 flex flex-col items-center justify-center">
-          <div className="flex justify-center w-full">
-            <MemeUpload onUploadSuccess={fetchMemes} />
-          </div>
+        <div className="mt-8 flex justify-center">
+          <MemeUpload onUploadSuccess={fetchMemes} />
         </div>
       </div>
     </section>

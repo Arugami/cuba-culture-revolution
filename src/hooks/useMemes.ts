@@ -58,7 +58,6 @@ export const useMemes = () => {
           console.log('Meme update received:', payload);
           
           if (payload.eventType === 'UPDATE') {
-            // Update the specific meme's vote counts without a full refresh
             setMemes(currentMemes => 
               currentMemes.map(meme => 
                 meme.id === payload.new.id 
@@ -70,26 +69,15 @@ export const useMemes = () => {
                   : meme
               )
             );
-          } else if (payload.eventType === 'INSERT') {
-            // Only fetch all memes when a new meme is added
+          } else {
+            // For INSERT and DELETE events, refresh the entire list
             fetchMemes();
-          } else if (payload.eventType === 'DELETE') {
-            // Remove the deleted meme from the state
-            setMemes(currentMemes => 
-              currentMemes.filter(meme => meme.id !== payload.old.id)
-            );
           }
         }
       )
-      .subscribe((status) => {
-        console.log('Subscription status:', status);
-        if (status === 'SUBSCRIBED') {
-          console.log('Successfully subscribed to real-time updates');
-        }
-      });
+      .subscribe();
 
     return () => {
-      console.log('Cleaning up subscription');
       supabase.removeChannel(channel);
     };
   }, []);
