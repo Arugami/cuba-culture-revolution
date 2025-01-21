@@ -58,7 +58,7 @@ const Header = () => {
             <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
             <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
             <a href="#faq" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">FAQ</a>
-            <a href="#contract" onClick={scrollToFooter} className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Contract Address</a>
+            <a href="#contract" onClick={scrollToFooter} className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.contractAddress")}</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
@@ -134,7 +134,7 @@ const Header = () => {
               <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
               <a href="#faq" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>FAQ</a>
-              <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={(e) => { scrollToFooter(e); toggleMenu(); }}>Contract Address</a>
+              <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={(e) => { scrollToFooter(e); toggleMenu(); }}>{t("nav.contractAddress")}</a>
               
               <div className="flex gap-4 pt-2">
                 <button
