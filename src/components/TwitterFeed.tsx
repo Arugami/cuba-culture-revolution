@@ -6,7 +6,16 @@ const TwitterFeed = () => {
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
+    script.charset = "utf-8";
     document.body.appendChild(script);
+
+    // Debug logging
+    script.onload = () => {
+      console.log("Twitter script loaded successfully");
+    };
+    script.onerror = (error) => {
+      console.error("Error loading Twitter script:", error);
+    };
 
     return () => {
       document.body.removeChild(script);
@@ -24,8 +33,11 @@ const TwitterFeed = () => {
             className="twitter-timeline"
             data-height="600"
             data-theme="light"
-            href="https://twitter.com/search?q=%24CUBA"
             data-chrome="noheader nofooter noborders transparent"
+            data-tweet-limit="5"
+            data-dnt="false"
+            data-expand="1"
+            href="https://twitter.com/search?q=%24CUBA%20OR%20%23CUBA"
           >
             Loading tweets about $CUBA...
           </a>
