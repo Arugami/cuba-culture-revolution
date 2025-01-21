@@ -67,7 +67,7 @@ const Footer = () => {
               </p>
               <button
                 onClick={copyAddress}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300 w-full justify-center text-sm min-h-[44px]"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cuba-red hover:bg-cuba-red/80 transition-colors duration-300 w-full justify-center text-sm min-h-[44px] text-white"
               >
                 <ExternalLink className="w-4 h-4" />
                 Copy Address
