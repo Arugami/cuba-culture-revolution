@@ -60,9 +60,9 @@ const Community = () => {
         <div className="flex items-center justify-center gap-3 mt-6">
           <p className="text-gray-400 text-2xl">Buy Easily with</p>
           <img
-            src="/lovable-uploads/335aa389-2fcd-4861-8a02-d42140606393.png"
+            src="/lovable-uploads/d4eb0fb2-d814-4c28-a5b5-4e986519abe5.png"
             alt="Moonshot Logo"
-            className="h-24 w-auto hover:brightness-110 transition-all"
+            className="h-32 w-auto hover:brightness-110 transition-all"
           />
         </div>
       </div>
