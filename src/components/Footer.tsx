@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1A1F2C] text-white py-16 relative">
+    <footer className="bg-[#0b0f2a] text-white py-16 relative">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="space-y-4">
