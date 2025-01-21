@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,14 +43,50 @@ const Header = () => {
             <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Vision</a>
           </nav>
 
-          <Button
-            className="hidden md:inline-flex bg-cuba-red hover:bg-cuba-red/90"
-            asChild
-          >
-            <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-              Buy Now
-            </a>
-          </Button>
+          <div className="hidden md:flex items-center gap-6">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="https://t.me/CubaCoin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-cuba-red transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Join Us on Telegram</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="https://x.com/CubaCoin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-cuba-red transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4h-4.267"/></svg>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Follow Us on X</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <Button
+              className="bg-cuba-red hover:bg-cuba-red/90"
+              asChild
+            >
+              <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
+                Buy Now
+              </a>
+            </Button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -56,6 +98,42 @@ const Header = () => {
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>How to Buy</a>
               <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Community</a>
               <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Vision</a>
+              
+              <div className="flex gap-4 pt-2">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href="https://t.me/CubaCoin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-cuba-red transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Join Us on Telegram</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href="https://x.com/CubaCoin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-cuba-red transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4h-4.267"/></svg>
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Follow Us on X</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
             </nav>
           </div>
         )}
