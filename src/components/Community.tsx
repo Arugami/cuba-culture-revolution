@@ -3,10 +3,10 @@ const Community = () => {
     <section id="community" className="py-20 bg-[#0b0f2a] relative">
       <div className="w-full h-1 bg-cuba-red absolute top-0 left-0"></div>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold text-center mb-4 md:mb-8 text-white leading-tight">
+        <h2 className="text-5xl md:text-7xl font-bold text-center mb-8 text-white">
           Buy Now with a
-          <br className="md:hidden" />
-          <span className="inline-block mt-1 md:mt-0"> Debit Card or Crypto!</span>
+          <br />
+          Debit Card or Crypto!
         </h2>
 
         <div className="relative w-full overflow-hidden mb-12">
