@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Twitter, Send } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -29,42 +29,22 @@ const Header = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <nav className="flex items-center gap-6">
-              <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Home</a>
-              <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">About</a>
-              <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">How to Buy</a>
-              <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Community</a>
-              <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Vision</a>
-            </nav>
+          <nav className="hidden md:flex items-center gap-6">
+            <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Home</a>
+            <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">About</a>
+            <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">How to Buy</a>
+            <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Community</a>
+            <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Vision</a>
+          </nav>
 
-            <div className="flex items-center gap-4">
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-cuba-red transition-colors"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="https://telegram.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-cuba-red transition-colors"
-              >
-                <Send size={20} />
-              </a>
-              <Button
-                className="bg-cuba-red hover:bg-cuba-red/90"
-                asChild
-              >
-                <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-                  Buy Now
-                </a>
-              </Button>
-            </div>
-          </div>
+          <Button
+            className="hidden md:inline-flex bg-cuba-red hover:bg-cuba-red/90"
+            asChild
+          >
+            <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
+              Buy Now
+            </a>
+          </Button>
         </div>
 
         {/* Mobile menu */}
@@ -76,24 +56,6 @@ const Header = () => {
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>How to Buy</a>
               <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Community</a>
               <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Vision</a>
-              <div className="flex items-center gap-4 pt-2">
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-cuba-red transition-colors"
-                >
-                  <Twitter size={20} />
-                </a>
-                <a
-                  href="https://telegram.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-cuba-red transition-colors"
-                >
-                  <Send size={20} />
-                </a>
-              </div>
             </nav>
           </div>
         )}
