@@ -31,6 +31,7 @@ export const useMemes = () => {
         setMemes(formattedMemes);
       }
     } catch (error: any) {
+      console.error('Error fetching memes:', error);
       toast({
         title: "Error",
         description: "Failed to fetch memes",
@@ -44,7 +45,7 @@ export const useMemes = () => {
   useEffect(() => {
     fetchMemes();
 
-    // Subscribe to real-time changes
+    // Subscribe to changes in the memes table
     const channel = supabase
       .channel('memes-changes')
       .on(
@@ -55,8 +56,24 @@ export const useMemes = () => {
           table: 'memes'
         },
         (payload) => {
-          console.log('Real-time update received:', payload);
-          fetchMemes();
+          console.log('Meme update received:', payload);
+          // Update the specific meme in the local state
+          if (payload.eventType === 'UPDATE') {
+            setMemes(currentMemes => 
+              currentMemes.map(meme => 
+                meme.id === payload.new.id 
+                  ? {
+                      ...meme,
+                      upvotes: payload.new.upvotes || 0,
+                      downvotes: payload.new.downvotes || 0
+                    }
+                  : meme
+              )
+            );
+          } else {
+            // For other events (INSERT, DELETE), fetch all memes again
+            fetchMemes();
+          }
         }
       )
       .subscribe();

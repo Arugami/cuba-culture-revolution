@@ -12,9 +12,10 @@ interface MemeCardProps {
   onVote: (memeId: string, voteType: boolean) => Promise<void>;
 }
 
-const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }: MemeCardProps) => {
+const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, onVote }: MemeCardProps) => {
   const handleVote = async (e: React.MouseEvent, voteType: boolean) => {
     e.preventDefault();
+    e.stopPropagation();
     await onVote(id, voteType);
   };
 
@@ -40,7 +41,7 @@ const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }:
                 onClick={(e) => handleVote(e, true)}
               >
                 <ThumbsUp className="w-4 h-4 mr-1" />
-                {upvotes || 0}
+                {upvotes}
               </Button>
               <Button
                 variant="ghost"
@@ -49,7 +50,7 @@ const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }:
                 onClick={(e) => handleVote(e, false)}
               >
                 <ThumbsDown className="w-4 h-4 mr-1" />
-                {downvotes || 0}
+                {downvotes}
               </Button>
             </div>
           </div>
