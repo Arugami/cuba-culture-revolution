@@ -23,8 +23,8 @@ const Memes = () => {
         .from('meme_votes')
         .select()
         .eq('meme_id', memeId)
-        .eq('user_id', sessionId)
-        .single();
+        .eq('session_id', sessionId)
+        .maybeSingle();
 
       if (existingVote) {
         // If vote type is the same, remove the vote
@@ -60,7 +60,7 @@ const Memes = () => {
           .from('meme_votes')
           .insert({
             meme_id: memeId,
-            user_id: sessionId,
+            session_id: sessionId,
             vote_type: voteType
           });
 
