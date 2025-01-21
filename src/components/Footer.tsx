@@ -106,7 +106,14 @@ const Footer = () => {
           <p className="text-white flex items-center justify-center gap-2 mb-2">
             © 2025 $CUBA
           </p>
-          <p className="text-white text-sm opacity-75">Made by Arugami Labs</p>
+          <a
+            href="https://x.com/ARUGAMIx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-sm opacity-75 hover:text-cuba-red transition-colors duration-300"
+          >
+            Made by Arugami Labs
+          </a>
           <button
             onClick={scrollToTop}
             className="absolute right-4 bottom-4 bg-cuba-red hover:bg-cuba-red/80 p-2 rounded-full transition-all duration-300 hover:transform hover:-translate-y-1"
