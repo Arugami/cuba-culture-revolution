@@ -1,3 +1,4 @@
+// Move content from src/components/Footer.tsx
 import { ExternalLink, Heart, ArrowUp } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Separator } from "@/components/ui/separator";

@@ -1,3 +1,4 @@
+// Move content from src/components/FAQ.tsx
 import {
   Accordion,
   AccordionContent,

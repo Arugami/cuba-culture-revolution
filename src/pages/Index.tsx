@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import HowToBuy from "@/components/HowToBuy";
+import Header from "@/components/layout/Header";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import HowToBuy from "@/components/sections/HowToBuy";
 import Community from "@/components/Community";
 import Revolution from "@/components/Revolution";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+import FAQ from "@/components/sections/FAQ";
+import Footer from "@/components/layout/Footer";
 import ContinuousSlider from "@/components/ContinuousSlider";
 
 const Index = () => {

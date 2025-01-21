@@ -1,3 +1,4 @@
+// Move content from src/components/Header.tsx
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -191,3 +192,4 @@ const Header = () => {
 };
 
 export default Header;
+
