@@ -1,8 +1,8 @@
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20" style={{ backgroundImage: "url('/lovable-uploads/6107e562-29ba-46ff-99a0-6e4c304d2c55.png')" }}>
       <div className="container mx-auto px-4">
-        <div className="border-4 border-cuba-blue rounded-2xl p-8 shadow-lg bg-[#0A0F29]">
+        <div className="border-4 border-cuba-red rounded-2xl p-8 shadow-lg bg-[#0A0F29]">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-white">
             What is <span className="text-cuba-red">$CUBA</span>?
           </h2>
