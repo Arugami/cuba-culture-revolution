@@ -21,25 +21,25 @@ const Memes = () => {
   const { toast } = useToast();
   const [memes, setMemes] = useState<Meme[]>([
     {
-      id: "1",
+      id: "123e4567-e89b-12d3-a456-426614174000",
       image: "/lovable-uploads/f4d689ad-5a03-4747-9888-9480eec549ad.png",
       title: "Change My Mind",
       description: "$Cuban will flip the peso and we will free the Cuban people"
     },
     {
-      id: "2",
+      id: "123e4567-e89b-12d3-a456-426614174001",
       image: "/lovable-uploads/653934c1-35ac-4801-b44c-e8bf33ce8242.png",
       title: "National Currency",
       description: "Cuban citizens ready to adopt $CUBA as their National Currency"
     },
     {
-      id: "3",
+      id: "123e4567-e89b-12d3-a456-426614174002",
       image: "/lovable-uploads/0ac9564d-fcfc-452f-a076-f1bbd55ccc58.png",
       title: "The Slap",
       description: "$CUBA vs Cuban Government Officials"
     },
     {
-      id: "4",
+      id: "123e4567-e89b-12d3-a456-426614174003",
       image: "/lovable-uploads/fc5ece16-5fe3-48cc-bba5-3927abd32442.png",
       title: "The Switch",
       description: "Cuban Citizens choosing their financial freedom"
