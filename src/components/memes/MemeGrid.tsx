@@ -15,7 +15,10 @@ interface MemeGridProps {
 }
 
 const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
+  console.log('Rendering MemeGrid with memes:', memes);
+
   if (!memes || memes.length === 0) {
+    console.log('No memes available');
     return (
       <div className="w-full px-8 text-center text-gray-500">
         No memes available yet
@@ -33,11 +36,14 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
         className="w-full"
       >
         <CarouselContent className="-ml-1">
-          {memes.map((meme) => (
-            <CarouselItem key={meme.id} className="pl-1 basis-full md:basis-1/3 lg:basis-1/4">
-              <MemeCard {...meme} onVote={onVote} />
-            </CarouselItem>
-          ))}
+          {memes.map((meme) => {
+            console.log('Rendering meme:', meme);
+            return (
+              <CarouselItem key={meme.id} className="pl-1 basis-full md:basis-1/3 lg:basis-1/4">
+                <MemeCard {...meme} onVote={onVote} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
