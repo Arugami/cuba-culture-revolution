@@ -101,7 +101,7 @@ const Header = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
-                    href="https://x.com/cubacoin"
+                    href="https://x.com/CubaCTO"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-cuba-red transition-colors"
@@ -168,7 +168,7 @@ const Header = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://x.com/cubacoin"
+                        href="https://x.com/CubaCTO"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-cuba-red transition-colors"
