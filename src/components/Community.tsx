@@ -62,7 +62,7 @@ const Community = () => {
           <img
             src="/lovable-uploads/cc49fe3b-162d-4952-b2b2-7fa029aef9c5.png"
             alt="Moonshot Logo"
-            className="inline-block h-6 align-middle ml-1 hover:brightness-110 transition-all"
+            className="inline-block h-12 align-middle ml-1 hover:brightness-110 transition-all"
           />
         </p>
       </div>
