@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import HowToBuy from "@/components/HowToBuy";
 import Community from "@/components/Community";
-import Vision from "@/components/Vision";
 import Footer from "@/components/Footer";
 import ContinuousSlider from "@/components/ContinuousSlider";
 
@@ -16,7 +15,6 @@ const Index = () => {
       <About />
       <HowToBuy />
       <Community />
-      <Vision />
       <Footer />
     </div>
   );
