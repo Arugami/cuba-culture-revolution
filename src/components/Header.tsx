@@ -49,8 +49,6 @@ const Header = () => {
             <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.home")}</a>
             <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
             <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
-            <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.community")}</a>
-            <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.vision")}</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
@@ -125,8 +123,6 @@ const Header = () => {
               <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.home")}</a>
               <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
-              <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.community")}</a>
-              <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.vision")}</a>
               
               <div className="flex gap-4 pt-2">
                 <button
