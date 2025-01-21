@@ -23,26 +23,11 @@ const About = () => {
               </h1>
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <p className="text-lg mb-6 text-white">
+                  <p className="text-lg text-white">
                     On January 20, 2025, the Cuban government launched a cryptocurrency, claiming it would revolutionize the nation's financial future. For a brief moment, it seemed like hope had arrived for the Cuban people. The coin skyrocketed to a $30 million market cap, and investors believed change was within reach.
                   </p>
-                  <p className="text-lg mb-6 text-white">
+                  <p className="text-lg mt-6 text-white">
                     But in a cruel twist, the project collapsed just hours later in a devastating rug pull. It wasn't just a financial loss—it was a betrayal of trust. The government's failed attempt left the Cuban people disillusioned and abandoned. And yet, the story didn't end there.
-                  </p>
-                  <p className="text-lg mb-6 text-white">
-                    $CUBA is more than just a meme coin—it's a revolutionary movement and
-                    the first-ever 'Country Takeover' (CTO).
-                  </p>
-                  <p className="text-lg mb-6 text-white">
-                    Sparked by the Cuban government's failed attempts to launch a
-                    cryptocurrency—and the bold response of a global community—$CUBA is
-                    on a mission to empower the Cuban people and achieve true financial
-                    independence.
-                  </p>
-                  <p className="text-lg text-white">
-                    $CUBA bridges the gap between digital assets and humanitarian
-                    initiatives, supporting the Cuban community worldwide while
-                    amplifying their voices and aspirations for freedom.
                   </p>
                 </div>
                 <div className="relative">
