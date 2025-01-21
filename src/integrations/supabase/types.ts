@@ -79,7 +79,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      chat_upload_meme: {
+        Args: {
+          title: string
+          description: string
+          image_url: string
+          user_id: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
