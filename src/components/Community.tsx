@@ -11,7 +11,7 @@ const Community = () => {
         <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
           <div className="bg-[#000033] p-4 rounded-lg">
             <img
-              src="/lovable-uploads/3f48759b-b1c8-4bd7-a4ab-8351c28204f7.png"
+              src="/lovable-uploads/bd4df84f-5141-449a-931a-0697893e45be.png"
               alt="Apple Pay"
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
