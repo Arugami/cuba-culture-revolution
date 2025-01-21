@@ -74,8 +74,16 @@ const Memes = () => {
   }, []);
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-cuba-blue/5">
-      <div className="container px-4 md:px-6">
+    <section 
+      className="w-full py-12 md:py-24 lg:py-32 bg-cuba-blue/5 relative"
+      style={{
+        backgroundImage: "url('/lovable-uploads/f079d44d-7232-4120-828e-03b0afa074f5.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
             {t('memes.title')}
