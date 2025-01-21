@@ -53,7 +53,7 @@ const Community = () => {
         <div className="text-center">
           <Button
             size="lg"
-            className="bg-cuba-red hover:bg-cuba-red/90 text-white"
+            className="bg-cuba-red hover:bg-cuba-red/90"
             asChild
           >
             <a
