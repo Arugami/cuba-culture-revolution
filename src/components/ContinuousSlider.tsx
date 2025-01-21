@@ -16,20 +16,20 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   ];
 
   return (
-    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-4 sm:py-8", className)}>
+    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-6", className)}>
       <div className="relative flex w-full">
         {/* First set of scrolling items */}
-        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-4 sm:space-x-16 px-2 sm:px-8">
+        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-12 px-6">
           {items.map((item, idx) => (
             <div key={`first-${idx}`} className="flex items-center">
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-12 w-12 sm:h-24 sm:w-24 rounded-full object-cover"
+                  className="h-16 w-16 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-lg sm:text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-2xl font-bold text-white">
                   {item.content}
                 </span>
               )}
@@ -37,17 +37,17 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           ))}
         </div>
         {/* Duplicate set for seamless scrolling */}
-        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-4 sm:space-x-16 px-2 sm:px-8">
+        <div className="animate-scroll flex min-w-full items-center justify-evenly space-x-12 px-6">
           {items.map((item, idx) => (
             <div key={`second-${idx}`} className="flex items-center">
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-12 w-12 sm:h-24 sm:w-24 rounded-full object-cover"
+                  className="h-16 w-16 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-lg sm:text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-2xl font-bold text-white">
                   {item.content}
                 </span>
               )}
