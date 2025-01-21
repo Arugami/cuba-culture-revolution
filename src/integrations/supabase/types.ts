@@ -9,71 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      meme_votes: {
-        Row: {
-          created_at: string | null
-          id: string
-          meme_id: string | null
-          user_id: string | null
-          vote_type: boolean
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          meme_id?: string | null
-          user_id?: string | null
-          vote_type: boolean
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          meme_id?: string | null
-          user_id?: string | null
-          vote_type?: boolean
-        }
-        Relationships: [
-          {
-            foreignKeyName: "meme_votes_meme_id_fkey"
-            columns: ["meme_id"]
-            isOneToOne: false
-            referencedRelation: "memes"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      memes: {
-        Row: {
-          created_at: string | null
-          description: string | null
-          downvotes: number | null
-          id: string
-          image_url: string
-          title: string
-          upvotes: number | null
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          description?: string | null
-          downvotes?: number | null
-          id?: string
-          image_url: string
-          title: string
-          upvotes?: number | null
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          description?: string | null
-          downvotes?: number | null
-          id?: string
-          image_url?: string
-          title?: string
-          upvotes?: number | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
