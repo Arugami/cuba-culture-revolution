@@ -49,7 +49,7 @@ const About = () => {
                       href="https://t.me/CubaCTO" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block px-8 py-4 bg-gradient-to-r from-cuba-red via-cuba-blue to-cuba-white text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition-opacity"
+                      className="inline-block px-8 py-4 bg-cuba-red text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition-opacity"
                     >
                       Join the $CUBA Revolution
                     </a>
