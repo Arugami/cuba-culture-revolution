@@ -37,7 +37,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 pt-4 sm:pt-6">
             <Button
               size="lg"
-              className="bg-cuba-red hover:bg-cuba-red/90 text-white text-lg sm:text-xl px-6 sm:px-8 py-6 rounded-full w-full sm:w-auto"
+              className="bg-cuba-red hover:bg-cuba-red/90 text-white text-lg sm:text-xl px-6 sm:px-8 py-6 rounded-full w-full sm:w-auto shadow-lg hover:shadow-cuba-red/50 hover:shadow-xl transition-all duration-300"
               asChild
             >
               <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
@@ -46,7 +46,7 @@ const Hero = () => {
             </Button>
             <Button
               size="lg"
-              className="bg-cuba-blue hover:bg-cuba-blue/90 text-white text-lg sm:text-xl px-6 sm:px-8 py-6 rounded-full w-full sm:w-auto"
+              className="bg-cuba-blue hover:bg-cuba-blue/90 text-white text-lg sm:text-xl px-6 sm:px-8 py-6 rounded-full w-full sm:w-auto shadow-lg hover:shadow-cuba-blue/50 hover:shadow-xl transition-all duration-300"
               asChild
             >
               <a href="https://t.me/cubacoin" target="_blank" rel="noopener noreferrer">
