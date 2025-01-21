@@ -54,18 +54,18 @@ const Community = () => {
             href="https://moonshot.money/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-cuba-red text-white font-bold py-6 px-24 rounded-lg text-3xl hover:bg-cuba-blue transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[280px]"
+            className="inline-block bg-cuba-red text-white font-bold py-4 md:py-6 px-8 md:px-24 rounded-lg text-xl md:text-3xl hover:bg-cuba-blue transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-[90%] md:w-auto min-w-[280px] mx-auto"
           >
             BUY NOW
           </a>
         </div>
 
-        <div className="flex items-center justify-center gap-3 -mt-4">
-          <p className="text-gray-400 text-2xl">Buy Easily with</p>
+        <div className="flex items-center justify-center gap-3 mt-8 md:-mt-4">
+          <p className="text-gray-400 text-lg md:text-2xl">Buy Easily with</p>
           <img
             src="/lovable-uploads/d4eb0fb2-d814-4c28-a5b5-4e986519abe5.png"
             alt="Moonshot Logo"
-            className="h-32 w-auto hover:brightness-110 transition-all"
+            className="h-24 md:h-32 w-auto hover:brightness-110 transition-all"
           />
         </div>
       </div>
