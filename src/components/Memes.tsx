@@ -5,32 +5,25 @@ import { useToast } from "@/components/ui/use-toast";
 import MemeUpload from "./MemeUpload";
 import MemeGrid from "./memes/MemeGrid";
 import { Meme } from "@/types/meme";
-import { useAuth } from "@/contexts/AuthContext";
 
 const Memes = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const { user } = useAuth();
   const [memes, setMemes] = useState<Meme[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
-    if (!user) {
-      toast({
-        title: "Error",
-        description: "Please login to vote",
-        variant: "destructive",
-      });
-      return;
-    }
-
     try {
-      // Check if user has already voted
+      // Generate a unique identifier for the vote based on the client's session
+      const sessionId = localStorage.getItem('voteSessionId') || crypto.randomUUID();
+      localStorage.setItem('voteSessionId', sessionId);
+
+      // Check if this session has already voted
       const { data: existingVote } = await supabase
         .from('meme_votes')
         .select()
         .eq('meme_id', memeId)
-        .eq('user_id', user.id)
+        .eq('user_id', sessionId)
         .single();
 
       if (existingVote) {
@@ -67,7 +60,7 @@ const Memes = () => {
           .from('meme_votes')
           .insert({
             meme_id: memeId,
-            user_id: user.id,
+            user_id: sessionId,
             vote_type: voteType
           });
 
