@@ -1,25 +1,31 @@
+import React, { Suspense } from "react";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import HowToBuy from "@/components/HowToBuy";
-import Community from "@/components/Community";
-import Revolution from "@/components/Revolution";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
-import ContinuousSlider from "@/components/ContinuousSlider";
+import Loading from "@/components/Loading";
+
+// Lazy load components
+const Hero = React.lazy(() => import("@/components/Hero"));
+const About = React.lazy(() => import("@/components/About"));
+const HowToBuy = React.lazy(() => import("@/components/HowToBuy"));
+const Community = React.lazy(() => import("@/components/Community"));
+const Revolution = React.lazy(() => import("@/components/Revolution"));
+const FAQ = React.lazy(() => import("@/components/FAQ"));
+const Footer = React.lazy(() => import("@/components/Footer"));
+const ContinuousSlider = React.lazy(() => import("@/components/ContinuousSlider"));
 
 const Index = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Header />
-      <Hero />
-      <ContinuousSlider />
-      <About />
-      <HowToBuy />
-      <Community />
-      <Revolution />
-      <FAQ />
-      <Footer />
+      <Suspense fallback={<Loading />}>
+        <Hero />
+        <ContinuousSlider />
+        <About />
+        <HowToBuy />
+        <Community />
+        <Revolution />
+        <FAQ />
+        <Footer />
+      </Suspense>
     </div>
   );
 };
