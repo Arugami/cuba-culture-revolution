@@ -37,15 +37,13 @@ const Community = () => {
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          {[5].map((index) => (
-            <div key={index} className="bg-[#000033] p-4 rounded-lg">
-              <img
-                src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png"
-                alt={`Payment method ${index}`}
-                className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
-              />
-            </div>
-          ))}
+          <div className="bg-[#000033] p-4 rounded-lg">
+            <img
+              src="/lovable-uploads/b07bbf82-d262-4091-90d9-236dc8b94681.png"
+              alt="Solana"
+              className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+            />
+          </div>
         </div>
 
         <div className="text-center">
