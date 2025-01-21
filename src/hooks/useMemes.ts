@@ -31,7 +31,6 @@ export const useMemes = () => {
         setMemes(formattedMemes);
       }
     } catch (error: any) {
-      console.error('Error fetching memes:', error);
       toast({
         title: "Error",
         description: "Failed to fetch memes",
@@ -45,8 +44,9 @@ export const useMemes = () => {
   useEffect(() => {
     fetchMemes();
 
+    // Subscribe to real-time changes
     const channel = supabase
-      .channel('memes-realtime')
+      .channel('memes-changes')
       .on(
         'postgres_changes',
         {
@@ -55,41 +55,13 @@ export const useMemes = () => {
           table: 'memes'
         },
         (payload) => {
-          console.log('Meme update received:', payload);
-          
-          if (payload.eventType === 'UPDATE') {
-            // Update the specific meme's vote counts without a full refresh
-            setMemes(currentMemes => 
-              currentMemes.map(meme => 
-                meme.id === payload.new.id 
-                  ? {
-                      ...meme,
-                      upvotes: payload.new.upvotes || 0,
-                      downvotes: payload.new.downvotes || 0
-                    }
-                  : meme
-              )
-            );
-          } else if (payload.eventType === 'INSERT') {
-            // Only fetch all memes when a new meme is added
-            fetchMemes();
-          } else if (payload.eventType === 'DELETE') {
-            // Remove the deleted meme from the state
-            setMemes(currentMemes => 
-              currentMemes.filter(meme => meme.id !== payload.old.id)
-            );
-          }
+          console.log('Real-time update received:', payload);
+          fetchMemes();
         }
       )
-      .subscribe((status) => {
-        console.log('Subscription status:', status);
-        if (status === 'SUBSCRIBED') {
-          console.log('Successfully subscribed to real-time updates');
-        }
-      });
+      .subscribe();
 
     return () => {
-      console.log('Cleaning up subscription');
       supabase.removeChannel(channel);
     };
   }, []);
