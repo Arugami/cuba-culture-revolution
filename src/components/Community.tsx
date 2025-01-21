@@ -4,9 +4,8 @@ const Community = () => {
       <div className="w-full h-1 bg-cuba-red absolute top-0 left-0"></div>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold text-center mb-4 md:mb-8 text-white leading-tight">
-          Buy Now with a
-          <br className="md:hidden" />
-          <span className="inline-block mt-1 md:mt-0"> Debit Card or Crypto!</span>
+          Buy Now with
+          <span className="inline-block mt-1 md:mt-0"> Debit Card or Crypto</span>
         </h2>
 
         <div className="relative w-full overflow-hidden mb-12">
