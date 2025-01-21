@@ -1,5 +1,6 @@
 import { ExternalLink, Heart, ArrowUp } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
   const { toast } = useToast();
@@ -27,7 +28,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0b0f2a] text-white py-16 relative">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid md:grid-cols-3 gap-12 mb-12 relative">
           <div className="space-y-4">
             <h3 className="text-2xl font-bold mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
@@ -54,6 +55,10 @@ const Footer = () => {
             </ul>
           </div>
 
+          <div className="hidden md:block absolute left-1/3 top-0 h-full">
+            <Separator orientation="vertical" className="bg-white/10" />
+          </div>
+
           <div className="space-y-4">
             <h3 className="text-2xl font-bold mb-6 text-white">Contract</h3>
             <div className="bg-[#2A2F3C] p-4 rounded-lg">
@@ -68,6 +73,10 @@ const Footer = () => {
                 Copy Address
               </button>
             </div>
+          </div>
+
+          <div className="hidden md:block absolute left-2/3 top-0 h-full">
+            <Separator orientation="vertical" className="bg-white/10" />
           </div>
 
           <div className="space-y-4">
