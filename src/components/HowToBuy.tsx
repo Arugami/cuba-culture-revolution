@@ -42,12 +42,6 @@ const HowToBuy = () => {
             <p>Search for $CUBA using contract address: 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump</p>
           </div>
         </div>
-
-        <div className="mt-12 text-center">
-          <div className="aspect-video max-w-2xl mx-auto bg-cuba-blue/10 rounded-lg flex items-center justify-center">
-            <span className="text-cuba-blue">Video Tutorial Placeholder</span>
-          </div>
-        </div>
       </div>
     </section>
   );
