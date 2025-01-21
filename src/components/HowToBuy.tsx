@@ -36,7 +36,7 @@ const HowToBuy = () => {
               <ArrowRight className="w-6 h-6 text-cuba-blue" />
             </div>
             <h3 className="font-bold mb-2">Step 2</h3>
-            <p>Connect to Raydium.</p>
+            <p>Fund Your Wallet with SOL</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
