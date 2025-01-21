@@ -1,7 +1,10 @@
 import { Wallet, Search, ArrowRight } from "lucide-react";
 import ContractAddress from "./ContractAddress";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HowToBuy = () => {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="how-to-buy" 
@@ -17,7 +20,7 @@ const HowToBuy = () => {
         <div className="flex items-center justify-center gap-4 mb-12">
           <div className="h-0.5 w-16 bg-cuba-red"></div>
           <h2 className="text-3xl md:text-4xl font-bold text-center">
-            How to Buy <span className="text-cuba-red">$CUBA</span>
+            {t("howToBuy.title")} <span className="text-cuba-red">{t("howToBuy.subtitle")}</span>
           </h2>
           <div className="h-0.5 w-16 bg-cuba-red"></div>
         </div>
@@ -27,24 +30,24 @@ const HowToBuy = () => {
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Wallet className="w-6 h-6 text-cuba-blue" />
             </div>
-            <h3 className="font-bold mb-2">Step 1</h3>
-            <p>Install a Solana Wallet (e.g., Phantom)</p>
+            <h3 className="font-bold mb-2">{t("howToBuy.step1.title")}</h3>
+            <p>{t("howToBuy.step1.description")}</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <ArrowRight className="w-6 h-6 text-cuba-blue" />
             </div>
-            <h3 className="font-bold mb-2">Step 2</h3>
-            <p>Fund Your Wallet with SOL</p>
+            <h3 className="font-bold mb-2">{t("howToBuy.step2.title")}</h3>
+            <p>{t("howToBuy.step2.description")}</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-6 h-6 text-cuba-blue" />
             </div>
-            <h3 className="font-bold mb-2">Step 3</h3>
-            <p>Swap SOL for $CUBA</p>
+            <h3 className="font-bold mb-2">{t("howToBuy.step3.title")}</h3>
+            <p>{t("howToBuy.step3.description")}</p>
           </div>
         </div>
 

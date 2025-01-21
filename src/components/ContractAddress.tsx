@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Copy } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContractAddress = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const contractAddress = "27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump";
 
@@ -11,21 +13,21 @@ const ContractAddress = () => {
     try {
       await navigator.clipboard.writeText(contractAddress);
       toast({
-        title: "Address Copied!",
-        description: "Contract address has been copied to clipboard",
+        title: t("howToBuy.addressCopied"),
+        description: t("howToBuy.addressCopiedDesc"),
       });
     } catch (err) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to copy address",
+        title: t("howToBuy.copyError"),
+        description: t("howToBuy.copyErrorDesc"),
       });
     }
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto mt-8">
-      <h3 className="text-white text-xl mb-2">Solana Contract Address</h3>
+      <h3 className="text-white text-xl mb-2">{t("howToBuy.contractAddress")}</h3>
       <div 
         className="bg-white rounded-lg p-1 flex items-center shadow-lg"
         onMouseEnter={() => setIsHovered(true)}
@@ -44,7 +46,7 @@ const ContractAddress = () => {
           }`}
         >
           <Copy size={16} />
-          <span className="hidden sm:inline">Copy Address</span>
+          <span className="hidden sm:inline">{t("howToBuy.copyAddress")}</span>
         </button>
       </div>
     </div>
