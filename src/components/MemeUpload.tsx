@@ -6,12 +6,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
   const { user } = useAuth();
@@ -22,15 +30,6 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!user) {
-      toast({
-        title: "Error",
-        description: "Please sign in to upload memes",
         variant: "destructive",
       });
       return;
@@ -56,7 +55,7 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
           title,
           description,
           image_url: publicUrl,
-          user_id: user.id,
+          user_id: user?.id,
         });
 
       if (dbError) throw dbError;
@@ -69,6 +68,7 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       setTitle("");
       setDescription("");
       setFile(null);
+      setIsDialogOpen(false);
       onUploadSuccess();
     } catch (error) {
       toast({
@@ -81,53 +81,69 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
     }
   };
 
+  const uploadButton = (
+    <Button className="bg-cuba-blue hover:bg-cuba-blue/90">
+      Upload Meme
+    </Button>
+  );
+
   if (!user) {
     return (
       <div className="text-center p-6 bg-white rounded-lg shadow">
         <h3 className="text-xl font-semibold mb-4">Sign in to Upload Memes</h3>
-        <AuthModal trigger={
-          <Button className="bg-cuba-blue hover:bg-cuba-blue/90">
-            Sign In to Upload
-          </Button>
-        } />
+        <AuthModal trigger={uploadButton} />
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow">
-      <div>
-        <Input
-          type="text"
-          placeholder="Meme Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-          className="w-full"
-        />
-      </div>
-      <div>
-        <Input
-          type="text"
-          placeholder="Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full"
-        />
-      </div>
-      <div>
-        <Input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          required
-          className="w-full"
-        />
-      </div>
-      <Button type="submit" disabled={isUploading} className="w-full bg-cuba-blue hover:bg-cuba-blue/90">
-        {isUploading ? "Uploading..." : "Upload Meme"}
-      </Button>
-    </form>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger asChild>
+        {uploadButton}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Upload Your Meme</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Input
+              type="text"
+              placeholder="Meme Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="w-full"
+            />
+          </div>
+          <div>
+            <Input
+              type="text"
+              placeholder="Description (optional)"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full"
+            />
+          </div>
+          <div>
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files?.[0] || null)}
+              required
+              className="w-full"
+            />
+          </div>
+          <Button 
+            type="submit" 
+            disabled={isUploading} 
+            className="w-full bg-cuba-blue hover:bg-cuba-blue/90"
+          >
+            {isUploading ? "Uploading..." : "Upload Meme"}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
 
