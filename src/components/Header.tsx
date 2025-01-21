@@ -17,10 +17,7 @@ const Header = () => {
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div className="flex flex-col items-start">
-            <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight">$CUBA</div>
-            <div className="text-xs md:text-sm text-black font-light">The First-Ever Country Takeover Token</div>
-          </div>
+          <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight">$CUBA</div>
           
           <div className="flex items-center gap-4 md:hidden">
             <Button
