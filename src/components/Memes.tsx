@@ -1,20 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
 import MemeUpload from "./MemeUpload";
-
-interface Meme {
-  id: string;
-  image: string;
-  title: string;
-  description: string | null;
-  upvotes?: number;
-  downvotes?: number;
-}
+import MemeGrid from "./memes/MemeGrid";
+import { Meme } from "@/types/meme";
 
 const Memes = () => {
   const { t } = useLanguage();
@@ -94,45 +84,8 @@ const Memes = () => {
             {t('memes.subtitle')}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-          {memes.map((meme) => (
-            <Card key={meme.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-0">
-                <div className="relative aspect-square">
-                  <img
-                    src={meme.image}
-                    alt={meme.title}
-                    className="object-cover w-full h-full"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4">
-                    <h3 className="text-white font-patua text-lg">{meme.title}</h3>
-                    <p className="text-white/80 text-sm">{meme.description}</p>
-                    <div className="flex justify-between mt-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-white hover:text-cuba-blue"
-                        onClick={() => handleVote(meme.id, true)}
-                      >
-                        <ThumbsUp className="w-4 h-4 mr-1" />
-                        {meme.upvotes || 0}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-white hover:text-cuba-blue"
-                        onClick={() => handleVote(meme.id, false)}
-                      >
-                        <ThumbsDown className="w-4 h-4 mr-1" />
-                        {meme.downvotes || 0}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        
+        <MemeGrid memes={memes} onVote={handleVote} />
         
         <div className="mt-16">
           <h3 className="text-2xl font-patua text-cuba-blue text-center mb-8">
