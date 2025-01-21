@@ -9,6 +9,8 @@ const Memes = () => {
   const { memes, isLoading, fetchMemes } = useMemes();
   const { handleVote } = useVoteManagement();
 
+  console.log('Memes component rendering with:', { memes, isLoading });
+
   return (
     <section 
       className="w-full py-12 md:py-24 lg:py-32 bg-cuba-blue/5 relative"
@@ -30,7 +32,11 @@ const Memes = () => {
           </p>
         </div>
         
-        {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
+        {isLoading ? (
+          <div className="text-center">Loading memes...</div>
+        ) : (
+          <MemeGrid memes={memes} onVote={handleVote} />
+        )}
         
         <div className="mt-16 flex flex-col items-center justify-center">
           <div className="flex justify-center w-full">
