@@ -59,8 +59,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom text - Moved below the image */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* Bottom text */}
+      <div className="absolute bottom-8 right-8">
         <p className="text-white/60 italic text-lg sm:text-xl">
           "Make Cuba Great Again!"
         </p>
