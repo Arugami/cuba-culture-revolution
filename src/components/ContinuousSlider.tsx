@@ -23,16 +23,16 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div 
               key={`first-${idx}`} 
-              className="flex items-center w-[120px] justify-center md:w-auto md:mx-0"
+              className="flex items-center w-[150px] justify-center md:w-auto md:mx-0"
             >
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-10 w-10 md:h-24 md:w-24 rounded-full object-cover"
+                  className="h-12 w-12 md:h-24 md:w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
@@ -44,16 +44,16 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div 
               key={`second-${idx}`} 
-              className="flex items-center w-[120px] justify-center md:w-auto md:mx-0"
+              className="flex items-center w-[150px] justify-center md:w-auto md:mx-0"
             >
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="h-10 w-10 md:h-24 md:w-24 rounded-full object-cover"
+                  className="h-12 w-12 md:h-24 md:w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white">
+                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
