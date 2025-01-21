@@ -23,21 +23,21 @@ const About = () => {
                 <br />
                 <span className="bg-gradient-to-r from-cuba-red via-cuba-blue to-cuba-white bg-clip-text text-transparent">The First Country Take Over</span>
               </h1>
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="text-left">
+              <div className="flex flex-col md:flex-row gap-8 items-start">
+                <div className="w-full md:w-1/2">
+                  <img 
+                    src="/lovable-uploads/69044ac3-a853-4f81-95d9-69b3a070d3a4.png"
+                    alt="Person holding $CUBA sign in front of colorful Cuban buildings"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 text-left">
                   <p className="text-lg text-white">
                     On January 20, 2025, the Cuban government launched a cryptocurrency, claiming it would revolutionize the nation's financial future. For a brief moment, it seemed like hope had arrived for the Cuban people. The coin skyrocketed to a $30 million market cap, and investors believed change was within reach.
                   </p>
                   <p className="text-lg mt-6 text-white">
                     But in a cruel twist, the project collapsed just hours later in a devastating rug pull. It wasn't just a financial loss—it was a betrayal of trust. The government's failed attempt left the Cuban people disillusioned and abandoned. And yet, the story didn't end there.
                   </p>
-                </div>
-                <div className="relative">
-                  <img 
-                    src="/lovable-uploads/69044ac3-a853-4f81-95d9-69b3a070d3a4.png"
-                    alt="Person holding $CUBA sign in front of colorful Cuban buildings"
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  />
                 </div>
               </div>
             </div>
