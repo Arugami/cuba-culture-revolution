@@ -29,7 +29,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold mb-6 text-cuba-red">Quick Links</h3>
+            <h3 className="text-2xl font-bold mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#about" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
@@ -55,9 +55,9 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold mb-6 text-cuba-red">Contract</h3>
+            <h3 className="text-2xl font-bold mb-6 text-white">Contract</h3>
             <div className="bg-[#2A2F3C] p-4 rounded-lg">
-              <p className="text-sm break-all mb-2 text-gray-300">
+              <p className="text-sm break-all mb-2 text-white">
                 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump
               </p>
               <button
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold mb-6 text-cuba-red">Community</h3>
+            <h3 className="text-2xl font-bold mb-6 text-white">Community</h3>
             <div className="space-y-3">
               <a
                 href="https://t.me/cubacoin"
@@ -89,7 +89,7 @@ const Footer = () => {
               >
                 Twitter
               </a>
-              <p className="text-gray-300 mt-4">
+              <p className="text-white mt-4">
                 Contact: support@cubacoin.com
               </p>
             </div>
@@ -97,7 +97,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center pt-8 border-t border-gray-800 relative">
-          <p className="text-gray-400 flex items-center justify-center gap-2">
+          <p className="text-white flex items-center justify-center gap-2">
             © 2025 $CUBA – Made with <Heart className="w-4 h-4 text-cuba-red" /> All Rights Reserved
           </p>
           <button
