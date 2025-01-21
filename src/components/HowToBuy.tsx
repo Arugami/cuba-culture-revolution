@@ -2,7 +2,16 @@ import { Wallet, Search, ArrowRight } from "lucide-react";
 
 const HowToBuy = () => {
   return (
-    <section id="how-to-buy" className="py-20 bg-gray-50">
+    <section 
+      id="how-to-buy" 
+      className="py-20 relative"
+      style={{
+        backgroundImage: "url('/lovable-uploads/fb011771-1f83-461a-a8c5-363224c91988.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           How to Buy <span className="text-cuba-red">$CUBA</span>
