@@ -16,56 +16,46 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   ];
 
   return (
-    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-2 md:py-8", className)}>
+    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-2 sm:py-4 md:py-6 lg:py-8", className)}>
       <div className="relative flex w-full">
         {/* First set of scrolling items */}
-        <div className="animate-scroll flex min-w-full items-center md:justify-evenly md:space-x-16 px-4 md:px-8">
+        <div className="animate-scroll flex min-w-full items-center justify-start sm:justify-evenly space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-16 px-2 sm:px-4 md:px-6 lg:px-8">
           {items.map((item, idx) => (
             <div 
               key={`first-${idx}`} 
-              className="flex items-center w-[200px] py-4 justify-center md:w-auto md:mx-0"
+              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center"
             >
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="block h-12 w-12 md:h-24 md:w-24 rounded-full object-contain md:object-cover"
+                  className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-24 lg:w-24 rounded-full object-contain md:object-cover"
                 />
               ) : (
-                <>
-                  <span className="block md:hidden whitespace-nowrap text-lg font-bold text-white text-center">
-                    {item.content}
-                  </span>
-                  <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
-                    {item.content}
-                  </span>
-                </>
+                <span className="whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-3xl font-bold text-white text-center">
+                  {item.content}
+                </span>
               )}
             </div>
           ))}
         </div>
         {/* Duplicate set for seamless scrolling */}
-        <div className="animate-scroll flex min-w-full items-center md:justify-evenly md:space-x-16 px-4 md:px-8">
+        <div className="animate-scroll flex min-w-full items-center justify-start sm:justify-evenly space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-16 px-2 sm:px-4 md:px-6 lg:px-8">
           {items.map((item, idx) => (
             <div 
               key={`second-${idx}`} 
-              className="flex items-center w-[200px] py-4 justify-center md:w-auto md:mx-0"
+              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center"
             >
               {item.type === "image" ? (
                 <img
                   src={item.content}
                   alt="Country Takeover Logo"
-                  className="block h-12 w-12 md:h-24 md:w-24 rounded-full object-contain md:object-cover"
+                  className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-24 lg:w-24 rounded-full object-contain md:object-cover"
                 />
               ) : (
-                <>
-                  <span className="block md:hidden whitespace-nowrap text-lg font-bold text-white text-center">
-                    {item.content}
-                  </span>
-                  <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
-                    {item.content}
-                  </span>
-                </>
+                <span className="whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-3xl font-bold text-white text-center">
+                  {item.content}
+                </span>
               )}
             </div>
           ))}
