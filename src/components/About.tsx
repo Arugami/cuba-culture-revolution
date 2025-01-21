@@ -18,6 +18,9 @@ const About = () => {
             }}
           >
             <div className="p-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
+                $CUBA: <span className="text-cuba-red">The First CTO</span>
+              </h1>
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-white">
                 What is <span className="text-cuba-red">$CUBA</span>?
               </h2>
