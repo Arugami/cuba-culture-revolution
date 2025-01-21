@@ -39,7 +39,7 @@ const TwitterFeed = () => {
             data-height="600"
             data-theme="light"
             data-chrome="noheader nofooter noborders transparent"
-            href="https://twitter.com/search?q=%24Cuba&src=recent_search_click"
+            href="https://fxtwitter.com/search?q=%24Cuba&src=recent_search_click"
           >
             Loading tweets about $CUBA...
           </a>
