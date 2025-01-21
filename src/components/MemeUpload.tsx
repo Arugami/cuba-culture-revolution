@@ -89,8 +89,7 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
 
   if (!user) {
     return (
-      <div className="text-center p-6 bg-white rounded-lg shadow">
-        <h3 className="text-xl font-semibold mb-4">Sign in to Upload Memes</h3>
+      <div className="flex justify-center w-full">
         <AuthModal trigger={uploadButton} />
       </div>
     );
