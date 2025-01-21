@@ -1,11 +1,14 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ContinuousSliderProps {
   className?: string;
 }
 
 const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
+  const isMobile = useIsMobile();
+  
   const items = [
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
     { type: "text", content: "$CUBA" },
@@ -14,6 +17,30 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
     { type: "text", content: "Join The Community" },
   ];
+
+  if (isMobile) {
+    return (
+      <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-4", className)}>
+        <div className="flex items-center justify-center space-x-3 px-4">
+          {items.map((item, idx) => (
+            <React.Fragment key={idx}>
+              {item.type === "image" ? (
+                <img
+                  src={item.content}
+                  alt="Country Takeover Logo"
+                  className="h-6 w-6 rounded-full object-contain"
+                />
+              ) : (
+                <span className="whitespace-nowrap text-sm font-bold text-white">
+                  {item.content}
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-2 sm:py-4 md:py-6 lg:py-8", className)}>
