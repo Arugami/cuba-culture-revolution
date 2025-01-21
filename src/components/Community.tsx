@@ -9,7 +9,7 @@ const Community = () => {
           Debit Card or Crypto!
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12">
+        <div className="flex flex-wrap justify-center items-center gap-3 mb-12">
           <div className="bg-[#0b0f2a] border border-white/20 p-2 rounded-lg transform transition-all duration-200 hover:scale-105">
             <img
               src="/lovable-uploads/bd4df84f-5141-449a-931a-0697893e45be.png"
@@ -31,14 +31,14 @@ const Community = () => {
               className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="col-span-1 sm:col-start-2 bg-[#0b0f2a] border border-white/20 p-2 rounded-lg transform transition-all duration-200 hover:scale-105">
+          <div className="bg-[#0b0f2a] border border-white/20 p-2 rounded-lg transform transition-all duration-200 hover:scale-105">
             <img
               src="/lovable-uploads/ca57a1c0-f081-4444-abcd-c168f38c2d9b.png"
               alt="USD Coin"
               className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="col-span-1 sm:col-start-3 bg-[#0b0f2a] border border-white/20 p-2 rounded-lg transform transition-all duration-200 hover:scale-105">
+          <div className="bg-[#0b0f2a] border border-white/20 p-2 rounded-lg transform transition-all duration-200 hover:scale-105">
             <img
               src="/lovable-uploads/b07bbf82-d262-4091-90d9-236dc8b94681.png"
               alt="Solana"
