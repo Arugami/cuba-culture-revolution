@@ -18,11 +18,11 @@ const About = () => {
             }}
           >
             <div className="p-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-white">
+              <h1 className="text-4xl md:text-5xl font-bold text-left mb-8 text-white">
                 $CUBA: <span className="text-cuba-red">The First Country Take Over</span>
               </h1>
               <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
+                <div className="text-left">
                   <p className="text-lg text-white">
                     On January 20, 2025, the Cuban government launched a cryptocurrency, claiming it would revolutionize the nation's financial future. For a brief moment, it seemed like hope had arrived for the Cuban people. The coin skyrocketed to a $30 million market cap, and investors believed change was within reach.
                   </p>
