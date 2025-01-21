@@ -44,7 +44,7 @@ const About = () => {
                   <p className="text-lg mt-6 text-white">
                     $CUBA isn't just a token—it's a revolutionary symbol of resilience and hope. It represents a historic Country Takeover (CTO), proving that power can and should belong to the people.
                   </p>
-                  <div className="mt-8 flex justify-end">
+                  <div className="mt-8 flex justify-center md:justify-end">
                     <a 
                       href="https://t.me/CubaCTO" 
                       target="_blank" 
