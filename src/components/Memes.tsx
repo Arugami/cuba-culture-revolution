@@ -97,9 +97,6 @@ const Memes = () => {
         <MemeGrid memes={memes} onVote={handleVote} />
         
         <div className="mt-16 flex flex-col items-center justify-center">
-          <h3 className="text-2xl font-patua text-cuba-blue text-center mb-8">
-            Upload Your Meme
-          </h3>
           <div className="flex justify-center w-full">
             <MemeUpload onUploadSuccess={fetchMemes} />
           </div>
