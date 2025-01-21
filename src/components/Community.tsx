@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Community = () => {
   return (
     <section id="community" className="py-20 bg-[#0b0f2a] relative">
