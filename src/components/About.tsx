@@ -38,6 +38,12 @@ const About = () => {
                   <p className="text-lg mt-6 text-white">
                     But in a cruel twist, the project collapsed just hours later in a devastating rug pull. It wasn't just a financial loss—it was a betrayal of trust. The government's failed attempt left the Cuban people disillusioned and abandoned. And yet, the story didn't end there.
                   </p>
+                  <p className="text-lg mt-6 text-white">
+                    In the face of despair, a bold global community rose up. $CUBA was born—not as a government-backed project, but as a movement of the people.
+                  </p>
+                  <p className="text-lg mt-6 text-white">
+                    $CUBA isn't just a token—it's a revolutionary symbol of resilience and hope. It represents a historic Country Takeover (CTO), proving that power can and should belong to the people.
+                  </p>
                 </div>
               </div>
             </div>
