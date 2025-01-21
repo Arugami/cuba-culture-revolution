@@ -1,70 +1,41 @@
-import { MessageSquare, Twitter, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
 const Community = () => {
   return (
     <section id="community" className="py-20 bg-[#0b0f2a]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
-          Join the <span className="text-cuba-red">$CUBA</span> Revolution
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-white">
+          Buy Now with a
+          <br />
+          Debit Card or Crypto!
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <a
-            href="https://t.me/CubaCoin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
-          >
-            <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageSquare className="w-6 h-6 text-cuba-blue" />
-            </div>
-            <h3 className="font-bold mb-2">Telegram</h3>
-            <p>Join our active Telegram community</p>
-          </a>
-
-          <a
-            href="https://twitter.com/CubaCoin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
-          >
-            <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Twitter className="w-6 h-6 text-cuba-blue" />
-            </div>
-            <h3 className="font-bold mb-2">Twitter</h3>
-            <p>Follow us for the latest updates</p>
-          </a>
-
-          <a
-            href="https://discord.gg/CubaCoin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
-          >
-            <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-6 h-6 text-cuba-blue" />
-            </div>
-            <h3 className="font-bold mb-2">Discord</h3>
-            <p>Join our Discord server</p>
-          </a>
+        <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
+          <div className="bg-[#000033] p-4 rounded-lg">
+            <img src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png" alt="Payment methods" className="h-12" />
+          </div>
         </div>
 
         <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-cuba-red hover:bg-cuba-red/90"
-            asChild
+          <a
+            href="https://raydium.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-cuba-red text-white font-bold py-4 px-12 rounded-lg text-xl hover:bg-cuba-red/90 transition-colors"
           >
-            <a
-              href="https://t.me/CubaCoin"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Our Community
-            </a>
-          </Button>
+            BUY NOW
+          </a>
         </div>
+
+        <p className="text-center text-gray-400 text-sm mt-6">
+          Buy Easily with{" "}
+          <a
+            href="https://moonshot.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-cuba-red"
+          >
+            moonshot
+          </a>
+        </p>
       </div>
     </section>
   );
