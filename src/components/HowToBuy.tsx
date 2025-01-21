@@ -14,9 +14,13 @@ const HowToBuy = () => {
       }}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          How to Buy <span className="text-cuba-red">$CUBA</span>
-        </h2>
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <div className="h-0.5 w-16 bg-cuba-red"></div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center">
+            How to Buy <span className="text-cuba-red">$CUBA</span>
+          </h2>
+          <div className="h-0.5 w-16 bg-cuba-red"></div>
+        </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
