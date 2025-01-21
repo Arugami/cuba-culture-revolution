@@ -7,15 +7,20 @@ const TwitterFeed = () => {
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
     script.charset = "utf-8";
-    document.body.appendChild(script);
 
     // Debug logging
     script.onload = () => {
       console.log("Twitter script loaded successfully");
+      // Force widget refresh
+      if (window.twttr) {
+        window.twttr.widgets.load();
+      }
     };
     script.onerror = (error) => {
       console.error("Error loading Twitter script:", error);
     };
+
+    document.body.appendChild(script);
 
     return () => {
       document.body.removeChild(script);
@@ -35,9 +40,7 @@ const TwitterFeed = () => {
             data-theme="light"
             data-chrome="noheader nofooter noborders transparent"
             data-tweet-limit="5"
-            data-dnt="false"
-            data-expand="1"
-            href="https://twitter.com/search?q=%24CUBA%20OR%20%23CUBA"
+            href="https://twitter.com/search?q=$CUBA OR #CUBA"
           >
             Loading tweets about $CUBA...
           </a>
