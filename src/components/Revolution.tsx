@@ -1,6 +1,9 @@
 import React from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Revolution = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-cuba-blue via-cuba-red to-cuba-white">
       <div className="container mx-auto max-w-6xl">
@@ -10,14 +13,14 @@ const Revolution = () => {
             <h2 className="text-5xl md:text-6xl font-bold text-cuba-white mb-6" style={{
               textShadow: "2px 2px 4px rgba(0,0,0,0.3)"
             }}>
-              Join the <span className="text-cuba-white">$CUBA</span> Revolution!
+              {t('revolution.title')}
             </h2>
             <div className="bg-[rgba(0,0,0,0.5)] p-6 rounded-lg backdrop-blur-sm">
               <h3 className="text-xl md:text-2xl font-semibold text-cuba-white mb-4">
-                Mission
+                {t('revolution.mission')}
               </h3>
               <p className="text-lg text-cuba-white leading-relaxed">
-                This is YOUR chance to join a movement that's all about empowering the Cuban people. <span className="text-cuba-white">$CUBA</span> bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀
+                {t('revolution.description')}
               </p>
             </div>
           </div>

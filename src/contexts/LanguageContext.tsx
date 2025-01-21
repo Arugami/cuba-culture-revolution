@@ -53,6 +53,9 @@ const translations: Translations = {
     "community.debitCard": "Debit Card or Crypto!",
     "community.buyButton": "BUY NOW",
     "community.buyEasily": "Buy Easily with",
+    "revolution.title": "Join the $CUBA Revolution!",
+    "revolution.mission": "Mission",
+    "revolution.description": "This is YOUR chance to join a movement that's all about empowering the Cuban people. $CUBA bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀",
   },
   es: {
     "nav.home": "Inicio",
@@ -98,6 +101,9 @@ const translations: Translations = {
     "community.debitCard": "¡Tarjeta de Débito o Cripto!",
     "community.buyButton": "COMPRAR AHORA",
     "community.buyEasily": "Compra Fácilmente con",
+    "revolution.title": "¡Únete a la Revolución $CUBA!",
+    "revolution.mission": "Misión",
+    "revolution.description": "Esta es TU oportunidad de unirte a un movimiento que se trata de empoderar al pueblo cubano. $CUBA une la innovación digital con el impacto en el mundo real, fomentando la esperanza, la libertad y un futuro más brillante. ¡Juntos, reescribiremos la historia! 🚀",
   },
 };
 
