@@ -57,14 +57,14 @@ const Community = () => {
           </a>
         </div>
 
-        <p className="text-center text-gray-400 text-sm mt-6">
-          Buy Easily with{" "}
+        <div className="flex items-center justify-center gap-3 mt-6">
+          <p className="text-gray-400 text-2xl">Buy Easily with</p>
           <img
             src="/lovable-uploads/335aa389-2fcd-4861-8a02-d42140606393.png"
             alt="Moonshot Logo"
-            className="inline-block h-24 align-middle ml-1 hover:brightness-110 transition-all"
+            className="h-24 w-auto hover:brightness-110 transition-all"
           />
-        </p>
+        </div>
       </div>
     </section>
   );
