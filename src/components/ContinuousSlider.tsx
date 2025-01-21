@@ -19,7 +19,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-2 md:py-8", className)}>
       <div className="relative flex w-full">
         {/* First set of scrolling items */}
-        <div className="animate-scroll flex min-w-full items-center justify-evenly md:justify-evenly md:space-x-16 px-4 md:px-8">
+        <div className="animate-scroll flex min-w-full items-center md:justify-evenly md:space-x-16 px-4 md:px-8">
           {items.map((item, idx) => (
             <div 
               key={`first-${idx}`} 
@@ -40,7 +40,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           ))}
         </div>
         {/* Duplicate set for seamless scrolling */}
-        <div className="animate-scroll flex min-w-full items-center justify-evenly md:justify-evenly md:space-x-16 px-4 md:px-8">
+        <div className="animate-scroll flex min-w-full items-center md:justify-evenly md:space-x-16 px-4 md:px-8">
           {items.map((item, idx) => (
             <div 
               key={`second-${idx}`} 
