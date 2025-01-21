@@ -15,7 +15,10 @@ interface MemeGridProps {
 }
 
 const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
-  if (!memes || memes.length === 0) {
+  // Skip the first meme by slicing the array starting from index 1
+  const displayMemes = memes.slice(1);
+
+  if (!displayMemes || displayMemes.length === 0) {
     return (
       <div className="w-full px-8 text-center text-gray-500">
         No memes available yet
@@ -33,7 +36,7 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
         className="w-full"
       >
         <CarouselContent className="-ml-1">
-          {memes.map((meme) => (
+          {displayMemes.map((meme) => (
             <CarouselItem key={meme.id} className="pl-1 basis-full md:basis-1/3 lg:basis-1/4">
               <MemeCard {...meme} onVote={onVote} />
             </CarouselItem>
