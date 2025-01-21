@@ -3,13 +3,13 @@ import MemeUpload from "./MemeUpload";
 import MemeGrid from "./memes/MemeGrid";
 import { useMemes } from "@/hooks/useMemes";
 import { useVoteManagement } from "@/hooks/useVoteManagement";
-import ChatMemeUpload from "./chat/ChatMemeUpload";
+import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 
 const Memes = () => {
   const { t } = useLanguage();
   const { memes, isLoading, fetchMemes } = useMemes();
   const { handleVote } = useVoteManagement();
-  const { handleMemeCommand } = ChatMemeUpload({ onUploadSuccess: fetchMemes });
+  const { handleMemeCommand } = useChatMemeUpload({ onUploadSuccess: fetchMemes });
 
   return (
     <section 
