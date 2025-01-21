@@ -49,6 +49,7 @@ const Header = () => {
             <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.home")}</a>
             <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
             <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
+            <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Contract</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
@@ -123,6 +124,7 @@ const Header = () => {
               <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.home")}</a>
               <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
+              <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Contract</a>
               
               <div className="flex gap-4 pt-2">
                 <button
@@ -140,7 +142,7 @@ const Header = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://t.me/CubaCoin"
+                        href="https://t.me/cubacoin"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-cuba-red transition-colors"
@@ -156,7 +158,7 @@ const Header = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://x.com/CubaCoin"
+                        href="https://x.com/cubacoin"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-cuba-red transition-colors"
