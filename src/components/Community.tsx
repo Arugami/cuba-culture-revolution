@@ -23,7 +23,14 @@ const Community = () => {
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          {[3, 4, 5].map((index) => (
+          <div className="bg-[#000033] p-4 rounded-lg">
+            <img
+              src="/lovable-uploads/781ccde2-2b6b-4942-b166-7dd4e7c669e5.png"
+              alt="Venmo"
+              className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+            />
+          </div>
+          {[4, 5].map((index) => (
             <div key={index} className="bg-[#000033] p-4 rounded-lg">
               <img
                 src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png"
