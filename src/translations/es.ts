@@ -68,6 +68,10 @@ export const es: Translations = {
     mission: "Misión",
     description: "Esta es TU oportunidad de unirte a un movimiento que se trata de empoderar al pueblo cubano. $CUBA une la innovación digital con el impacto en el mundo real, fomentando la esperanza, la libertad y un futuro más brillante. ¡Juntos, reescribiremos la historia! 🚀",
   },
+  memes: {
+    title: "Memes de $CUBA",
+    subtitle: "¡Únete a la diversión y comparte tus memes favoritos de $CUBA con nuestra comunidad!",
+  },
   faq: {
     title: "Preguntas Frecuentes",
     what: {

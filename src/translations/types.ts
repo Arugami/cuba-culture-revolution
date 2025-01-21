@@ -68,6 +68,10 @@ export interface Translations {
     mission: string;
     description: string;
   };
+  memes: {
+    title: string;
+    subtitle: string;
+  };
   faq: {
     title: string;
     what: {

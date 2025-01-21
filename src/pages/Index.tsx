@@ -11,6 +11,7 @@ const Revolution = React.lazy(() => import("@/components/Revolution"));
 const FAQ = React.lazy(() => import("@/components/FAQ"));
 const Footer = React.lazy(() => import("@/components/Footer"));
 const ContinuousSlider = React.lazy(() => import("@/components/ContinuousSlider"));
+const Memes = React.lazy(() => import("@/components/Memes"));
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <ContinuousSlider />
         <About />
         <HowToBuy />
+        <Memes />
         <Community />
         <Revolution />
         <FAQ />

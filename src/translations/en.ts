@@ -68,6 +68,10 @@ export const en: Translations = {
     mission: "Mission",
     description: "This is YOUR chance to join a movement that's all about empowering the Cuban people. $CUBA bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀",
   },
+  memes: {
+    title: "$CUBA Memes",
+    subtitle: "Join the fun and share your favorite $CUBA memes with our community!",
+  },
   faq: {
     title: "Frequently Asked Questions",
     what: {
