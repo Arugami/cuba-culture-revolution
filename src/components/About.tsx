@@ -3,13 +3,16 @@ const About = () => {
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div 
-          className="border-4 border-cuba-red rounded-2xl p-8 shadow-lg"
+          className="rounded-2xl p-8 shadow-lg relative"
           style={{
             backgroundImage: "url('/lovable-uploads/59df5922-3c15-48c7-b48f-f2d65933b6af.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
+          {/* Gradient border using pseudo-element */}
+          <div className="absolute inset-0 rounded-2xl p-[4px] bg-gradient-to-r from-cuba-red to-cuba-blue -z-10" />
+          
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-white">
             What is <span className="text-cuba-red">$CUBA</span>?
           </h2>
