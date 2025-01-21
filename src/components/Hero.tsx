@@ -41,7 +41,7 @@ const Hero = () => {
               className="bg-cuba-red hover:bg-cuba-red/90 text-white text-lg sm:text-xl px-6 sm:px-8 py-6 rounded-full w-full sm:w-auto shadow-lg hover:shadow-cuba-red/50 hover:shadow-xl transition-all duration-300"
               asChild
             >
-              <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
+              <a href="https://moonshot.money/" target="_blank" rel="noopener noreferrer">
                 Buy $CUBA Now
               </a>
             </Button>
