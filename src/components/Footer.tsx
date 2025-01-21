@@ -52,7 +52,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Contract</h3>
             <div className="bg-[#2A2F3C] p-4 rounded-lg">
-              <p className="text-sm break-all mb-2 text-white">
+              <p className="text-xs md:text-sm break-all mb-2 text-white">
                 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump
               </p>
               <button
