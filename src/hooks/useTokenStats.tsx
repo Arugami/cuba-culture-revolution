@@ -5,11 +5,12 @@ interface TokenStats {
   volume24h: number;
   marketCap: number;
   priceChange24h: number;
+  tvl?: number;
 }
 
 const fetchTokenStats = async (): Promise<TokenStats> => {
   const response = await fetch(
-    "https://api.raydium.io/v2/main/price?address=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
+    "https://api-v3.raydium.io/main/info"
   );
   
   if (!response.ok) {
@@ -17,11 +18,14 @@ const fetchTokenStats = async (): Promise<TokenStats> => {
   }
 
   const data = await response.json();
+  
+  // Extract relevant data from the v3 API response
   return {
-    price: data.data?.price || 0,
-    volume24h: data.data?.volume24h || 0,
-    marketCap: data.data?.marketCap || 0,
-    priceChange24h: data.data?.priceChange24h || 0,
+    price: data?.price || 0,
+    volume24h: data?.volume24h || 0,
+    marketCap: data?.marketCap || 0,
+    priceChange24h: data?.priceChange24h || 0,
+    tvl: data?.tvl || 0,
   };
 };
 

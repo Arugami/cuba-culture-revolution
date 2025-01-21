@@ -54,6 +54,10 @@ const TokenStats = () => {
             <span>{formatNumber(data?.marketCap || 0)}</span>
           </div>
           <div className="flex items-center gap-2">
+            <span className="text-cuba-blue font-semibold">TVL:</span>
+            <span>{formatNumber(data?.tvl || 0)}</span>
+          </div>
+          <div className="flex items-center gap-2">
             <span className="text-cuba-blue font-semibold">24h Change:</span>
             <span className={data?.priceChange24h && data.priceChange24h >= 0 ? "text-green-600" : "text-red-600"}>
               {data?.priceChange24h ? `${data.priceChange24h.toFixed(2)}%` : "0%"}
