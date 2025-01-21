@@ -78,6 +78,8 @@ export default {
         },
         "mobile-scroll": {
           "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-50%)" },
+          "50.01%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(-100%)" },
         },
       },
@@ -86,7 +88,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 15s ease infinite",
         scroll: "scroll 10s linear infinite",
-        "mobile-scroll": "mobile-scroll 5s linear infinite", // Changed from 10s to 5s to make it faster
+        "mobile-scroll": "mobile-scroll 5s linear infinite",
       },
       backgroundImage: {
         "hero-pattern":
