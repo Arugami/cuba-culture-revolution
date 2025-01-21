@@ -15,7 +15,16 @@ const TokenStats = () => {
   const { data, isLoading, error } = useTokenStats();
 
   if (error) {
-    return null; // Silently fail if there's an error
+    console.error("Token stats error:", error);
+    return (
+      <div className="w-full bg-cuba-blue/10 py-2">
+        <div className="container mx-auto px-4">
+          <div className="text-sm text-gray-600">
+            Market data temporarily unavailable
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (isLoading) {

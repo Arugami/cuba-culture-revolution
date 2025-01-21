@@ -9,7 +9,7 @@ interface TokenStats {
 
 const fetchTokenStats = async (): Promise<TokenStats> => {
   const response = await fetch(
-    "https://api.raydium.io/v2/main/token-price?address=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
+    "https://api.raydium.io/v2/main/price?address=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
   );
   
   if (!response.ok) {
@@ -18,10 +18,10 @@ const fetchTokenStats = async (): Promise<TokenStats> => {
 
   const data = await response.json();
   return {
-    price: data.price || 0,
-    volume24h: data.volume24h || 0,
-    marketCap: data.marketCap || 0,
-    priceChange24h: data.priceChange24h || 0,
+    price: data.data?.price || 0,
+    volume24h: data.data?.volume24h || 0,
+    marketCap: data.data?.marketCap || 0,
+    priceChange24h: data.data?.priceChange24h || 0,
   };
 };
 
