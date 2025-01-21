@@ -47,7 +47,7 @@ const TokenStats = () => {
   return (
     <div className="w-full bg-cuba-blue/10 py-2">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center gap-6 text-sm md:text-base">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 xl:flex xl:flex-wrap xl:justify-center xl:gap-6 text-sm md:text-base">
           <div className="flex items-center gap-2">
             <span className="text-cuba-blue font-semibold">Price:</span>
             <span>{formatNumber(data?.price || 0)}</span>
