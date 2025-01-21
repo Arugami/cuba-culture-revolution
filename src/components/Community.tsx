@@ -60,7 +60,7 @@ const Community = () => {
         <p className="text-center text-gray-400 text-sm mt-6">
           Buy Easily with{" "}
           <img
-            src="/lovable-uploads/cc49fe3b-162d-4952-b2b2-7fa029aef9c5.png"
+            src="/lovable-uploads/335aa389-2fcd-4861-8a02-d42140606393.png"
             alt="Moonshot Logo"
             className="inline-block h-24 align-middle ml-1 hover:brightness-110 transition-all"
           />
