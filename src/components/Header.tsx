@@ -20,7 +20,14 @@ const Header = () => {
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight">$CUBA</div>
+          <div className="flex items-center gap-2">
+            <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight">$CUBA</div>
+            <img 
+              src="/lovable-uploads/51490d66-3df6-4e43-9265-ea6fb6d9f800.png"
+              alt="Country Takeover Logo"
+              className="h-10 w-10 object-contain"
+            />
+          </div>
           
           <div className="flex items-center gap-4 md:hidden">
             <Button
