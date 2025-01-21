@@ -98,9 +98,6 @@ const Footer = () => {
               >
                 X
               </a>
-              <p className="text-white mt-4">
-                Contact: support@cubacoin.com
-              </p>
             </div>
           </div>
         </div>
