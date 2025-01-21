@@ -18,7 +18,7 @@ const HowToBuy = () => {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Wallet className="w-6 h-6 text-cuba-blue" />
             </div>
@@ -26,7 +26,7 @@ const HowToBuy = () => {
             <p>Install a Solana-compatible wallet (e.g., Phantom)</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <ArrowRight className="w-6 h-6 text-cuba-blue" />
             </div>
@@ -34,7 +34,7 @@ const HowToBuy = () => {
             <p>Connect your wallet to Raydium</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <div className="w-12 h-12 bg-cuba-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-6 h-6 text-cuba-blue" />
             </div>
