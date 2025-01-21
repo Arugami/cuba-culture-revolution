@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useCallback } from "react";
-import Autoplay from "embla-carousel-autoplay";
 
 interface ContinuousSliderProps {
   className?: string;
@@ -21,31 +18,16 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     { type: "text", content: "Join The Community" },
   ];
 
-  const plugin = useCallback(
-    () =>
-      Autoplay({
-        delay: 2000,
-        stopOnInteraction: false,
-        stopOnMouseEnter: false,
-      }),
-    []
-  );
-
   if (isMobile) {
     return (
-      <div className={cn("w-full bg-[#0A0F29] py-4", className)}>
-        <Carousel
-          opts={{
-            align: "center",
-            loop: true,
-            dragFree: true,
-          }}
-          plugins={[plugin()]}
-          className="w-full"
-        >
-          <CarouselContent>
+      <div className={cn("w-full bg-[#0A0F29] py-4 overflow-hidden", className)}>
+        <div className="relative flex w-full">
+          <div className="animate-mobile-scroll flex min-w-full items-center justify-start space-x-4 px-2">
             {[...items, ...items].map((item, idx) => (
-              <CarouselItem key={idx} className="flex items-center justify-center basis-auto">
+              <div 
+                key={`first-${idx}`} 
+                className="flex items-center shrink-0 py-2 justify-center"
+              >
                 {item.type === "image" ? (
                   <img
                     src={item.content}
@@ -53,16 +35,14 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                     className="h-6 w-6 rounded-full object-contain"
                   />
                 ) : (
-                  <span className="whitespace-nowrap text-sm font-bold text-white px-4">
+                  <span className="whitespace-nowrap text-sm font-bold text-white">
                     {item.content}
                   </span>
                 )}
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden" />
-          <CarouselNext className="hidden" />
-        </Carousel>
+          </div>
+        </div>
       </div>
     );
   }
