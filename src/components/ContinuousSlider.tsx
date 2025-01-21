@@ -26,7 +26,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
             {[...items, ...items, ...items, ...items, ...items, ...items, ...items, ...items].map((item, idx) => (
               <div 
                 key={`first-${idx}`} 
-                className="flex items-center shrink-0 py-2 justify-center"
+                className="flex items-center shrink-0 py-2 justify-center border-2 border-cuba-red rounded-lg px-4"
               >
                 {item.type === "image" ? (
                   <img
@@ -55,7 +55,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div 
               key={`first-${idx}`} 
-              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center"
+              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center border-2 border-cuba-red rounded-lg px-4"
             >
               {item.type === "image" ? (
                 <img
@@ -76,7 +76,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
           {items.map((item, idx) => (
             <div 
               key={`second-${idx}`} 
-              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center"
+              className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center border-2 border-cuba-red rounded-lg px-4"
             >
               {item.type === "image" ? (
                 <img
