@@ -30,11 +30,11 @@ const Header = () => {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#home" className="hover:text-cuba-red transition-colors">Home</a>
-            <a href="#about" className="hover:text-cuba-red transition-colors">About</a>
-            <a href="#how-to-buy" className="hover:text-cuba-red transition-colors">How to Buy</a>
-            <a href="#community" className="hover:text-cuba-red transition-colors">Community</a>
-            <a href="#vision" className="hover:text-cuba-red transition-colors">Vision</a>
+            <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Home</a>
+            <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">About</a>
+            <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">How to Buy</a>
+            <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Community</a>
+            <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Vision</a>
           </nav>
 
           <Button
@@ -51,11 +51,11 @@ const Header = () => {
         {isOpen && (
           <div className="md:hidden py-4">
             <nav className="flex flex-col gap-4">
-              <a href="#home" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>Home</a>
-              <a href="#about" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>About</a>
-              <a href="#how-to-buy" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>How to Buy</a>
-              <a href="#community" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>Community</a>
-              <a href="#vision" className="hover:text-cuba-red transition-colors" onClick={toggleMenu}>Vision</a>
+              <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Home</a>
+              <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>About</a>
+              <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>How to Buy</a>
+              <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Community</a>
+              <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Vision</a>
             </nav>
           </div>
         )}
