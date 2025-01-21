@@ -80,10 +80,11 @@ const Memes = () => {
         backgroundImage: "url('/lovable-uploads/f079d44d-7232-4120-828e-03b0afa074f5.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        transform: 'scaleY(-1)'
       }}
     >
-      <div className="container px-4 md:px-6 relative z-10">
+      <div className="container px-4 md:px-6 relative z-10" style={{ transform: 'scaleY(-1)' }}>
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
             {t('memes.title')}
