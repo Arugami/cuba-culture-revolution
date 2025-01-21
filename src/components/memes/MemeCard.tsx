@@ -14,17 +14,19 @@ interface MemeCardProps {
 
 const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }: MemeCardProps) => {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <CardContent className="p-0">
-        <div className="relative aspect-square">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
+      <CardContent className="p-0 h-full">
+        <div className="relative h-full aspect-square">
           <img
             src={image}
             alt={title}
             className="object-cover w-full h-full"
           />
           <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4">
-            <h3 className="text-white font-patua text-lg">{title}</h3>
-            <p className="text-white/80 text-sm">{description}</p>
+            <h3 className="text-white font-patua text-lg truncate">{title}</h3>
+            {description && (
+              <p className="text-white/80 text-sm line-clamp-2">{description}</p>
+            )}
             <div className="flex justify-between mt-2">
               <Button
                 variant="ghost"

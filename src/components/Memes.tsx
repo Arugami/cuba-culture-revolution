@@ -22,7 +22,6 @@ const Memes = () => {
 
       if (error) throw error;
 
-      // Update local state
       setMemes(prevMemes => 
         prevMemes.map(meme => {
           if (meme.id === memeId) {
@@ -53,7 +52,7 @@ const Memes = () => {
     const { data, error } = await supabase
       .from("memes")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: true });
 
     if (!error && data) {
       const formattedMemes = data.map(meme => ({
@@ -85,7 +84,7 @@ const Memes = () => {
       }}
     >
       <div className="container px-4 md:px-6 relative z-10" style={{ transform: 'scaleY(-1)' }}>
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
             {t('memes.title')}
           </h2>

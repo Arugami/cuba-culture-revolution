@@ -1,5 +1,12 @@
 import { Meme } from "@/types/meme";
 import MemeCard from "./MemeCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface MemeGridProps {
   memes: Meme[];
@@ -8,14 +15,24 @@ interface MemeGridProps {
 
 const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {memes.map((meme) => (
-        <MemeCard
-          key={meme.id}
-          {...meme}
-          onVote={onVote}
-        />
-      ))}
+    <div className="w-full px-8">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-1">
+          {memes.map((meme) => (
+            <CarouselItem key={meme.id} className="pl-1 basis-full md:basis-1/3 lg:basis-1/4">
+              <MemeCard {...meme} onVote={onVote} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </div>
   );
 };
