@@ -51,7 +51,7 @@ const Community = () => {
             href="https://raydium.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-cuba-red text-white font-bold py-4 px-12 rounded-lg text-xl hover:bg-cuba-red/90 transition-colors"
+            className="inline-block bg-cuba-red text-white font-bold py-6 px-24 rounded-lg text-2xl hover:bg-cuba-red/90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[280px]"
           >
             BUY NOW
           </a>
