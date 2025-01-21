@@ -26,11 +26,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0b0f2a] text-white py-8 md:py-16">
+    <footer className="bg-[#0b0f2a] text-white py-8 md:py-16 relative">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:mb-12">
-          <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-white">Quick Links</h3>
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12 relative">
+          <div className="space-y-4">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#about" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
@@ -45,10 +45,14 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="space-y-4 flex flex-col items-center border-x border-white/10 px-4">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-white">Contract</h3>
-            <div className="bg-[#2A2F3C] p-4 rounded-lg w-full">
-              <p className="text-xs md:text-sm break-all mb-2 text-white text-center">
+          <div className="hidden md:block absolute left-1/3 top-0 h-full">
+            <Separator orientation="vertical" className="bg-white/10" />
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Contract</h3>
+            <div className="bg-[#2A2F3C] p-4 rounded-lg">
+              <p className="text-sm break-all mb-2 text-white">
                 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump
               </p>
               <button
@@ -61,8 +65,12 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-white">Community</h3>
+          <div className="hidden md:block absolute left-2/3 top-0 h-full">
+            <Separator orientation="vertical" className="bg-white/10" />
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Community</h3>
             <div className="space-y-3">
               <a
                 href="https://t.me/cubacoin"
