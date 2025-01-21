@@ -2,6 +2,14 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
+        {/* Bold Header */}
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold">
+            <span className="text-cuba-red">$CUBA:</span>
+            <span className="text-cuba-blue"> The First CTO</span>
+          </h1>
+        </div>
+
         <div 
           className="relative p-[12px] rounded-2xl shadow-lg overflow-hidden"
           style={{
