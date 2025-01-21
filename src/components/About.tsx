@@ -5,7 +5,7 @@ const About = () => {
         <div 
           className="border-4 border-cuba-red rounded-2xl p-8 shadow-lg"
           style={{
-            backgroundImage: "url('/lovable-uploads/0edac5c1-8689-471b-96fc-0d14c3a723fe.png')",
+            backgroundImage: "url('/lovable-uploads/59df5922-3c15-48c7-b48f-f2d65933b6af.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
