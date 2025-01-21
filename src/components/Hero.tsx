@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import ContractAddress from "./ContractAddress";
 
 const Hero = () => {
   return (
@@ -54,6 +55,9 @@ const Hero = () => {
               </a>
             </Button>
           </div>
+
+          {/* Add Contract Address Component */}
+          <ContractAddress />
         </div>
 
         {/* Right side - Image (desktop only) */}
