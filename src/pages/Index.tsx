@@ -22,8 +22,8 @@ const Index = () => {
         <ContinuousSlider />
         <About />
         <HowToBuy />
-        <Memes />
         <Community />
+        <Memes />
         <Revolution />
         <FAQ />
         <Footer />
