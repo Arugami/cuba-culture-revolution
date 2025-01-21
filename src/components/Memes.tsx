@@ -6,7 +6,7 @@ import { useVoteManagement } from "@/hooks/useVoteManagement";
 
 const Memes = () => {
   const { t } = useLanguage();
-  const { memes, isLoading } = useMemes();
+  const { memes, isLoading, fetchMemes } = useMemes();
   const { handleVote } = useVoteManagement();
 
   return (
@@ -34,7 +34,7 @@ const Memes = () => {
         
         <div className="mt-16 flex flex-col items-center justify-center">
           <div className="flex justify-center w-full">
-            <MemeUpload />
+            <MemeUpload onUploadSuccess={fetchMemes} />
           </div>
         </div>
       </div>
