@@ -9,9 +9,15 @@ const Community = () => {
         </h2>
 
         <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
-          <div className="bg-[#000033] p-4 rounded-lg">
-            <img src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png" alt="Payment methods" className="h-12" />
-          </div>
+          {[1, 2, 3, 4, 5].map((index) => (
+            <div key={index} className="bg-[#000033] p-4 rounded-lg">
+              <img
+                src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png"
+                alt={`Payment method ${index}`}
+                className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          ))}
         </div>
 
         <div className="text-center">
