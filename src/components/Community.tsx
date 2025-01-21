@@ -1,8 +1,10 @@
 import React from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Community = () => {
   const isMobile = useIsMobile();
+  const { t } = useLanguage();
 
   const paymentLogos = [
     { src: "/lovable-uploads/bd4df84f-5141-449a-931a-0697893e45be.png", alt: "Apple Pay" },
@@ -17,9 +19,9 @@ const Community = () => {
       <div className="w-full h-1 bg-cuba-red absolute top-0 left-0"></div>
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-7xl font-bold text-center mb-8 text-white leading-tight">
-          Buy Now with a<br className="hidden sm:block" />
+          {t('community.buyNow')}<br className="hidden sm:block" />
           <span className="md:hidden"><br /></span>
-          Debit Card or Crypto!
+          {t('community.debitCard')}
         </h2>
 
         <div className="relative w-full overflow-hidden mb-12">
@@ -67,12 +69,12 @@ const Community = () => {
             rel="noopener noreferrer"
             className="inline-block bg-cuba-red text-white font-bold py-5 px-8 md:px-24 rounded-xl text-xl md:text-3xl hover:bg-cuba-blue transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-full md:w-auto min-w-[280px] mx-auto"
           >
-            BUY NOW
+            {t('community.buyButton')}
           </a>
         </div>
 
         <div className="flex items-center justify-center gap-3 mt-4 md:mt-6">
-          <p className="text-gray-400 text-lg md:text-2xl">Buy Easily with</p>
+          <p className="text-gray-400 text-lg md:text-2xl">{t('community.buyEasily')}</p>
           <img
             src="/lovable-uploads/d4eb0fb2-d814-4c28-a5b5-4e986519abe5.png"
             alt="Moonshot Logo"

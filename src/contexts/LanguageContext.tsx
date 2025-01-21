@@ -49,6 +49,10 @@ const translations: Translations = {
     "howToBuy.copyErrorDesc": "Failed to copy address",
     "social.joinTelegram": "Join Us on Telegram",
     "social.followX": "Follow Us on X",
+    "community.buyNow": "Buy Now with a",
+    "community.debitCard": "Debit Card or Crypto!",
+    "community.buyButton": "BUY NOW",
+    "community.buyEasily": "Buy Easily with",
   },
   es: {
     "nav.home": "Inicio",
@@ -90,6 +94,10 @@ const translations: Translations = {
     "howToBuy.copyErrorDesc": "Error al copiar la dirección",
     "social.joinTelegram": "Únete a Nosotros en Telegram",
     "social.followX": "Síguenos en X",
+    "community.buyNow": "Compra Ahora con",
+    "community.debitCard": "¡Tarjeta de Débito o Cripto!",
+    "community.buyButton": "COMPRAR AHORA",
+    "community.buyEasily": "Compra Fácilmente con",
   },
 };
 
