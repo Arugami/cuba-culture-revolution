@@ -57,7 +57,7 @@ const Community = () => {
           </a>
         </div>
 
-        <div className="flex items-center justify-center gap-3 mt-6">
+        <div className="flex items-center justify-center gap-3 mt-3">
           <p className="text-gray-400 text-2xl">Buy Easily with</p>
           <img
             src="/lovable-uploads/d4eb0fb2-d814-4c28-a5b5-4e986519abe5.png"
