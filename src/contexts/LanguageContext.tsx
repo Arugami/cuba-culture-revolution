@@ -47,6 +47,8 @@ const translations: Translations = {
     "howToBuy.addressCopiedDesc": "Contract address has been copied to clipboard",
     "howToBuy.copyError": "Error",
     "howToBuy.copyErrorDesc": "Failed to copy address",
+    "social.joinTelegram": "Join Us on Telegram",
+    "social.followX": "Follow Us on X",
   },
   es: {
     "nav.home": "Inicio",
@@ -86,6 +88,8 @@ const translations: Translations = {
     "howToBuy.addressCopiedDesc": "La dirección del contrato ha sido copiada al portapapeles",
     "howToBuy.copyError": "Error",
     "howToBuy.copyErrorDesc": "Error al copiar la dirección",
+    "social.joinTelegram": "Únete a Nosotros en Telegram",
+    "social.followX": "Síguenos en X",
   },
 };
 
