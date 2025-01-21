@@ -45,9 +45,9 @@ export const useMemes = () => {
   useEffect(() => {
     fetchMemes();
 
-    // Subscribe to changes in the memes table
+    // Subscribe to both memes and meme_votes tables
     const channel = supabase
-      .channel('memes-changes')
+      .channel('memes-realtime')
       .on(
         'postgres_changes',
         {
@@ -57,7 +57,7 @@ export const useMemes = () => {
         },
         (payload) => {
           console.log('Meme update received:', payload);
-          // Update the specific meme in the local state
+          
           if (payload.eventType === 'UPDATE') {
             setMemes(currentMemes => 
               currentMemes.map(meme => 
@@ -71,14 +71,34 @@ export const useMemes = () => {
               )
             );
           } else {
-            // For other events (INSERT, DELETE), fetch all memes again
+            // For INSERT or DELETE events, fetch all memes again
             fetchMemes();
           }
         }
       )
-      .subscribe();
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'meme_votes'
+        },
+        (payload) => {
+          console.log('Vote update received:', payload);
+          // When a vote changes, fetch the latest meme data
+          // This ensures we have the correct vote counts
+          fetchMemes();
+        }
+      )
+      .subscribe((status) => {
+        console.log('Subscription status:', status);
+        if (status === 'SUBSCRIBED') {
+          console.log('Successfully subscribed to real-time updates');
+        }
+      });
 
     return () => {
+      console.log('Cleaning up subscription');
       supabase.removeChannel(channel);
     };
   }, []);
