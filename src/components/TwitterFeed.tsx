@@ -24,7 +24,7 @@ const TwitterFeed = () => {
             className="twitter-timeline"
             data-height="600"
             data-theme="light"
-            href="https://twitter.com/search?q=%24CUBA%20OR%20%23CUBA"
+            href="https://twitter.com/search?q=%24CUBA"
             data-chrome="noheader nofooter noborders transparent"
           >
             Loading tweets about $CUBA...
