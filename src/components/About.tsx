@@ -24,9 +24,11 @@ const About = () => {
             </p>
           </div>
           <div className="relative">
-            <div className="aspect-video bg-cuba-blue/10 rounded-lg flex items-center justify-center">
-              <span className="text-cuba-blue">Cuban Culture Image Placeholder</span>
-            </div>
+            <img 
+              src="/lovable-uploads/69044ac3-a853-4f81-95d9-69b3a070d3a4.png"
+              alt="Person holding $CUBA sign in front of colorful Cuban buildings"
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
           </div>
         </div>
       </div>
