@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen bg-[#222226] overflow-hidden flex items-center">
+    <section id="home" className="relative min-h-screen bg-hero-pattern overflow-hidden flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-0 mt-24 lg:mt-0">
         {/* Left side content */}
         <div className="w-full lg:w-3/5 text-left space-y-6 lg:space-y-8">
