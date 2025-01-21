@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -10,8 +10,10 @@ import {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [language, setLanguage] = useState<"en" | "es">("en");
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleLanguage = () => setLanguage(prev => prev === "en" ? "es" : "en");
 
   return (
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-lg">
@@ -45,6 +47,23 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-6">
             <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={toggleLanguage}
+                    className="text-gray-600 hover:text-cuba-red transition-colors p-2 rounded-full hover:bg-gray-100"
+                  >
+                    <Globe className="w-5 h-5" />
+                    <span className="sr-only">
+                      {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
+                    </span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}</p>
+                </TooltipContent>
+              </Tooltip>
+
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
@@ -100,6 +119,15 @@ const Header = () => {
               <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Vision</a>
               
               <div className="flex gap-4 pt-2">
+                <button
+                  onClick={toggleLanguage}
+                  className="text-gray-600 hover:text-cuba-red transition-colors p-2 rounded-full hover:bg-gray-100"
+                >
+                  <Globe className="w-5 h-5" />
+                  <span className="sr-only">
+                    {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
+                  </span>
+                </button>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
