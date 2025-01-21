@@ -10,7 +10,7 @@ interface TokenStats {
 
 const fetchTokenStats = async (): Promise<TokenStats> => {
   const response = await fetch(
-    "https://api-v3.raydium.io/token/info?address=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
+    "https://api.raydium.io/v2/main/price?addr=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
   );
   
   if (!response.ok) {
