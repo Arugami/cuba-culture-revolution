@@ -4,8 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FAQ = () => {
+  const { t } = useLanguage();
+
   return (
     <section 
       className="py-16 bg-white relative" 
@@ -19,42 +22,42 @@ const FAQ = () => {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Frequently Asked Questions
+          {t('faq.title')}
         </h2>
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="font-semibold">What is $CUBA?</AccordionTrigger>
+              <AccordionTrigger className="font-semibold">{t('faq.what.question')}</AccordionTrigger>
               <AccordionContent>
-                $CUBA is the first-ever 'Country Takeover' (CTO) meme coin, designed to empower the Cuban people and promote financial independence through decentralized technology.
+                {t('faq.what.answer')}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2">
-              <AccordionTrigger className="font-semibold">How can I buy $CUBA?</AccordionTrigger>
+              <AccordionTrigger className="font-semibold">{t('faq.buy.question')}</AccordionTrigger>
               <AccordionContent>
-                You can buy $CUBA on Raydium by connecting your Solana wallet and using the contract address: 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump.
+                {t('faq.buy.answer')}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3">
-              <AccordionTrigger className="font-semibold">Is $CUBA safe to invest in?</AccordionTrigger>
+              <AccordionTrigger className="font-semibold">{t('faq.safe.question')}</AccordionTrigger>
               <AccordionContent>
-                Like all cryptocurrencies, investing in $CUBA carries risks. Always do your own research and never invest more than you can afford to lose.
+                {t('faq.safe.answer')}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4">
-              <AccordionTrigger className="font-semibold">How can I join the $CUBA community?</AccordionTrigger>
+              <AccordionTrigger className="font-semibold">{t('faq.join.question')}</AccordionTrigger>
               <AccordionContent>
-                You can join our vibrant community on Telegram and X (formerly Twitter). Links to our social media platforms can be found in the Community section above.
+                {t('faq.join.answer')}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-5">
-              <AccordionTrigger className="font-semibold">What makes $CUBA unique?</AccordionTrigger>
+              <AccordionTrigger className="font-semibold">{t('faq.unique.question')}</AccordionTrigger>
               <AccordionContent>
-                $CUBA is unique as it's the first meme coin that aims to create a meaningful impact through the concept of 'Country Takeover' while incorporating elements of Cuban culture and community engagement.
+                {t('faq.unique.answer')}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
