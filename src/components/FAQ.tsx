@@ -7,7 +7,16 @@ import {
 
 const FAQ = () => {
   return (
-    <section className="py-16 bg-white" id="faq">
+    <section 
+      className="py-16 bg-white relative" 
+      id="faq"
+      style={{
+        backgroundImage: "url('/lovable-uploads/c3b2f105-1048-42cc-8b5b-f987c9353be6.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Frequently Asked Questions
