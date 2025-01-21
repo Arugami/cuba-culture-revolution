@@ -23,9 +23,9 @@ const Revolution = () => {
           {/* Image */}
           <div className="flex-1">
             <img
-              src="/lovable-uploads/dfdf1c99-08ba-46d6-ad22-e8f1170a23ed.png"
-              alt="Cuban Revolution Symbol"
-              className="w-full h-auto max-w-md mx-auto"
+              src="/lovable-uploads/43aa06bf-91a0-45d1-9952-0a9349bbe641.png"
+              alt="$CUBA Community Support"
+              className="w-full h-auto max-w-md mx-auto rounded-lg shadow-xl"
               style={{
                 filter: "drop-shadow(0px 4px 8px rgba(0,0,0,0.3))"
               }}
