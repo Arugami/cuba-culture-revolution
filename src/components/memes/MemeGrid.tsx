@@ -1,3 +1,4 @@
+import React from "react";
 import { Meme } from "@/types/meme";
 import MemeCard from "./MemeCard";
 import {
@@ -14,6 +15,14 @@ interface MemeGridProps {
 }
 
 const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
+  if (!memes || memes.length === 0) {
+    return (
+      <div className="w-full px-8 text-center text-gray-500">
+        No memes available yet
+      </div>
+    );
+  }
+
   return (
     <div className="w-full px-8">
       <Carousel

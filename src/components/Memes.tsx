@@ -10,6 +10,7 @@ const Memes = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [memes, setMemes] = useState<Meme[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
     try {
@@ -49,22 +50,35 @@ const Memes = () => {
   };
 
   const fetchMemes = async () => {
-    const { data, error } = await supabase
-      .from("memes")
-      .select("*")
-      .order("created_at", { ascending: true });
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from("memes")
+        .select("*")
+        .order("created_at", { ascending: true });
 
-    if (!error && data) {
-      const formattedMemes = data.map(meme => ({
-        id: meme.id,
-        image: meme.image_url,
-        title: meme.title,
-        description: meme.description,
-        upvotes: meme.upvotes,
-        downvotes: meme.downvotes
-      }));
-      
-      setMemes(formattedMemes);
+      if (error) throw error;
+
+      if (data) {
+        const formattedMemes = data.map(meme => ({
+          id: meme.id,
+          image: meme.image_url,
+          title: meme.title,
+          description: meme.description,
+          upvotes: meme.upvotes,
+          downvotes: meme.downvotes
+        }));
+        
+        setMemes(formattedMemes);
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch memes",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -93,7 +107,7 @@ const Memes = () => {
           </p>
         </div>
         
-        <MemeGrid memes={memes} onVote={handleVote} />
+        {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
         
         <div className="mt-16 flex flex-col items-center justify-center">
           <div className="flex justify-center w-full">
