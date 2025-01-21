@@ -4,29 +4,38 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import MemeUpload from "./MemeUpload";
 
+interface Meme {
+  id: string;
+  image: string;
+  title: string;
+  description: string | null;
+  upvotes?: number;
+  downvotes?: number;
+}
+
 const Memes = () => {
   const { t } = useLanguage();
-  const [memes, setMemes] = useState([
+  const [memes, setMemes] = useState<Meme[]>([
     {
-      id: 1,
+      id: "1",
       image: "/lovable-uploads/f4d689ad-5a03-4747-9888-9480eec549ad.png",
       title: "Change My Mind",
       description: "$Cuban will flip the peso and we will free the Cuban people"
     },
     {
-      id: 2,
+      id: "2",
       image: "/lovable-uploads/653934c1-35ac-4801-b44c-e8bf33ce8242.png",
       title: "National Currency",
       description: "Cuban citizens ready to adopt $CUBA as their National Currency"
     },
     {
-      id: 3,
+      id: "3",
       image: "/lovable-uploads/0ac9564d-fcfc-452f-a076-f1bbd55ccc58.png",
       title: "The Slap",
       description: "$CUBA vs Cuban Government Officials"
     },
     {
-      id: 4,
+      id: "4",
       image: "/lovable-uploads/fc5ece16-5fe3-48cc-bba5-3927abd32442.png",
       title: "The Switch",
       description: "Cuban Citizens choosing their financial freedom"
@@ -40,7 +49,17 @@ const Memes = () => {
       .order("created_at", { ascending: false });
 
     if (!error && data) {
-      setMemes([...memes, ...data]);
+      // Map Supabase memes to match our Meme interface
+      const supabaseMemes = data.map(meme => ({
+        id: meme.id,
+        image: meme.image_url,
+        title: meme.title,
+        description: meme.description,
+        upvotes: meme.upvotes,
+        downvotes: meme.downvotes
+      }));
+      
+      setMemes([...memes, ...supabaseMemes]);
     }
   };
 
