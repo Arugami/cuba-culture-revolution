@@ -1,10 +1,12 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import MemeUpload from "./MemeUpload";
 
 const Memes = () => {
   const { t } = useLanguage();
-
-  const memes = [
+  const [memes, setMemes] = useState([
     {
       id: 1,
       image: "/lovable-uploads/f4d689ad-5a03-4747-9888-9480eec549ad.png",
@@ -29,7 +31,22 @@ const Memes = () => {
       title: "The Switch",
       description: "Cuban Citizens choosing their financial freedom"
     }
-  ];
+  ]);
+
+  const fetchMemes = async () => {
+    const { data, error } = await supabase
+      .from("memes")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error && data) {
+      setMemes([...memes, ...data]);
+    }
+  };
+
+  useEffect(() => {
+    fetchMemes();
+  }, []);
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-cuba-blue/5">
@@ -60,6 +77,13 @@ const Memes = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-16">
+          <h3 className="text-2xl font-patua text-cuba-blue text-center mb-8">
+            Upload Your Meme
+          </h3>
+          <MemeUpload onUploadSuccess={fetchMemes} />
         </div>
       </div>
     </section>
