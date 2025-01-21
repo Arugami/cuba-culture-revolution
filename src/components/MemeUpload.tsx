@@ -26,10 +26,10 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file || !title) {
+    if (!file || !title || !user) {
       toast({
         title: "Error",
-        description: "Please fill in all required fields",
+        description: "Please fill in all required fields and make sure you're logged in",
         variant: "destructive",
       });
       return;
@@ -37,25 +37,33 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
 
     setIsUploading(true);
     try {
+      // Generate a unique filename
       const fileExt = file.name.split(".").pop();
       const fileName = `${crypto.randomUUID()}.${fileExt}`;
-      const { error: uploadError } = await supabase.storage
+
+      // Upload file to Supabase Storage
+      const { error: uploadError, data } = await supabase.storage
         .from("memes")
-        .upload(fileName, file);
+        .upload(fileName, file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
 
       if (uploadError) throw uploadError;
 
+      // Get the public URL for the uploaded file
       const { data: { publicUrl } } = supabase.storage
         .from("memes")
         .getPublicUrl(fileName);
 
+      // Insert meme record into the database
       const { error: dbError } = await supabase
         .from("memes")
         .insert({
           title,
           description,
           image_url: publicUrl,
-          user_id: user?.id,
+          user_id: user.id,
         });
 
       if (dbError) throw dbError;
@@ -70,10 +78,11 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       setFile(null);
       setIsDialogOpen(false);
       onUploadSuccess();
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Upload error:", error);
       toast({
         title: "Error",
-        description: "Failed to upload meme",
+        description: error.message || "Failed to upload meme",
         variant: "destructive",
       });
     } finally {
