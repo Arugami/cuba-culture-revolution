@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 const Community = () => {
   return (
-    <section id="community" className="py-20 bg-white">
+    <section id="community" className="py-20 bg-[#0b0f2a]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Join the <span className="text-cuba-red">$CUBA</span> Revolution
         </h2>
 
