@@ -3,7 +3,7 @@ const About = () => {
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div 
-          className="relative p-[8px] rounded-2xl shadow-lg overflow-hidden"
+          className="relative p-[12px] rounded-2xl shadow-lg overflow-hidden"
           style={{
             background: 'linear-gradient(45deg, #DA291C, #004B87)',
           }}
@@ -14,6 +14,7 @@ const About = () => {
               backgroundImage: "url('/lovable-uploads/59df5922-3c15-48c7-b48f-f2d65933b6af.png')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              boxShadow: 'inset 0 0 30px rgba(0, 0, 0, 0.2)',
             }}
           >
             <div className="p-8">
