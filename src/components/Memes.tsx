@@ -21,9 +21,6 @@ const Memes = () => {
           <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
             {t('memes.subtitle')}
           </p>
-          <p className="text-sm text-gray-500">
-            Upload via chat using: /meme "title" "description" imageUrl
-          </p>
         </div>
         
         <div className="mb-8">
