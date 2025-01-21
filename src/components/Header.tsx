@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -53,7 +53,9 @@ const Header = () => {
                     onClick={toggleLanguage}
                     className="text-gray-600 hover:text-cuba-red transition-colors p-2 rounded-full hover:bg-gray-100"
                   >
-                    <Globe className="w-5 h-5" />
+                    <span className="text-xl">
+                      {language === "en" ? "🇺🇸" : "🇨🇺"}
+                    </span>
                     <span className="sr-only">
                       {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
                     </span>
@@ -123,7 +125,9 @@ const Header = () => {
                   onClick={toggleLanguage}
                   className="text-gray-600 hover:text-cuba-red transition-colors p-2 rounded-full hover:bg-gray-100"
                 >
-                  <Globe className="w-5 h-5" />
+                  <span className="text-xl">
+                    {language === "en" ? "🇺🇸" : "🇨🇺"}
+                  </span>
                   <span className="sr-only">
                     {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
                   </span>
