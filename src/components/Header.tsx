@@ -16,6 +16,14 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLanguage = () => setLanguage(language === "en" ? "es" : "en");
 
+  const scrollToFooter = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-lg">
       <div className="container mx-auto px-4">
@@ -49,7 +57,7 @@ const Header = () => {
             <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.home")}</a>
             <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
             <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
-            <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Contract</a>
+            <a href="#contract" onClick={scrollToFooter} className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Contract Address</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
@@ -76,7 +84,7 @@ const Header = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
-                    href="https://t.me/CubaCoin"
+                    href="https://t.me/cubacoin"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-cuba-red transition-colors"
@@ -92,7 +100,7 @@ const Header = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
-                    href="https://x.com/CubaCoin"
+                    href="https://x.com/cubacoin"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-cuba-red transition-colors"
@@ -124,7 +132,7 @@ const Header = () => {
               <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.home")}</a>
               <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
-              <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Contract</a>
+              <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={(e) => { scrollToFooter(e); toggleMenu(); }}>Contract Address</a>
               
               <div className="flex gap-4 pt-2">
                 <button
