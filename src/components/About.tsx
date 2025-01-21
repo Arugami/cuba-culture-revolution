@@ -11,7 +11,7 @@ const About = () => {
           <div
             className="relative z-10 rounded-xl"
             style={{
-              backgroundImage: "url('/lovable-uploads/59df5922-3c15-48c7-b48f-f2d65933b6af.png')",
+              backgroundImage: "url('/lovable-uploads/4b12280b-2230-42bc-bb4a-aca8eb20d611.png')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               boxShadow: 'inset 0 0 30px rgba(0, 0, 0, 0.2)',
