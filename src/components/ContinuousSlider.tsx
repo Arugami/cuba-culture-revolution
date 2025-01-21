@@ -20,7 +20,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
 
   if (isMobile) {
     return (
-      <div className={cn("w-full bg-[#0A0F29] py-4 overflow-hidden border-t-2 border-b-2 border-cuba-red", className)}>
+      <div className={cn("w-full bg-[#04041e] py-4 overflow-hidden border-t-2 border-b-2 border-cuba-red", className)}>
         <div className="relative flex w-full">
           <div className="animate-mobile-scroll flex min-w-full items-center justify-start space-x-4 px-2">
             {[...items, ...items, ...items, ...items, ...items, ...items, ...items, ...items].map((item, idx) => (
@@ -48,7 +48,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   }
 
   return (
-    <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-2 sm:py-4 md:py-6 lg:py-8 border-t-2 border-b-2 border-cuba-red", className)}>
+    <div className={cn("w-full overflow-hidden bg-[#04041e] py-2 sm:py-4 md:py-6 lg:py-8 border-t-2 border-b-2 border-cuba-red", className)}>
       <div className="relative flex w-full">
         {/* First set of scrolling items */}
         <div className="animate-scroll flex min-w-full items-center justify-start sm:justify-evenly space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-16 px-2 sm:px-4 md:px-6 lg:px-8">
