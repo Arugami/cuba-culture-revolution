@@ -3,7 +3,7 @@ const About = () => {
     <section id="about" className="py-20 bg-[#0b0f2a]">
       <div className="container mx-auto px-4">
         <div 
-          className="relative p-[12px] rounded-2xl shadow-lg overflow-hidden"
+          className="relative p-[12px] rounded-2xl shadow-lg overflow-hidden border-4 border-white"
           style={{
             background: 'linear-gradient(45deg, #DA291C, #004B87)',
           }}
