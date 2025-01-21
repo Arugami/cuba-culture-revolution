@@ -79,7 +79,7 @@ const Memes = () => {
       style={{
         backgroundImage: "url('/lovable-uploads/f079d44d-7232-4120-828e-03b0afa074f5.png')",
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: '25% center',
         backgroundRepeat: 'no-repeat',
         transform: 'scaleY(-1)'
       }}
