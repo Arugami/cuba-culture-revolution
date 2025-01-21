@@ -1,124 +1,13 @@
-import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/components/ui/use-toast";
 import MemeUpload from "./MemeUpload";
 import MemeGrid from "./memes/MemeGrid";
-import { Meme } from "@/types/meme";
+import { useMemes } from "@/hooks/useMemes";
+import { useVoteManagement } from "@/hooks/useVoteManagement";
 
 const Memes = () => {
   const { t } = useLanguage();
-  const { toast } = useToast();
-  const [memes, setMemes] = useState<Meme[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleVote = async (memeId: string, voteType: boolean) => {
-    try {
-      // Generate a unique identifier for the vote based on the client's session
-      const sessionId = localStorage.getItem('voteSessionId') || crypto.randomUUID();
-      localStorage.setItem('voteSessionId', sessionId);
-
-      // Check if this session has already voted
-      const { data: existingVote } = await supabase
-        .from('meme_votes')
-        .select()
-        .eq('meme_id', memeId)
-        .eq('session_id', sessionId)
-        .maybeSingle();
-
-      if (existingVote) {
-        // If vote type is the same, remove the vote
-        if (existingVote.vote_type === voteType) {
-          const { error } = await supabase
-            .from('meme_votes')
-            .delete()
-            .eq('id', existingVote.id);
-
-          if (error) throw error;
-
-          toast({
-            title: "Success!",
-            description: "Vote removed",
-          });
-        } else {
-          // If vote type is different, update the vote
-          const { error } = await supabase
-            .from('meme_votes')
-            .update({ vote_type: voteType })
-            .eq('id', existingVote.id);
-
-          if (error) throw error;
-
-          toast({
-            title: "Success!",
-            description: `Vote changed to ${voteType ? 'up' : 'down'}`,
-          });
-        }
-      } else {
-        // Create new vote
-        const { error } = await supabase
-          .from('meme_votes')
-          .insert({
-            meme_id: memeId,
-            session_id: sessionId,
-            vote_type: voteType
-          });
-
-        if (error) throw error;
-
-        toast({
-          title: "Success!",
-          description: `Vote ${voteType ? 'up' : 'down'} recorded`,
-        });
-      }
-
-      // Add a small delay before refreshing to allow the trigger to complete
-      setTimeout(fetchMemes, 100);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    }
-  };
-
-  const fetchMemes = async () => {
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("memes")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-
-      if (data) {
-        const formattedMemes = data.map(meme => ({
-          id: meme.id,
-          image: meme.image_url,
-          title: meme.title,
-          description: meme.description,
-          upvotes: meme.upvotes || 0,
-          downvotes: meme.downvotes || 0
-        }));
-        
-        setMemes(formattedMemes);
-      }
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch memes",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchMemes();
-  }, []);
+  const { memes, isLoading, fetchMemes } = useMemes();
+  const { handleVote } = useVoteManagement(fetchMemes);
 
   return (
     <section 
