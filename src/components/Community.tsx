@@ -2,7 +2,7 @@ const Community = () => {
   return (
     <section id="community" className="py-20 bg-[#0b0f2a]">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-white">
+        <h2 className="text-5xl md:text-7xl font-bold text-center mb-8 text-white">
           Buy Now with a
           <br />
           Debit Card or Crypto!
