@@ -32,7 +32,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-16 w-16 md:h-24 md:w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white text-center">
+                <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
@@ -53,7 +53,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="h-16 w-16 md:h-24 md:w-24 rounded-full object-cover"
                 />
               ) : (
-                <span className="whitespace-nowrap text-base md:text-3xl font-bold text-white text-center">
+                <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
