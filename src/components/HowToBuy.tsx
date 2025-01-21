@@ -44,7 +44,7 @@ const HowToBuy = () => {
               <Search className="w-6 h-6 text-cuba-blue" />
             </div>
             <h3 className="font-bold mb-2">Step 3</h3>
-            <p>Search for $CUBA</p>
+            <p>Swap SOL for $CUBA</p>
           </div>
         </div>
 
