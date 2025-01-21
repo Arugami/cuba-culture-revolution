@@ -5,41 +5,82 @@ import { useToast } from "@/components/ui/use-toast";
 import MemeUpload from "./MemeUpload";
 import MemeGrid from "./memes/MemeGrid";
 import { Meme } from "@/types/meme";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Memes = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [memes, setMemes] = useState<Meme[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
-    try {
-      const { error } = await supabase
-        .from('meme_votes')
-        .insert({
-          meme_id: memeId,
-          vote_type: voteType
-        });
-
-      if (error) throw error;
-
-      setMemes(prevMemes => 
-        prevMemes.map(meme => {
-          if (meme.id === memeId) {
-            return {
-              ...meme,
-              upvotes: voteType ? (meme.upvotes || 0) + 1 : meme.upvotes,
-              downvotes: !voteType ? (meme.downvotes || 0) + 1 : meme.downvotes
-            };
-          }
-          return meme;
-        })
-      );
-
+    if (!user) {
       toast({
-        title: "Success!",
-        description: `Vote ${voteType ? 'up' : 'down'} recorded`,
+        title: "Error",
+        description: "Please login to vote",
+        variant: "destructive",
       });
+      return;
+    }
+
+    try {
+      // Check if user has already voted
+      const { data: existingVote } = await supabase
+        .from('meme_votes')
+        .select()
+        .eq('meme_id', memeId)
+        .eq('user_id', user.id)
+        .single();
+
+      if (existingVote) {
+        // If vote type is the same, remove the vote
+        if (existingVote.vote_type === voteType) {
+          const { error } = await supabase
+            .from('meme_votes')
+            .delete()
+            .eq('id', existingVote.id);
+
+          if (error) throw error;
+
+          toast({
+            title: "Success!",
+            description: "Vote removed",
+          });
+        } else {
+          // If vote type is different, update the vote
+          const { error } = await supabase
+            .from('meme_votes')
+            .update({ vote_type: voteType })
+            .eq('id', existingVote.id);
+
+          if (error) throw error;
+
+          toast({
+            title: "Success!",
+            description: `Vote changed to ${voteType ? 'up' : 'down'}`,
+          });
+        }
+      } else {
+        // Create new vote
+        const { error } = await supabase
+          .from('meme_votes')
+          .insert({
+            meme_id: memeId,
+            user_id: user.id,
+            vote_type: voteType
+          });
+
+        if (error) throw error;
+
+        toast({
+          title: "Success!",
+          description: `Vote ${voteType ? 'up' : 'down'} recorded`,
+        });
+      }
+
+      // Refresh memes to get updated vote counts
+      await fetchMemes();
     } catch (error: any) {
       toast({
         title: "Error",
@@ -55,7 +96,7 @@ const Memes = () => {
       const { data, error } = await supabase
         .from("memes")
         .select("*")
-        .order("created_at", { ascending: true });
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
 
@@ -65,8 +106,8 @@ const Memes = () => {
           image: meme.image_url,
           title: meme.title,
           description: meme.description,
-          upvotes: meme.upvotes,
-          downvotes: meme.downvotes
+          upvotes: meme.upvotes || 0,
+          downvotes: meme.downvotes || 0
         }));
         
         setMemes(formattedMemes);
