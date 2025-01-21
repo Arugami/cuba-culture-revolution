@@ -23,7 +23,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
       <div className={cn("w-full bg-[#0A0F29] py-4 overflow-hidden", className)}>
         <div className="relative flex w-full">
           <div className="animate-mobile-scroll flex min-w-full items-center justify-start space-x-4 px-2">
-            {[...items, ...items].map((item, idx) => (
+            {[...items, ...items, ...items].map((item, idx) => (
               <div 
                 key={`first-${idx}`} 
                 className="flex items-center shrink-0 py-2 justify-center"
