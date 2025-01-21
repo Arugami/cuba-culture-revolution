@@ -23,7 +23,7 @@ const HowToBuy = () => {
               <Wallet className="w-6 h-6 text-cuba-blue" />
             </div>
             <h3 className="font-bold mb-2">Step 1</h3>
-            <p>Install a Solana-compatible wallet (e.g., Phantom)</p>
+            <p>Install a Solana Wallet (e.g., Phantom)</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
