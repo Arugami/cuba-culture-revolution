@@ -31,7 +31,7 @@ const TwitterFeed = () => {
     <section className="py-16 bg-white relative">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-cuba-blue">
-          Latest Updates from X
+          Latest Updates from Twitter
         </h2>
         <div className="max-w-3xl mx-auto">
           <a
@@ -39,7 +39,7 @@ const TwitterFeed = () => {
             data-height="600"
             data-theme="light"
             data-chrome="noheader nofooter noborders transparent"
-            href="https://x.com/search?q=%24Cuba&src=recent_search_click"
+            href="https://twitter.com/search?q=%24Cuba&src=recent_search_click"
           >
             Loading tweets about $CUBA...
           </a>
