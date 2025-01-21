@@ -2,7 +2,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="border-4 border-cuba-blue rounded-2xl p-8 shadow-lg">
+        <div className="border-4 border-cuba-blue rounded-2xl p-8 shadow-lg bg-cuba-blue text-white">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             What is <span className="text-cuba-red">$CUBA</span>?
           </h2>
