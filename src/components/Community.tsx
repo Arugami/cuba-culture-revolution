@@ -9,35 +9,35 @@ const Community = () => {
         </h2>
 
         <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
-          <div className="bg-[#000033] p-4 rounded-lg">
+          <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
             <img
               src="/lovable-uploads/bd4df84f-5141-449a-931a-0697893e45be.png"
               alt="Apple Pay"
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="bg-[#000033] p-4 rounded-lg">
+          <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
             <img
               src="/lovable-uploads/6fdc1251-1345-45d7-81d1-82dd5b95f82d.png"
               alt="Visa and Mastercard"
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="bg-[#000033] p-4 rounded-lg">
+          <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
             <img
               src="/lovable-uploads/781ccde2-2b6b-4942-b166-7dd4e7c669e5.png"
               alt="Venmo"
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="bg-[#000033] p-4 rounded-lg">
+          <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
             <img
               src="/lovable-uploads/ca57a1c0-f081-4444-abcd-c168f38c2d9b.png"
               alt="USD Coin"
               className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="bg-[#000033] p-4 rounded-lg">
+          <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
             <img
               src="/lovable-uploads/b07bbf82-d262-4091-90d9-236dc8b94681.png"
               alt="Solana"
