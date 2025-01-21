@@ -12,7 +12,7 @@ const TwitterFeed = () => {
     script.onload = () => {
       console.log("Twitter script loaded successfully");
       // Force widget refresh
-      if (window.twttr) {
+      if (window.twttr?.widgets) {
         window.twttr.widgets.load();
       }
     };
