@@ -8,10 +8,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthModal } from "./AuthModal";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { user, signOut } = useAuth();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLanguage = () => setLanguage(language === "en" ? "es" : "en");
@@ -115,6 +118,17 @@ const Header = () => {
               </Tooltip>
             </TooltipProvider>
 
+            {user ? (
+              <Button
+                variant="outline"
+                onClick={() => signOut()}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <AuthModal />
+            )}
+
             <Button
               className="bg-cuba-red hover:bg-cuba-red/90"
               asChild
@@ -182,6 +196,20 @@ const Header = () => {
                   </Tooltip>
                 </TooltipProvider>
               </div>
+              
+              {user ? (
+                <Button
+                  variant="outline"
+                  onClick={() => signOut()}
+                  className="mt-2"
+                >
+                  Sign Out
+                </Button>
+              ) : (
+                <div className="mt-2">
+                  <AuthModal />
+                </div>
+              )}
             </nav>
           </div>
         )}

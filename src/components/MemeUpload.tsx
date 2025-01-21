@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthModal } from "./AuthModal";
 
 const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
   const [title, setTitle] = useState("");
@@ -12,6 +14,7 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
+  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +22,15 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Please sign in to upload memes",
         variant: "destructive",
       });
       return;
@@ -44,6 +56,7 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
           title,
           description,
           image_url: publicUrl,
+          user_id: user.id,
         });
 
       if (dbError) throw dbError;
@@ -67,6 +80,19 @@ const MemeUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       setIsUploading(false);
     }
   };
+
+  if (!user) {
+    return (
+      <div className="text-center p-6 bg-white rounded-lg shadow">
+        <h3 className="text-xl font-semibold mb-4">Sign in to Upload Memes</h3>
+        <AuthModal trigger={
+          <Button className="bg-cuba-blue hover:bg-cuba-blue/90">
+            Sign In to Upload
+          </Button>
+        } />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow">
