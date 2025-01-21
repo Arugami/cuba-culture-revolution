@@ -7,15 +7,17 @@ const Revolution = () => {
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Text Content */}
           <div className="flex-1 text-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-cuba-white mb-6">
-              Join the $CUBA Revolution!
+            <h2 className="text-5xl md:text-6xl font-bold text-cuba-white mb-6" style={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.3)"
+            }}>
+              Join the <span className="text-[#9b87f5]">$CUBA</span> Revolution!
             </h2>
             <div className="bg-[rgba(0,0,0,0.5)] p-6 rounded-lg backdrop-blur-sm">
               <h3 className="text-xl md:text-2xl font-semibold text-cuba-white mb-4">
                 Mission
               </h3>
               <p className="text-lg text-cuba-white leading-relaxed">
-                This is YOUR chance to join a movement that's all about empowering the Cuban people. $CUBA bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀
+                This is YOUR chance to join a movement that's all about empowering the Cuban people. <span className="text-[#9b87f5]">$CUBA</span> bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀
               </p>
             </div>
           </div>
