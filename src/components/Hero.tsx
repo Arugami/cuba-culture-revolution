@@ -1,29 +1,32 @@
 import { Button } from "@/components/ui/button";
 import ContractAddress from "./ContractAddress";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="home" className="relative min-h-screen bg-hero-pattern overflow-hidden flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-0 mt-24 lg:mt-0">
         {/* Left side content */}
         <div className="w-full lg:w-3/5 text-left space-y-6 lg:space-y-8">
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight">
-            <span className="text-white">THE ONLY</span>
+            <span className="text-white">{t("hero.taglineStart")}</span>
             <br />
-            <span className="text-cuba-red">OFFICIAL</span>
+            <span className="text-cuba-red">{t("hero.taglineMiddle")}</span>
             <br />
-            <span className="text-white">CUBA MEME</span>
+            <span className="text-white">{t("hero.taglineEnd")}</span>
           </h1>
           
           <p className="text-xl sm:text-2xl lg:text-3xl text-white/80 max-w-2xl">
-            The First Ever Country Takeover. Join the Revolution!
+            {t("hero.subtitle")}
           </p>
 
           {/* Image shown on mobile only */}
           <div className="block lg:hidden w-full px-4 sm:px-8 py-6">
             <img 
               src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
-              alt="Hand holding Cuban flag" 
+              alt={t("hero.flagAlt")}
               className="w-full h-auto max-w-md mx-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
             />
           </div>
@@ -31,7 +34,7 @@ const Hero = () => {
           {/* Quote on mobile */}
           <div className="block lg:hidden">
             <p className="text-white/60 italic text-lg sm:text-xl mb-8">
-              "Make Cuba Great Again!"
+              {t("hero.quote")}
             </p>
           </div>
           
@@ -42,7 +45,7 @@ const Hero = () => {
               asChild
             >
               <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-                Buy $CUBA Now
+                {t("hero.buyButton")}
               </a>
             </Button>
             <Button
@@ -51,7 +54,7 @@ const Hero = () => {
               asChild
             >
               <a href="https://t.me/cubacoin" target="_blank" rel="noopener noreferrer">
-                Join Community
+                {t("hero.joinButton")}
               </a>
             </Button>
           </div>
@@ -64,7 +67,7 @@ const Hero = () => {
         <div className="hidden lg:block w-2/5">
           <img 
             src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
-            alt="Hand holding Cuban flag" 
+            alt={t("hero.flagAlt")}
             className="w-full h-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
           />
         </div>
@@ -73,7 +76,7 @@ const Hero = () => {
       {/* Quote on desktop */}
       <div className="absolute bottom-8 right-8 hidden lg:block">
         <p className="text-white/60 italic text-lg sm:text-xl">
-          "Make Cuba Great Again!"
+          {t("hero.quote")}
         </p>
       </div>
     </section>

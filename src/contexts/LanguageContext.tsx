@@ -17,11 +17,14 @@ const translations: Translations = {
     "nav.community": "Community",
     "nav.vision": "Vision",
     "nav.contractAddress": "Contract Address",
-    "hero.tagline": "THE ONLY OFFICIAL CUBA MEME",
+    "hero.taglineStart": "THE ONLY",
+    "hero.taglineMiddle": "OFFICIAL",
+    "hero.taglineEnd": "CUBA MEME",
     "hero.subtitle": "The First Ever Country Takeover. Join the Revolution!",
     "hero.buyButton": "Buy $CUBA Now",
     "hero.joinButton": "Join Community",
     "hero.quote": "Make Cuba Great Again!",
+    "hero.flagAlt": "Hand holding Cuban flag",
     "about.title": "What is $CUBA?",
     "about.description1": "$CUBA is more than just a meme coin—it's a revolutionary movement and the first-ever 'Country Takeover' (CTO).",
     "about.description2": "Sparked by the Cuban government's failed attempts to launch a cryptocurrency—and the bold response of a global community—$CUBA is on a mission to empower the Cuban people and achieve true financial independence.",
@@ -38,18 +41,20 @@ const translations: Translations = {
     "nav.community": "Comunidad",
     "nav.vision": "Visión",
     "nav.contractAddress": "Dirección del Contrato",
-    "hero.tagline": "EL ÚNICO MEME OFICIAL DE CUBA",
+    "hero.taglineStart": "EL ÚNICO",
+    "hero.taglineMiddle": "OFICIAL",
+    "hero.taglineEnd": "MEME DE CUBA",
     "hero.subtitle": "La Primera Toma de Control de un País. ¡Únete a la Revolución!",
     "hero.buyButton": "Comprar $CUBA Ahora",
     "hero.joinButton": "Unirse a la Comunidad",
     "hero.quote": "¡Hagamos Cuba Grande Otra Vez!",
+    "hero.flagAlt": "Mano sosteniendo la bandera cubana",
     "about.title": "¿Qué es $CUBA?",
     "about.description1": "$CUBA es más que una moneda meme: es un movimiento revolucionario y la primera 'Toma de Control de País' (CTO).",
     "about.description2": "Inspirado por los intentos fallidos del gobierno cubano de lanzar una criptomoneda—y la audaz respuesta de una comunidad global—$CUBA tiene la misión de empoderar al pueblo cubano y lograr una verdadera independencia financiera.",
     "about.description3": "$CUBA conecta los activos digitales con iniciativas humanitarias, apoyando a la comunidad cubana en todo el mundo mientras amplifica sus voces y aspiraciones de libertad.",
     "social.joinTelegram": "Únete a Telegram",
     "social.followX": "Síguenos en X",
-    // Add more translations as needed
   },
 };
 
@@ -82,4 +87,3 @@ export const useLanguage = () => {
   }
   return context;
 };
-
