@@ -26,6 +26,8 @@ const translations: Translations = {
     "about.description1": "$CUBA is more than just a meme coin—it's a revolutionary movement and the first-ever 'Country Takeover' (CTO).",
     "about.description2": "Sparked by the Cuban government's failed attempts to launch a cryptocurrency—and the bold response of a global community—$CUBA is on a mission to empower the Cuban people and achieve true financial independence.",
     "about.description3": "$CUBA bridges the gap between digital assets and humanitarian initiatives, supporting the Cuban community worldwide while amplifying their voices and aspirations for freedom.",
+    "social.joinTelegram": "Join Us on Telegram",
+    "social.followX": "Follow Us on X",
     // Add more translations as needed
   },
   es: {
@@ -45,6 +47,8 @@ const translations: Translations = {
     "about.description1": "$CUBA es más que una moneda meme: es un movimiento revolucionario y la primera 'Toma de Control de País' (CTO).",
     "about.description2": "Inspirado por los intentos fallidos del gobierno cubano de lanzar una criptomoneda—y la audaz respuesta de una comunidad global—$CUBA tiene la misión de empoderar al pueblo cubano y lograr una verdadera independencia financiera.",
     "about.description3": "$CUBA conecta los activos digitales con iniciativas humanitarias, apoyando a la comunidad cubana en todo el mundo mientras amplifica sus voces y aspiraciones de libertad.",
+    "social.joinTelegram": "Únete a Telegram",
+    "social.followX": "Síguenos en X",
     // Add more translations as needed
   },
 };
@@ -78,3 +82,4 @@ export const useLanguage = () => {
   }
   return context;
 };
+

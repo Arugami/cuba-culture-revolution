@@ -94,7 +94,7 @@ const Header = () => {
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Join Us on Telegram</p>
+                  <p>{t("social.joinTelegram")}</p>
                 </TooltipContent>
               </Tooltip>
 
@@ -110,7 +110,7 @@ const Header = () => {
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Follow Us on X</p>
+                  <p>{t("social.followX")}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -161,7 +161,7 @@ const Header = () => {
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Join Us on Telegram</p>
+                      <p>{t("social.joinTelegram")}</p>
                     </TooltipContent>
                   </Tooltip>
 
@@ -177,7 +177,7 @@ const Header = () => {
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Follow Us on X</p>
+                      <p>{t("social.followX")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
