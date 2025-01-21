@@ -11,6 +11,13 @@ const formatNumber = (num: number) => {
   return `$${num.toFixed(2)}`;
 };
 
+const formatHolders = (num: number) => {
+  if (num >= 1000) {
+    return `${(num / 1000).toFixed(0)}K`;
+  }
+  return num.toString();
+};
+
 const TokenStats = () => {
   const { data, isLoading, error } = useTokenStats();
 
@@ -56,6 +63,10 @@ const TokenStats = () => {
           <div className="flex items-center gap-2">
             <span className="text-cuba-blue font-semibold">TVL:</span>
             <span>{formatNumber(data?.tvl || 0)}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-cuba-blue font-semibold">Token Holders:</span>
+            <span>{formatHolders(data?.holders || 0)}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-cuba-blue font-semibold">24h Change:</span>

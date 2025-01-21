@@ -6,25 +6,18 @@ interface TokenStats {
   marketCap: number;
   priceChange24h: number;
   tvl?: number;
+  holders?: number;
 }
 
 const fetchTokenStats = async (): Promise<TokenStats> => {
-  const response = await fetch(
-    "https://api.raydium.io/v2/main/price?addr=27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump"
-  );
-  
-  if (!response.ok) {
-    throw new Error("Failed to fetch token stats");
-  }
-
-  const data = await response.json();
-  
+  // Mock data for $CUBA token
   return {
-    price: data?.price || 0,
-    volume24h: data?.volume24h || 0,
-    marketCap: data?.marketCap || 0,
-    priceChange24h: data?.priceChange24h || 0,
-    tvl: data?.tvl || 0,
+    price: 0.000123,
+    volume24h: 250000,
+    marketCap: 3000000, // $3M as requested
+    priceChange24h: 15.5,
+    tvl: 1500000,
+    holders: 12000, // 12K holders as requested
   };
 };
 
@@ -32,6 +25,6 @@ export const useTokenStats = () => {
   return useQuery({
     queryKey: ["tokenStats"],
     queryFn: fetchTokenStats,
-    refetchInterval: 30000, // Refetch every 30 seconds
+    refetchInterval: 30000, // Still refresh every 30 seconds to simulate real data
   });
 };
