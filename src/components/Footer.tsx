@@ -33,6 +33,11 @@ const Footer = () => {
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               <li>
+                <a href="#home" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
+                  Home
+                </a>
+              </li>
+              <li>
                 <a href="#about" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
                   About
                 </a>
@@ -40,6 +45,11 @@ const Footer = () => {
               <li>
                 <a href="#how-to-buy" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
                   How to Buy
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
+                  FAQ
                 </a>
               </li>
             </ul>
