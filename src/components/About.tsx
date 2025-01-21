@@ -24,6 +24,12 @@ const About = () => {
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <p className="text-lg mb-6 text-white">
+                    On January 20, 2025, the Cuban government launched a cryptocurrency, claiming it would revolutionize the nation's financial future. For a brief moment, it seemed like hope had arrived for the Cuban people. The coin skyrocketed to a $30 million market cap, and investors believed change was within reach.
+                  </p>
+                  <p className="text-lg mb-6 text-white">
+                    But in a cruel twist, the project collapsed just hours later in a devastating rug pull. It wasn't just a financial loss—it was a betrayal of trust. The government's failed attempt left the Cuban people disillusioned and abandoned. And yet, the story didn't end there.
+                  </p>
+                  <p className="text-lg mb-6 text-white">
                     $CUBA is more than just a meme coin—it's a revolutionary movement and
                     the first-ever 'Country Takeover' (CTO).
                   </p>
