@@ -1,4 +1,5 @@
 import { Wallet, Search, ArrowRight } from "lucide-react";
+import ContractAddress from "./ContractAddress";
 
 const HowToBuy = () => {
   return (
