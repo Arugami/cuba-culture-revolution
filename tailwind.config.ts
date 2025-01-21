@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'patua': ['Patua One', 'cursive'],
+      },
       colors: {
         cuba: {
           red: "#DA291C",
