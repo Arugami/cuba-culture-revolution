@@ -7,13 +7,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "es">("en");
+  const { language, setLanguage, t } = useLanguage();
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleLanguage = () => setLanguage(prev => prev === "en" ? "es" : "en");
+  const toggleLanguage = () => setLanguage(language === "en" ? "es" : "en");
 
   return (
     <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-lg">
@@ -28,7 +29,7 @@ const Header = () => {
               asChild
             >
               <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-                Buy Now
+                {t("nav.buyNow")}
               </a>
             </Button>
             <button onClick={toggleMenu}>
@@ -38,11 +39,11 @@ const Header = () => {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Home</a>
-            <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">About</a>
-            <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">How to Buy</a>
-            <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Community</a>
-            <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">Vision</a>
+            <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.home")}</a>
+            <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
+            <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
+            <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.community")}</a>
+            <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.vision")}</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
@@ -104,7 +105,7 @@ const Header = () => {
               asChild
             >
               <a href="https://raydium.io" target="_blank" rel="noopener noreferrer">
-                Buy Now
+                {t("nav.buyNow")}
               </a>
             </Button>
           </div>
@@ -114,11 +115,11 @@ const Header = () => {
         {isOpen && (
           <div className="md:hidden py-4">
             <nav className="flex flex-col gap-4">
-              <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Home</a>
-              <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>About</a>
-              <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>How to Buy</a>
-              <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Community</a>
-              <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>Vision</a>
+              <a href="#home" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.home")}</a>
+              <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
+              <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
+              <a href="#community" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.community")}</a>
+              <a href="#vision" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.vision")}</a>
               
               <div className="flex gap-4 pt-2">
                 <button
