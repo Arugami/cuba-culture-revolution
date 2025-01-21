@@ -25,8 +25,8 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     () =>
       Autoplay({
         delay: 2000,
-        stopOnInteraction: true,
-        stopOnMouseEnter: true,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
       }),
     []
   );
@@ -36,15 +36,16 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
       <div className={cn("w-full bg-[#0A0F29] py-4", className)}>
         <Carousel
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
+            dragFree: true,
           }}
           plugins={[plugin()]}
           className="w-full"
         >
           <CarouselContent>
-            {items.map((item, idx) => (
-              <CarouselItem key={idx} className="flex items-center justify-center">
+            {[...items, ...items].map((item, idx) => (
+              <CarouselItem key={idx} className="flex items-center justify-center basis-auto">
                 {item.type === "image" ? (
                   <img
                     src={item.content}
