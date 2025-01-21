@@ -39,9 +39,11 @@ const HowToBuy = () => {
               <Search className="w-6 h-6 text-cuba-blue" />
             </div>
             <h3 className="font-bold mb-2">Step 3</h3>
-            <p>Search for $CUBA using contract address: 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump</p>
+            <p>Search for $CUBA</p>
           </div>
         </div>
+
+        <ContractAddress />
       </div>
     </section>
   );
