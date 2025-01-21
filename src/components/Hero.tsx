@@ -26,6 +26,13 @@ const Hero = () => {
               className="w-full h-auto max-w-md mx-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
             />
           </div>
+
+          {/* Quote on mobile */}
+          <div className="block lg:hidden">
+            <p className="text-white/60 italic text-lg sm:text-xl mb-8">
+              "Make Cuba Great Again!"
+            </p>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4 sm:pt-6">
             <Button
@@ -59,8 +66,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom text */}
-      <div className="absolute bottom-8 right-8">
+      {/* Quote on desktop */}
+      <div className="absolute bottom-8 right-8 hidden lg:block">
         <p className="text-white/60 italic text-lg sm:text-xl">
           "Make Cuba Great Again!"
         </p>
