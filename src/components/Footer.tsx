@@ -96,7 +96,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-cuba-red transition-colors duration-300"
               >
-                Twitter
+                X
               </a>
               <p className="text-white mt-4">
                 Contact: support@cubacoin.com
