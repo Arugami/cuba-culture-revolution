@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Memes = () => {
-  const { translations } = useLanguage();
+  const { t } = useLanguage();
 
   const memes = [
     {
@@ -36,10 +36,10 @@ const Memes = () => {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
-            {translations.memes.title}
+            {t('memes.title')}
           </h2>
           <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            {translations.memes.subtitle}
+            {t('memes.subtitle')}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
