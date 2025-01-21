@@ -24,8 +24,8 @@ const TokenStats = () => {
   if (error) {
     console.error("Token stats error:", error);
     return (
-      <div className="w-full bg-cuba-blue/10 py-2">
-        <div className="container mx-auto px-4">
+      <div className="w-screen bg-cuba-blue/10 py-2">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-sm text-gray-600">
             Market data temporarily unavailable
           </div>
@@ -36,8 +36,8 @@ const TokenStats = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full bg-cuba-blue/10 py-2">
-        <div className="container flex justify-center">
+      <div className="w-screen bg-cuba-blue/10 py-2">
+        <div className="max-w-7xl mx-auto flex justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-cuba-blue" />
         </div>
       </div>
@@ -45,8 +45,8 @@ const TokenStats = () => {
   }
 
   return (
-    <div className="w-full bg-cuba-blue/10 py-2">
-      <div className="container mx-auto px-4">
+    <div className="w-screen bg-cuba-blue/10 py-2">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 xl:flex xl:flex-wrap xl:justify-center xl:gap-6 text-sm md:text-base">
           <div className="flex items-center gap-2">
             <span className="text-cuba-blue font-semibold">Price:</span>
