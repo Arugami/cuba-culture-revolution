@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useCallback } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface ContinuousSliderProps {
   className?: string;
@@ -18,26 +21,47 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
     { type: "text", content: "Join The Community" },
   ];
 
+  const plugin = useCallback(
+    () =>
+      Autoplay({
+        delay: 2000,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
+      }),
+    []
+  );
+
   if (isMobile) {
     return (
-      <div className={cn("w-full overflow-hidden bg-[#0A0F29] py-4", className)}>
-        <div className="flex items-center justify-center space-x-3 px-4">
-          {items.map((item, idx) => (
-            <React.Fragment key={idx}>
-              {item.type === "image" ? (
-                <img
-                  src={item.content}
-                  alt="Country Takeover Logo"
-                  className="h-6 w-6 rounded-full object-contain"
-                />
-              ) : (
-                <span className="whitespace-nowrap text-sm font-bold text-white">
-                  {item.content}
-                </span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+      <div className={cn("w-full bg-[#0A0F29] py-4", className)}>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[plugin()]}
+          className="w-full"
+        >
+          <CarouselContent>
+            {items.map((item, idx) => (
+              <CarouselItem key={idx} className="flex items-center justify-center">
+                {item.type === "image" ? (
+                  <img
+                    src={item.content}
+                    alt="Country Takeover Logo"
+                    className="h-6 w-6 rounded-full object-contain"
+                  />
+                ) : (
+                  <span className="whitespace-nowrap text-sm font-bold text-white px-4">
+                    {item.content}
+                  </span>
+                )}
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden" />
+          <CarouselNext className="hidden" />
+        </Carousel>
       </div>
     );
   }
