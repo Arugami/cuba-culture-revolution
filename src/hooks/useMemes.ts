@@ -43,6 +43,27 @@ export const useMemes = () => {
 
   useEffect(() => {
     fetchMemes();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('memes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'memes'
+        },
+        (payload) => {
+          console.log('Real-time update received:', payload);
+          fetchMemes();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return { memes, isLoading, fetchMemes };

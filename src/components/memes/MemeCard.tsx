@@ -13,6 +13,11 @@ interface MemeCardProps {
 }
 
 const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }: MemeCardProps) => {
+  const handleVote = async (e: React.MouseEvent, voteType: boolean) => {
+    e.preventDefault();
+    await onVote(id, voteType);
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
       <CardContent className="p-0 h-full">
@@ -32,7 +37,7 @@ const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }:
                 variant="ghost"
                 size="sm"
                 className="text-white hover:text-cuba-blue"
-                onClick={() => onVote(id, true)}
+                onClick={(e) => handleVote(e, true)}
               >
                 <ThumbsUp className="w-4 h-4 mr-1" />
                 {upvotes || 0}
@@ -41,7 +46,7 @@ const MemeCard = ({ id, image, title, description, upvotes, downvotes, onVote }:
                 variant="ghost"
                 size="sm"
                 className="text-white hover:text-cuba-blue"
-                onClick={() => onVote(id, false)}
+                onClick={(e) => handleVote(e, false)}
               >
                 <ThumbsDown className="w-4 h-4 mr-1" />
                 {downvotes || 0}

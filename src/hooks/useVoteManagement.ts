@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Meme } from "@/types/meme";
 
-export const useVoteManagement = (onVoteSuccess: () => void) => {
+export const useVoteManagement = () => {
   const { toast } = useToast();
   const [isVoting, setIsVoting] = useState(false);
 
@@ -58,8 +57,6 @@ export const useVoteManagement = (onVoteSuccess: () => void) => {
           description: `Vote ${voteType ? 'up' : 'down'} recorded`,
         });
       }
-
-      setTimeout(onVoteSuccess, 100);
     } catch (error: any) {
       toast({
         title: "Error",
