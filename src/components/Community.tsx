@@ -13,7 +13,7 @@ const Community = () => {
             <img
               src="/lovable-uploads/bd4df84f-5141-449a-931a-0697893e45be.png"
               alt="Apple Pay"
-              className="h-20 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              className="h-24 w-auto opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>
           <div className="bg-[#0b0f2a] border border-white/10 p-4 rounded-lg">
