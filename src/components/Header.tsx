@@ -29,7 +29,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-2">
-            <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight font-sorts-mill">$CUBA</div>
+            <div className="text-3xl md:text-4xl font-extrabold text-cuba-red tracking-tight">$CUBA</div>
             <img 
               src="/lovable-uploads/51490d66-3df6-4e43-9265-ea6fb6d9f800.png"
               alt="Country Takeover Logo"

@@ -18,9 +18,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        'sorts-mill': ['"Sorts Mill Goudy"', 'serif'],
-      },
       colors: {
         cuba: {
           red: "#DA291C",
