@@ -88,7 +88,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 15s ease infinite",
         scroll: "scroll 10s linear infinite",
-        "mobile-scroll": "mobile-scroll 5s linear infinite",
+        "mobile-scroll": "mobile-scroll 10s linear infinite",
       },
       backgroundImage: {
         "hero-pattern":
