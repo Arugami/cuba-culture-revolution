@@ -7,12 +7,12 @@ interface ContinuousSliderProps {
 
 const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
   const items = [
+    { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
     { type: "text", content: "$CUBA" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
-    { type: "text", content: "First Ever Country Take Over" },
+    { type: "text", content: "$CUBA" },
     { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
-    { type: "text", content: "Join The Community" },
-    { type: "image", content: "/lovable-uploads/669989ab-dd77-4577-98b7-ca8a10e1cd20.png" },
+    { type: "text", content: "$CUBA" },
   ];
 
   return (
@@ -32,7 +32,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="block h-12 w-12 md:h-24 md:w-24 rounded-full object-contain md:object-cover"
                 />
               ) : (
-                <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
+                <span className="block md:hidden whitespace-nowrap text-xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
@@ -53,7 +53,7 @@ const ContinuousSlider = ({ className }: ContinuousSliderProps) => {
                   className="block h-12 w-12 md:h-24 md:w-24 rounded-full object-contain md:object-cover"
                 />
               ) : (
-                <span className="hidden md:block whitespace-nowrap text-3xl font-bold text-white text-center">
+                <span className="block md:hidden whitespace-nowrap text-xl font-bold text-white text-center">
                   {item.content}
                 </span>
               )}
