@@ -72,8 +72,8 @@ const Memes = () => {
         });
       }
 
-      // Refresh memes to get updated vote counts
-      await fetchMemes();
+      // Add a small delay before refreshing to allow the trigger to complete
+      setTimeout(fetchMemes, 100);
     } catch (error: any) {
       toast({
         title: "Error",
