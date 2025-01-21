@@ -42,16 +42,6 @@ const Footer = () => {
                   How to Buy
                 </a>
               </li>
-              <li>
-                <a href="#community" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
-                  Community
-                </a>
-              </li>
-              <li>
-                <a href="#vision" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
-                  Vision
-                </a>
-              </li>
             </ul>
           </div>
 
