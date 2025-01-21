@@ -1,15 +1,6 @@
 const About = () => {
   return (
-    <section 
-      id="about" 
-      className="py-20"
-      style={{
-        backgroundImage: "url('/lovable-uploads/43e9d6c5-c137-4e52-bad7-17218dbe5ea4.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
+    <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div 
           className="relative p-[12px] rounded-2xl shadow-lg overflow-hidden"
