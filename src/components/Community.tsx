@@ -49,7 +49,7 @@ const Community = () => {
 
         <div className="text-center">
           <a
-            href="https://raydium.io"
+            href="https://moonshot.money/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-cuba-red text-white font-bold py-6 px-24 rounded-lg text-3xl hover:bg-cuba-blue transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto min-w-[280px]"
