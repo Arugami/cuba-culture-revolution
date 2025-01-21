@@ -5,7 +5,11 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
-const MemeUpload = () => {
+interface MemeUploadProps {
+  onSuccess?: () => void;
+}
+
+const MemeUpload = ({ onSuccess }: MemeUploadProps) => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [uploading, setUploading] = useState(false);
@@ -68,6 +72,9 @@ const MemeUpload = () => {
       setDescription("");
       setFile(null);
       
+      // Close dialog if onSuccess is provided
+      onSuccess?.();
+      
     } catch (error) {
       console.error('Error uploading meme:', error);
       toast({
@@ -81,7 +88,7 @@ const MemeUpload = () => {
   };
 
   return (
-    <form onSubmit={handleUpload} className="space-y-4 max-w-md mx-auto p-4">
+    <form onSubmit={handleUpload} className="space-y-4">
       <div>
         <Input
           type="text"

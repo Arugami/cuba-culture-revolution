@@ -4,7 +4,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Upload } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import MemeUpload from "./MemeUpload";
 
 interface Meme {
@@ -22,6 +23,7 @@ const Memes = () => {
   const { toast } = useToast();
   const [memes, setMemes] = useState<Meme[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
 
   const fetchMemes = async () => {
     try {
@@ -149,9 +151,22 @@ const Memes = () => {
           <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
             {t('memes.subtitle')}
           </p>
+          
+          <Dialog open={isUploadOpen} onOpenChange={setIsUploadOpen}>
+            <DialogTrigger asChild>
+              <Button className="flex items-center gap-2">
+                <Upload className="w-4 h-4" />
+                Upload Meme
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Upload a New Meme</DialogTitle>
+              </DialogHeader>
+              <MemeUpload onSuccess={() => setIsUploadOpen(false)} />
+            </DialogContent>
+          </Dialog>
         </div>
-
-        <MemeUpload />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {memes.map((meme) => (
