@@ -73,12 +73,12 @@ const Header = () => {
                       {language === "en" ? "🇺🇸" : "🇨🇺"}
                     </span>
                     <span className="sr-only">
-                      {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
+                      {t("nav.switchLanguage")}
                     </span>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}</p>
+                  <p>{t("nav.switchLanguage")}</p>
                 </TooltipContent>
               </Tooltip>
 
@@ -145,7 +145,7 @@ const Header = () => {
                     {language === "en" ? "🇺🇸" : "🇨🇺"}
                   </span>
                   <span className="sr-only">
-                    {language === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
+                    {t("nav.switchLanguage")}
                   </span>
                 </button>
                 <TooltipProvider>
