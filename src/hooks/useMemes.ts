@@ -45,7 +45,6 @@ export const useMemes = () => {
   useEffect(() => {
     fetchMemes();
 
-    // Subscribe to both memes and meme_votes tables
     const channel = supabase
       .channel('memes-realtime')
       .on(
@@ -59,6 +58,7 @@ export const useMemes = () => {
           console.log('Meme update received:', payload);
           
           if (payload.eventType === 'UPDATE') {
+            // Update the specific meme's vote counts without a full refresh
             setMemes(currentMemes => 
               currentMemes.map(meme => 
                 meme.id === payload.new.id 
@@ -70,24 +70,15 @@ export const useMemes = () => {
                   : meme
               )
             );
-          } else {
-            // For INSERT or DELETE events, fetch all memes again
+          } else if (payload.eventType === 'INSERT') {
+            // Only fetch all memes when a new meme is added
             fetchMemes();
+          } else if (payload.eventType === 'DELETE') {
+            // Remove the deleted meme from the state
+            setMemes(currentMemes => 
+              currentMemes.filter(meme => meme.id !== payload.old.id)
+            );
           }
-        }
-      )
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'meme_votes'
-        },
-        (payload) => {
-          console.log('Vote update received:', payload);
-          // When a vote changes, fetch the latest meme data
-          // This ensures we have the correct vote counts
-          fetchMemes();
         }
       )
       .subscribe((status) => {
