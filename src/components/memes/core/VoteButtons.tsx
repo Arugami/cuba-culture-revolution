@@ -17,14 +17,14 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
   const downvotes = initialDownvotes + (userVote === 'downvote' ? 1 : 0);
 
   return (
-    <div className="flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
+    <div className="flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 focus-within:opacity-100">
       <Button
         variant="ghost"
         size="sm"
         onClick={() => vote('upvote')}
         disabled={isLoading}
         className={cn(
-          "hover:bg-black/20 transition-colors duration-200",
+          "hover:bg-black/20 transition-colors duration-200 focus:opacity-100",
           userVote === 'upvote' 
             ? "text-green-400" 
             : "text-white hover:text-green-400"
@@ -42,7 +42,7 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
         onClick={() => vote('downvote')}
         disabled={isLoading}
         className={cn(
-          "hover:bg-black/20 transition-colors duration-200",
+          "hover:bg-black/20 transition-colors duration-200 focus:opacity-100",
           userVote === 'downvote' 
             ? "text-red-400" 
             : "text-white hover:text-red-400"
