@@ -33,7 +33,7 @@ const MemeGrid = ({ memes }: MemeGridProps) => {
       >
         <CarouselContent className="-ml-1">
           {memes.map((meme) => (
-            <CarouselItem key={meme.id} className="pl-1 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+            <CarouselItem key={meme.id} className="pl-1 basis-1/4">
               <MemeCard {...meme} />
             </CarouselItem>
           ))}
