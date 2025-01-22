@@ -22,14 +22,48 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
   }, [memes]);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
+    const existingMeme = localMemes.find(meme => meme.id === memeId);
+    if (!existingMeme) return;
+
+    // Get the current vote state
+    const sessionId = localStorage.getItem('voteSessionId');
+    if (!sessionId) return;
+
+    const { data: existingVote } = await supabase
+      .from('meme_votes')
+      .select('vote_type')
+      .eq('meme_id', memeId)
+      .eq('session_id', sessionId)
+      .maybeSingle();
+
+    // Calculate the vote delta based on the current state and action
+    let upvoteDelta = 0;
+    let downvoteDelta = 0;
+
+    if (existingVote) {
+      if (existingVote.vote_type === voteType) {
+        // Removing the vote
+        upvoteDelta = voteType ? -1 : 0;
+        downvoteDelta = voteType ? 0 : -1;
+      } else {
+        // Switching vote
+        upvoteDelta = voteType ? 1 : -1;
+        downvoteDelta = voteType ? -1 : 1;
+      }
+    } else {
+      // New vote
+      upvoteDelta = voteType ? 1 : 0;
+      downvoteDelta = voteType ? 0 : 1;
+    }
+
     // Optimistically update the UI
     setLocalMemes(prevMemes =>
       prevMemes.map(meme => {
         if (meme.id === memeId) {
           return {
             ...meme,
-            upvotes: voteType ? (meme.upvotes || 0) + 1 : meme.upvotes,
-            downvotes: !voteType ? (meme.downvotes || 0) + 1 : meme.downvotes,
+            upvotes: Math.max(0, (meme.upvotes || 0) + upvoteDelta),
+            downvotes: Math.max(0, (meme.downvotes || 0) + downvoteDelta)
           };
         }
         return meme;
