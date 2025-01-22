@@ -12,84 +12,101 @@ export interface Translations {
     switchLanguage: string;
   };
   hero: {
-    title: string;
+    taglineStart: string;
+    taglineMiddle: string;
+    taglineEnd: string;
     subtitle: string;
-    description: string;
-    buyNow: string;
-    viewChart: string;
+    buyButton: string;
+    joinButton: string;
+    quote: string;
+    flagAlt: string;
   };
   about: {
     title: string;
     subtitle: string;
+    paragraph1: string;
+    paragraph2: string;
+    paragraph3: string;
+    paragraph4: string;
+    joinButton: string;
+    imageAlt: string;
   };
   howToBuy: {
     title: string;
     subtitle: string;
-    steps: {
-      wallet: {
-        title: string;
-        description: string;
-      };
-      sol: {
-        title: string;
-        description: string;
-      };
-      raydium: {
-        title: string;
-        description: string;
-      };
-      swap: {
-        title: string;
-        description: string;
-      };
+    step1: {
+      title: string;
+      description: string;
     };
-  };
-  community: {
-    title: string;
-    subtitle: string;
-    joinUs: string;
-  };
-  revolution: {
-    title: string;
-    subtitle: string;
-  };
-  faq: {
-    title: string;
-    subtitle: string;
-    questions: {
-      what: {
-        question: string;
-        answer: string;
-      };
-      why: {
-        question: string;
-        answer: string;
-      };
-      how: {
-        question: string;
-        answer: string;
-      };
-      when: {
-        question: string;
-        answer: string;
-      };
+    step2: {
+      title: string;
+      description: string;
     };
-  };
-  footer: {
-    rights: string;
+    step3: {
+      title: string;
+      description: string;
+    };
+    contractAddress: string;
+    copyAddress: string;
+    addressCopied: string;
+    addressCopiedDesc: string;
+    copyError: string;
+    copyErrorDesc: string;
   };
   social: {
     joinTelegram: string;
     followX: string;
   };
+  community: {
+    buyNow: string;
+    debitCard: string;
+    buyButton: string;
+    buyEasily: string;
+  };
+  revolution: {
+    title: string;
+    mission: string;
+    description: string;
+  };
   memes: {
     title: string;
     subtitle: string;
-    upload: string;
-    yourMemes: string;
-    noMemesYet: string;
-    startUploading: string;
-    signInToView: string;
-    loading: string;
+  };
+  faq: {
+    title: string;
+    what: {
+      question: string;
+      answer: string;
+    };
+    buy: {
+      question: string;
+      answer: string;
+    };
+    safe: {
+      question: string;
+      answer: string;
+    };
+    join: {
+      question: string;
+      answer: string;
+    };
+    unique: {
+      question: string;
+      answer: string;
+    };
+  };
+  footer: {
+    quickLinks: string;
+    home: string;
+    about: string;
+    howToBuy: string;
+    faq: string;
+    contract: string;
+    copyAddress: string;
+    community: string;
+    telegram: string;
+    x: string;
+    copyright: string;
+    madeBy: string;
   };
 }
