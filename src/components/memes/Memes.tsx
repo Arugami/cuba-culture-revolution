@@ -5,6 +5,7 @@ import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
+import { useEffect } from "react";
 
 const Memes = () => {
   const { t } = useLanguage();
@@ -21,6 +22,29 @@ const Memes = () => {
   const handleSortChange = (value: SortOption) => {
     setSortBy(value);
   };
+
+  // Subscribe to real-time updates for meme votes
+  useEffect(() => {
+    const channel = supabase
+      .channel('memes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'memes'
+        },
+        () => {
+          // Refresh memes when votes change
+          fetchMemes();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [fetchMemes]);
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-cuba-blue/5 to-white">
