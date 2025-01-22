@@ -30,7 +30,6 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
 
       console.log('Current vote state:', { userVote, voteType, sessionId });
 
-      // Check if a vote exists
       const { data: existingVote, error: fetchError } = await supabase
         .from('meme_votes')
         .select('vote_type')
@@ -63,9 +62,12 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           title: "Success",
           description: "Vote removed"
         });
-      } else if (existingVote) {
+        return; // Add return to prevent further execution
+      }
+
+      // If changing vote type, update the existing vote
+      if (existingVote) {
         console.log('Changing vote type');
-        // If changing vote type, update the existing vote
         const { error: updateError } = await supabase
           .from('meme_votes')
           .update({ vote_type: voteType })
@@ -86,31 +88,33 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           title: "Success",
           description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
         });
-      } else {
-        console.log('Creating new vote');
-        // If no vote exists, create a new one
-        const { error: insertError } = await supabase
-          .from('meme_votes')
-          .insert({
-            meme_id: memeId,
-            session_id: sessionId,
-            vote_type: voteType
-          });
-
-        if (insertError) throw insertError;
-        
-        setUserVote(voteType);
-        if (voteType) {
-          setLocalUpvotes(prev => prev + 1);
-        } else {
-          setLocalDownvotes(prev => prev + 1);
-        }
-
-        toast({
-          title: "Success",
-          description: `Meme ${voteType ? 'upvoted' : 'downvoted'}`
-        });
+        return; // Add return to prevent further execution
       }
+
+      // If no vote exists, create a new one
+      console.log('Creating new vote');
+      const { error: insertError } = await supabase
+        .from('meme_votes')
+        .insert({
+          meme_id: memeId,
+          session_id: sessionId,
+          vote_type: voteType
+        });
+
+      if (insertError) throw insertError;
+      
+      setUserVote(voteType);
+      if (voteType) {
+        setLocalUpvotes(prev => prev + 1);
+      } else {
+        setLocalDownvotes(prev => prev + 1);
+      }
+
+      toast({
+        title: "Success",
+        description: `Meme ${voteType ? 'upvoted' : 'downvoted'}`
+      });
+      return; // Add return for consistency
 
     } catch (error: any) {
       console.error('Error handling vote:', error);
