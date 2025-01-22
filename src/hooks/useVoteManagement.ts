@@ -11,10 +11,11 @@ export const useVoteManagement = () => {
     
     setIsVoting(true);
     try {
+      // Ensure we have a consistent session ID for the user
       const sessionId = localStorage.getItem('voteSessionId') || crypto.randomUUID();
       localStorage.setItem('voteSessionId', sessionId);
 
-      // Get existing vote
+      // Check if user has already voted on this meme
       const { data: existingVote } = await supabase
         .from('meme_votes')
         .select()
@@ -24,34 +25,24 @@ export const useVoteManagement = () => {
 
       if (existingVote) {
         if (existingVote.vote_type === voteType) {
-          // Remove vote if clicking same button
+          // User clicked same vote type - remove the vote
           const { error } = await supabase
             .from('meme_votes')
             .delete()
             .eq('id', existingVote.id);
 
           if (error) throw error;
-          
-          toast({
-            title: "Success",
-            description: "Vote removed successfully",
-          });
         } else {
-          // Switch vote type
+          // User is switching their vote
           const { error } = await supabase
             .from('meme_votes')
             .update({ vote_type: voteType })
             .eq('id', existingVote.id);
 
           if (error) throw error;
-          
-          toast({
-            title: "Success",
-            description: "Vote changed successfully",
-          });
         }
       } else {
-        // New vote
+        // This is a new vote
         const { error } = await supabase
           .from('meme_votes')
           .insert({
@@ -61,14 +52,19 @@ export const useVoteManagement = () => {
           });
 
         if (error) throw error;
-        
-        toast({
-          title: "Success",
-          description: `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
-        });
       }
 
-    } catch (error: any) {
+      // Show appropriate toast message
+      toast({
+        title: "Success",
+        description: existingVote 
+          ? (existingVote.vote_type === voteType 
+            ? "Vote removed" 
+            : "Vote changed")
+          : `Meme ${voteType ? 'upvoted' : 'downvoted'}`
+      });
+
+    } catch (error) {
       console.error('Error processing vote:', error);
       toast({
         title: "Error",
