@@ -9,8 +9,12 @@ interface VoteButtonsProps {
   downvotes: number;
 }
 
-const VoteButtons = ({ memeId, upvotes, downvotes }: VoteButtonsProps) => {
-  const { userVote, vote } = useVotes(memeId);
+const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvotes }: VoteButtonsProps) => {
+  const { userVote, vote, isLoading } = useVotes(memeId);
+
+  // Calculate current vote counts based on user's vote
+  const upvotes = initialUpvotes + (userVote === 'upvote' ? 1 : 0);
+  const downvotes = initialDownvotes + (userVote === 'downvote' ? 1 : 0);
 
   return (
     <div className="flex items-center gap-4">
@@ -19,6 +23,7 @@ const VoteButtons = ({ memeId, upvotes, downvotes }: VoteButtonsProps) => {
           variant="ghost"
           size="sm"
           onClick={() => vote('upvote')}
+          disabled={isLoading}
           className={cn(
             "hover:text-green-500",
             userVote === 'upvote' && "text-green-500"
@@ -33,6 +38,7 @@ const VoteButtons = ({ memeId, upvotes, downvotes }: VoteButtonsProps) => {
           variant="ghost"
           size="sm"
           onClick={() => vote('downvote')}
+          disabled={isLoading}
           className={cn(
             "hover:text-red-500",
             userVote === 'downvote' && "text-red-500"

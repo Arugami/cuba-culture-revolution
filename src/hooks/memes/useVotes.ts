@@ -45,7 +45,17 @@ export const useVotes = (memeId: string) => {
       return;
     }
 
+    setIsLoading(true);
+    const previousVote = userVote;
+    
     try {
+      // Optimistically update UI
+      if (userVote === voteType) {
+        setUserVote(null);
+      } else {
+        setUserVote(voteType);
+      }
+
       if (userVote === voteType) {
         // Remove vote if clicking the same button
         const { error } = await supabase
@@ -55,7 +65,6 @@ export const useVotes = (memeId: string) => {
           .eq('user_id', user.id);
 
         if (error) throw error;
-        setUserVote(null);
       } else if (userVote) {
         // Update vote if already voted
         const { error } = await supabase
@@ -65,7 +74,6 @@ export const useVotes = (memeId: string) => {
           .eq('user_id', user.id);
 
         if (error) throw error;
-        setUserVote(voteType);
       } else {
         // Insert new vote
         const { error } = await supabase
@@ -77,15 +85,18 @@ export const useVotes = (memeId: string) => {
           });
 
         if (error) throw error;
-        setUserVote(voteType);
       }
     } catch (error: any) {
       console.error('Error voting:', error);
+      // Revert optimistic update on error
+      setUserVote(previousVote);
       toast({
         title: "Error",
         description: "Failed to register vote",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
