@@ -25,11 +25,13 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
       }
 
       if (userVote === voteType) {
+        // Delete existing vote
         const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
           .eq('meme_id', memeId)
-          .eq('session_id', sessionId);
+          .eq('session_id', sessionId)
+          .single();
 
         if (deleteError) throw deleteError;
         
@@ -40,6 +42,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           setLocalDownvotes(prev => Math.max(0, prev - 1));
         }
       } else {
+        // If there's an existing vote, delete it first
         if (userVote !== null) {
           await supabase
             .from('meme_votes')
@@ -48,13 +51,15 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
             .eq('session_id', sessionId);
         }
 
+        // Insert new vote
         const { error: insertError } = await supabase
           .from('meme_votes')
           .insert({
             meme_id: memeId,
             session_id: sessionId,
             vote_type: voteType
-          });
+          })
+          .single();
 
         if (insertError) throw insertError;
         
