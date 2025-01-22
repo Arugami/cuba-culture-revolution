@@ -147,22 +147,16 @@ const MemeCard = ({
           title={title}
           description={description}
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4">
-          <h3 className="text-white font-patua text-lg truncate">{title}</h3>
-          {description && (
-            <p className="text-white/80 text-sm line-clamp-2">{description}</p>
-          )}
-          <MemeActions
-            id={id}
-            title={title}
-            image={image}
-            upvotes={localUpvotes}
-            downvotes={localDownvotes}
-            userVote={userVote}
-            isVoting={isVoting}
-            onVote={handleVote}
-          />
-        </div>
+        <MemeActions
+          id={id}
+          title={title}
+          image={image}
+          upvotes={localUpvotes}
+          downvotes={localDownvotes}
+          userVote={userVote}
+          isVoting={isVoting}
+          onVote={handleVote}
+        />
       </CardContent>
     </Card>
   );
