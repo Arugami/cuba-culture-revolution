@@ -77,6 +77,7 @@ export const useVoteHandler = () => {
 
         if (deleteError) throw deleteError;
         
+        // Update local state to remove the vote
         const newVotes = new Map(userVotes);
         newVotes.delete(memeId);
         setUserVotes(newVotes);
@@ -98,6 +99,7 @@ export const useVoteHandler = () => {
 
         if (updateError) throw updateError;
         
+        // Update local state with the new vote type
         const newVotes = new Map(userVotes);
         newVotes.set(memeId, voteType);
         setUserVotes(newVotes);
@@ -121,6 +123,7 @@ export const useVoteHandler = () => {
 
       if (insertError) throw insertError;
       
+      // Update local state with the new vote
       const newVotes = new Map(userVotes);
       newVotes.set(memeId, voteType);
       setUserVotes(newVotes);
