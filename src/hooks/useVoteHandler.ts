@@ -24,7 +24,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         return;
       }
 
-      // First, check if a vote exists
+      // Check if a vote exists
       const { data: existingVote } = await supabase
         .from('meme_votes')
         .select('vote_type')
@@ -33,8 +33,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         .maybeSingle();
 
       if (existingVote) {
+        // If clicking the same vote type, remove the vote
         if (existingVote.vote_type === voteType) {
-          // Delete the vote if clicking the same type
           const { error: deleteError } = await supabase
             .from('meme_votes')
             .delete()
@@ -54,7 +54,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
             description: "Vote removed"
           });
         } else {
-          // Update the vote if changing vote type
+          // If changing vote type, update the existing vote
           const { error: updateError } = await supabase
             .from('meme_votes')
             .update({ vote_type: voteType })
@@ -77,7 +77,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           });
         }
       } else {
-        // Insert new vote
+        // If no vote exists, create a new one
         const { error: insertError } = await supabase
           .from('meme_votes')
           .insert({
