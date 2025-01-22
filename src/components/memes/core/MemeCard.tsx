@@ -32,19 +32,31 @@ const MemeCard = ({
             title={title}
             description={description}
           />
-          <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 transition-opacity duration-200 ${
-            isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}>
-            <VoteButtons
-              memeId={id}
-              upvotes={upvotes}
-              downvotes={downvotes}
-            />
-            <DownloadButton
-              image={image}
-              title={title}
-            />
-          </div>
+          {isMobile ? (
+            <div className="flex items-center justify-center gap-2 p-4 bg-white">
+              <VoteButtons
+                memeId={id}
+                upvotes={upvotes}
+                downvotes={downvotes}
+              />
+              <DownloadButton
+                image={image}
+                title={title}
+              />
+            </div>
+          ) : (
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <VoteButtons
+                memeId={id}
+                upvotes={upvotes}
+                downvotes={downvotes}
+              />
+              <DownloadButton
+                image={image}
+                title={title}
+              />
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
