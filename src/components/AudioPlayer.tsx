@@ -19,11 +19,11 @@ const AudioPlayer = () => {
         audioRef.current.play().catch(() => {
           toast({
             variant: "destructive",
-            description: "Unable to play music. Please try again.",
+            description: "Unable to play Flip the Peso. Please try again.",
           });
         });
         toast({
-          description: "Playing Cuban background music",
+          description: "Playing Flip the Peso 🎵",
         });
       }
       setIsPlaying(!isPlaying);
@@ -40,7 +40,7 @@ const AudioPlayer = () => {
     <div className="fixed bottom-4 right-4 z-50">
       <audio
         ref={audioRef}
-        src="/cuban-song.mp3"
+        src="/Flip the Peso.mp3"
         loop
       />
       <Button
