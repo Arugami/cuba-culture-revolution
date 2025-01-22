@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between py-20 lg:py-0 mt-16 sm:mt-20 lg:mt-0">
         {/* Left side content */}
         <div className="w-full lg:w-3/5 text-left space-y-4 sm:space-y-6 lg:space-y-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
             <span className="text-white">{t("hero.taglineStart")}</span>
             <br />
             <span className="text-cuba-red">{t("hero.taglineMiddle")}</span>
@@ -18,7 +18,7 @@ const Hero = () => {
             <span className="text-white">{t("hero.taglineEnd")}</span>
           </h1>
           
-          <p className="text-lg sm:text-xl lg:text-3xl text-white/80 max-w-2xl">
+          <p className="text-2xl sm:text-3xl lg:text-3xl text-white/80 max-w-2xl">
             {t("hero.subtitle")}
           </p>
 
@@ -33,7 +33,7 @@ const Hero = () => {
 
           {/* Quote on mobile */}
           <div className="block lg:hidden">
-            <p className="text-white/60 italic text-base sm:text-lg mb-6">
+            <p className="text-white/60 italic text-xl sm:text-2xl mb-6">
               {t("hero.quote")}
             </p>
           </div>
