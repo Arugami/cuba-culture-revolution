@@ -11,7 +11,7 @@ const Memes = () => {
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
 
   const handleSortChange = (value: string) => {
-    setSortBy('newest');
+    setSortBy(value as 'newest' | 'most-upvoted' | 'most-downvoted');
   };
 
   // Subscribe to real-time updates
@@ -76,6 +76,8 @@ const Memes = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="newest">Newest First</SelectItem>
+              <SelectItem value="most-upvoted">Most Upvoted</SelectItem>
+              <SelectItem value="most-downvoted">Most Downvoted</SelectItem>
             </SelectContent>
           </Select>
         </div>

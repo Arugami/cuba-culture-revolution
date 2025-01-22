@@ -3,7 +3,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Meme } from "@/types/meme";
 
-export type SortOption = 'newest';
+export type SortOption = 'newest' | 'most-upvoted' | 'most-downvoted';
 
 export const useMemes = () => {
   const { toast } = useToast();
@@ -19,6 +19,12 @@ export const useMemes = () => {
         .select("*");
 
       switch (sortBy) {
+        case 'most-upvoted':
+          query = query.order('upvotes', { ascending: false });
+          break;
+        case 'most-downvoted':
+          query = query.order('downvotes', { ascending: false });
+          break;
         case 'newest':
         default:
           query = query.order('created_at', { ascending: false });
