@@ -17,37 +17,40 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
   const downvotes = initialDownvotes + (userVote === 'downvote' ? 1 : 0);
 
   return (
-    <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full p-2">
-      <div className="flex items-center gap-1">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => vote('upvote')}
-          disabled={isLoading}
-          className={cn(
-            "hover:text-green-500 text-white hover:bg-white/20",
-            userVote === 'upvote' && "text-green-500"
-          )}
-        >
-          <ThumbsUp className="w-4 h-4 mr-1" />
-          {upvotes}
-        </Button>
-      </div>
-      <div className="flex items-center gap-1">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => vote('downvote')}
-          disabled={isLoading}
-          className={cn(
-            "hover:text-red-500 text-white hover:bg-white/20",
-            userVote === 'downvote' && "text-red-500"
-          )}
-        >
-          <ThumbsDown className="w-4 h-4 mr-1" />
-          {downvotes}
-        </Button>
-      </div>
+    <div className="flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => vote('upvote')}
+        disabled={isLoading}
+        className={cn(
+          "hover:bg-black/20 transition-colors duration-200",
+          userVote === 'upvote' 
+            ? "text-green-400" 
+            : "text-white hover:text-green-400"
+        )}
+      >
+        <ThumbsUp className="w-5 h-5 mr-1.5" />
+        <span className="text-sm font-medium">{upvotes}</span>
+      </Button>
+
+      <div className="w-px h-4 bg-white/20" />
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => vote('downvote')}
+        disabled={isLoading}
+        className={cn(
+          "hover:bg-black/20 transition-colors duration-200",
+          userVote === 'downvote' 
+            ? "text-red-400" 
+            : "text-white hover:text-red-400"
+        )}
+      >
+        <ThumbsDown className="w-5 h-5 mr-1.5" />
+        <span className="text-sm font-medium">{downvotes}</span>
+      </Button>
     </div>
   );
 };
