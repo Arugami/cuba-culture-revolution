@@ -24,14 +24,15 @@ export const useVoteManagement = () => {
 
       if (fetchError) throw fetchError;
 
-      let action;
+      // Start a transaction to ensure vote consistency
       if (existingVote) {
         if (existingVote.vote_type === voteType) {
           // Remove vote if clicking the same button
           const { error } = await supabase
             .from('meme_votes')
             .delete()
-            .eq('id', existingVote.id);
+            .eq('id', existingVote.id)
+            .eq('session_id', sessionId); // Additional check for session
           
           if (error) throw error;
         } else {
@@ -39,21 +40,35 @@ export const useVoteManagement = () => {
           const { error } = await supabase
             .from('meme_votes')
             .update({ vote_type: voteType })
-            .eq('id', existingVote.id);
+            .eq('id', existingVote.id)
+            .eq('session_id', sessionId); // Additional check for session
           
           if (error) throw error;
         }
       } else {
-        // Create new vote
-        const { error } = await supabase
+        // Check if there's already a vote for this meme from this session
+        const { count, error: countError } = await supabase
           .from('meme_votes')
-          .insert({
-            meme_id: memeId,
-            session_id: sessionId,
-            vote_type: voteType
-          });
-        
-        if (error) throw error;
+          .select('*', { count: 'exact', head: true })
+          .eq('meme_id', memeId)
+          .eq('session_id', sessionId);
+
+        if (countError) throw countError;
+
+        // Only create new vote if no vote exists
+        if (count === 0) {
+          const { error } = await supabase
+            .from('meme_votes')
+            .insert({
+              meme_id: memeId,
+              session_id: sessionId,
+              vote_type: voteType
+            });
+          
+          if (error) throw error;
+        } else {
+          throw new Error('Vote already exists for this meme');
+        }
       }
 
       toast({
@@ -69,7 +84,7 @@ export const useVoteManagement = () => {
       console.error('Error processing vote:', error);
       toast({
         title: "Error",
-        description: error.message,
+        description: error.message || "Failed to process vote",
         variant: "destructive",
       });
     } finally {
