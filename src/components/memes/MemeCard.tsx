@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThumbsUp, ThumbsDown, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface MemeCardProps {
   id: string;
@@ -15,16 +17,34 @@ interface MemeCardProps {
 
 const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, onVote }: MemeCardProps) => {
   const { toast } = useToast();
+  const [userVote, setUserVote] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkExistingVote = async () => {
+      const sessionId = localStorage.getItem('voteSessionId');
+      if (!sessionId) return;
+
+      const { data } = await supabase
+        .from('meme_votes')
+        .select('vote_type')
+        .eq('meme_id', id)
+        .eq('session_id', sessionId)
+        .maybeSingle();
+
+      if (data) {
+        setUserVote(data.vote_type);
+      }
+    };
+
+    checkExistingVote();
+  }, [id]);
 
   const handleVote = async (e: React.MouseEvent, voteType: boolean) => {
     e.preventDefault();
     e.stopPropagation();
     try {
       await onVote(id, voteType);
-      toast({
-        title: "Success",
-        description: `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
-      });
+      setUserVote(userVote === voteType ? null : voteType);
     } catch (error) {
       toast({
         title: "Error",
@@ -83,7 +103,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white hover:text-cuba-blue"
+                  className={`text-white ${userVote === true ? 'bg-cuba-blue/20' : 'hover:text-cuba-blue'}`}
                   onClick={(e) => handleVote(e, true)}
                 >
                   <ThumbsUp className="w-4 h-4 mr-1" />
@@ -92,7 +112,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white hover:text-cuba-blue"
+                  className={`text-white ${userVote === false ? 'bg-cuba-blue/20' : 'hover:text-cuba-blue'}`}
                   onClick={(e) => handleVote(e, false)}
                 >
                   <ThumbsDown className="w-4 h-4 mr-1" />
