@@ -34,33 +34,23 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     }
   };
 
-  const handleShare = async (e: React.MouseEvent) => {
+  const handleShare = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const baseUrl = window.location.origin;
-    const shareUrl = `${baseUrl}?meme=${id}`;
-    const shareText = `Check out this $CUBA meme: ${title}`;
+    const shareText = encodeURIComponent(`Check out this $CUBA meme: ${title}`);
+    const shareUrl = encodeURIComponent(`${window.location.origin}?meme=${id}`);
+    const xShareUrl = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+
+    // Open X share window
+    const width = 550;
+    const height = 400;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
+    const windowFeatures = `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`;
 
     try {
-      // Try native sharing first
-      if (navigator.share) {
-        await navigator.share({
-          title: title,
-          text: shareText,
-          url: shareUrl,
-        });
-        toast({
-          title: "Success",
-          description: "Share dialog opened successfully",
-        });
-        return;
-      }
-
-      // Fallback to X share URL
-      const xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-      const newWindow = window.open(xShareUrl, '_blank');
-      
+      const newWindow = window.open(xShareUrl, '_blank', windowFeatures);
       if (newWindow) {
         toast({
           title: "Success",
@@ -73,7 +63,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
       console.error("Share error:", error);
       toast({
         title: "Error",
-        description: "Failed to share the meme. Please try again.",
+        description: "Failed to open share window. Please check your popup blocker settings.",
         variant: "destructive",
       });
     }
