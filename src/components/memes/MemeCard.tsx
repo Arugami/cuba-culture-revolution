@@ -15,9 +15,19 @@ interface MemeCardProps {
   onVote: (memeId: string, voteType: boolean) => Promise<void>;
 }
 
-const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, onVote }: MemeCardProps) => {
+const MemeCard = ({ 
+  id, 
+  image, 
+  title, 
+  description, 
+  upvotes = 0, 
+  downvotes = 0,
+  onVote 
+}: MemeCardProps) => {
   const { toast } = useToast();
   const [userVote, setUserVote] = useState<boolean | null>(null);
+  const [localUpvotes, setLocalUpvotes] = useState<number>(upvotes);
+  const [localDownvotes, setLocalDownvotes] = useState<number>(downvotes);
 
   useEffect(() => {
     const checkExistingVote = async () => {
@@ -43,9 +53,84 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     e.preventDefault();
     e.stopPropagation();
     try {
+      const sessionId = localStorage.getItem('voteSessionId');
+      if (!sessionId) {
+        toast({
+          title: "Error",
+          description: "No session ID found. Unable to record your vote.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Check for existing vote
+      const { data: existingVote } = await supabase
+        .from('meme_votes')
+        .select('*')
+        .eq('meme_id', id)
+        .eq('session_id', sessionId)
+        .maybeSingle();
+
+      if (existingVote) {
+        if (existingVote.vote_type === voteType) {
+          // Remove vote if clicking same button
+          const { error } = await supabase
+            .from('meme_votes')
+            .delete()
+            .eq('id', existingVote.id)
+            .eq('session_id', sessionId);
+
+          if (error) throw error;
+          
+          setUserVote(null);
+          if (voteType) {
+            setLocalUpvotes(prev => Math.max(0, prev - 1));
+          } else {
+            setLocalDownvotes(prev => Math.max(0, prev - 1));
+          }
+        } else {
+          // Switch vote type
+          const { error } = await supabase
+            .from('meme_votes')
+            .update({ vote_type: voteType })
+            .eq('id', existingVote.id)
+            .eq('session_id', sessionId);
+
+          if (error) throw error;
+          
+          setUserVote(voteType);
+          if (voteType) {
+            setLocalUpvotes(prev => prev + 1);
+            setLocalDownvotes(prev => Math.max(0, prev - 1));
+          } else {
+            setLocalDownvotes(prev => prev + 1);
+            setLocalUpvotes(prev => Math.max(0, prev - 1));
+          }
+        }
+      } else {
+        // Create new vote
+        const { error } = await supabase
+          .from('meme_votes')
+          .insert({
+            meme_id: id,
+            session_id: sessionId,
+            vote_type: voteType
+          });
+
+        if (error) throw error;
+        
+        setUserVote(voteType);
+        if (voteType) {
+          setLocalUpvotes(prev => prev + 1);
+        } else {
+          setLocalDownvotes(prev => prev + 1);
+        }
+      }
+
+      // Call parent onVote handler to sync state
       await onVote(id, voteType);
-      setUserVote(userVote === voteType ? null : voteType);
     } catch (error) {
+      console.error('Error handling vote:', error);
       toast({
         title: "Error",
         description: "Failed to record your vote. Please try again.",
@@ -107,7 +192,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
                   onClick={(e) => handleVote(e, true)}
                 >
                   <ThumbsUp className="w-4 h-4 mr-1" />
-                  {upvotes}
+                  {localUpvotes}
                 </Button>
                 <Button
                   variant="ghost"
@@ -116,7 +201,7 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
                   onClick={(e) => handleVote(e, false)}
                 >
                   <ThumbsDown className="w-4 h-4 mr-1" />
-                  {downvotes}
+                  {localDownvotes}
                 </Button>
               </div>
               <Button
