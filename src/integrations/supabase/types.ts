@@ -15,6 +15,7 @@ export type Database = {
           id: string
           meme_id: string | null
           session_id: string | null
+          user_id: string | null
           vote_type: boolean
         }
         Insert: {
@@ -22,6 +23,7 @@ export type Database = {
           id?: string
           meme_id?: string | null
           session_id?: string | null
+          user_id?: string | null
           vote_type: boolean
         }
         Update: {
@@ -29,6 +31,7 @@ export type Database = {
           id?: string
           meme_id?: string | null
           session_id?: string | null
+          user_id?: string | null
           vote_type?: boolean
         }
         Relationships: [
