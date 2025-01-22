@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { v4 as uuidv4 } from 'uuid';
 import MemeImage from "./MemeImage";
 import MemeActions from "./MemeActions";
+import { useVoteHandler } from "@/hooks/useVoteHandler";
 
 interface MemeCardProps {
   id: string;
@@ -25,11 +25,14 @@ const MemeCard = ({
   downvotes = 0,
   onVote 
 }: MemeCardProps) => {
-  const { toast } = useToast();
-  const [userVote, setUserVote] = useState<boolean | null>(null);
-  const [localUpvotes, setLocalUpvotes] = useState<number>(upvotes);
-  const [localDownvotes, setLocalDownvotes] = useState<number>(downvotes);
-  const [isVoting, setIsVoting] = useState(false);
+  const {
+    userVote,
+    localUpvotes,
+    localDownvotes,
+    isVoting,
+    handleVote,
+    setUserVote
+  } = useVoteHandler(upvotes, downvotes);
 
   useEffect(() => {
     const initializeSession = async () => {
@@ -39,7 +42,6 @@ const MemeCard = ({
         localStorage.setItem('voteSessionId', sessionId);
       }
 
-      // Check existing vote
       const { data } = await supabase
         .from('meme_votes')
         .select('vote_type')
@@ -53,90 +55,11 @@ const MemeCard = ({
     };
 
     initializeSession();
-  }, [id]);
+  }, [id, setUserVote]);
 
-  const handleVote = async (memeId: string, voteType: boolean) => {
-    if (isVoting) return;
-
-    try {
-      setIsVoting(true);
-      const sessionId = localStorage.getItem('voteSessionId');
-      if (!sessionId) {
-        toast({
-          title: "Error",
-          description: "Session not initialized. Please refresh the page.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // If user has already voted with the same vote type, remove the vote
-      if (userVote === voteType) {
-        const { error: deleteError } = await supabase
-          .from('meme_votes')
-          .delete()
-          .eq('meme_id', memeId)
-          .eq('session_id', sessionId);
-
-        if (deleteError) throw deleteError;
-        
-        setUserVote(null);
-        if (voteType) {
-          setLocalUpvotes(prev => Math.max(0, prev - 1));
-        } else {
-          setLocalDownvotes(prev => Math.max(0, prev - 1));
-        }
-      } else {
-        // If user has already voted but with different type, first delete the old vote
-        if (userVote !== null) {
-          await supabase
-            .from('meme_votes')
-            .delete()
-            .eq('meme_id', memeId)
-            .eq('session_id', sessionId);
-        }
-
-        // Insert the new vote
-        const { error: insertError } = await supabase
-          .from('meme_votes')
-          .insert({
-            meme_id: memeId,
-            session_id: sessionId,
-            vote_type: voteType
-          });
-
-        if (insertError) throw insertError;
-        
-        setUserVote(voteType);
-        if (voteType) {
-          setLocalUpvotes(prev => prev + 1);
-          if (userVote === false) setLocalDownvotes(prev => Math.max(0, prev - 1));
-        } else {
-          setLocalDownvotes(prev => prev + 1);
-          if (userVote === true) setLocalUpvotes(prev => Math.max(0, prev - 1));
-        }
-      }
-
-      // Call parent onVote handler to sync state
-      await onVote(memeId, voteType);
-
-      toast({
-        title: "Success",
-        description: userVote === voteType 
-          ? "Vote removed" 
-          : `Meme ${voteType ? 'upvoted' : 'downvoted'}`
-      });
-
-    } catch (error: any) {
-      console.error('Error handling vote:', error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to process vote. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsVoting(false);
-    }
+  const handleVoteClick = async (memeId: string, voteType: boolean) => {
+    await handleVote(memeId, voteType);
+    await onVote(memeId, voteType);
   };
 
   return (
@@ -155,7 +78,7 @@ const MemeCard = ({
           downvotes={localDownvotes}
           userVote={userVote}
           isVoting={isVoting}
-          onVote={handleVote}
+          onVote={handleVoteClick}
         />
       </CardContent>
     </Card>
