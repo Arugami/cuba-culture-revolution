@@ -1,27 +1,21 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useMemes, SortOption } from "@/hooks/memes/useMemes";
+import { useMemes } from "@/hooks/memes/useMemes";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 const Memes = () => {
   const { t } = useLanguage();
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
-  const {
-    handleVote,
-    isVoting,
-    getUserVote
-  } = useVoteHandler();
   const { handleMemeCommand } = useChatMemeUpload({
     onUploadSuccess: fetchMemes
   });
 
-  const handleSortChange = (value: SortOption) => {
-    setSortBy(value);
+  const handleSortChange = (value: string) => {
+    setSortBy(value as 'newest' | 'most_upvoted' | 'most_downvoted');
   };
 
   // Subscribe to real-time updates
@@ -44,26 +38,9 @@ const Memes = () => {
       )
       .subscribe();
 
-    const votesChannel = supabase
-      .channel('votes-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'meme_votes'
-        },
-        (payload) => {
-          console.log('Votes change received:', payload);
-          fetchMemes();
-        }
-      )
-      .subscribe();
-
     return () => {
       console.log('Cleaning up real-time subscriptions');
       supabase.removeChannel(memesChannel);
-      supabase.removeChannel(votesChannel);
     };
   }, [fetchMemes]);
 
@@ -86,21 +63,12 @@ const Memes = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="newest">Newest First</SelectItem>
-              <SelectItem value="most_upvoted">Most Upvoted</SelectItem>
-              <SelectItem value="most_downvoted">Most Downvoted</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="mb-8">
-          {!isLoading && (
-            <MemeGrid 
-              memes={memes} 
-              onVote={handleVote}
-              getUserVote={getUserVote}
-              isVoting={isVoting}
-            />
-          )}
+          {!isLoading && <MemeGrid memes={memes} />}
         </div>
 
         <div className="mt-8 flex justify-center">

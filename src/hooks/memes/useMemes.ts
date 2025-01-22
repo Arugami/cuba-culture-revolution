@@ -3,7 +3,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Meme } from "@/types/meme";
 
-export type SortOption = 'newest' | 'most_upvoted' | 'most_downvoted';
+export type SortOption = 'newest';
 
 export const useMemes = () => {
   const { toast } = useToast();
@@ -19,12 +19,6 @@ export const useMemes = () => {
         .select("*");
 
       switch (sortBy) {
-        case 'most_upvoted':
-          query = query.order('upvotes', { ascending: false });
-          break;
-        case 'most_downvoted':
-          query = query.order('downvotes', { ascending: false });
-          break;
         case 'newest':
         default:
           query = query.order('created_at', { ascending: false });
@@ -39,9 +33,7 @@ export const useMemes = () => {
           id: meme.id,
           image: meme.image_url,
           title: meme.title,
-          description: meme.description,
-          upvotes: meme.upvotes || 0,
-          downvotes: meme.downvotes || 0
+          description: meme.description
         }));
         
         setMemes(formattedMemes);
@@ -60,45 +52,7 @@ export const useMemes = () => {
 
   useEffect(() => {
     fetchMemes();
-  }, [sortBy]); // Re-fetch when sort option changes
-
-  useEffect(() => {
-    const channel = supabase
-      .channel('memes-realtime')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'memes'
-        },
-        (payload) => {
-          console.log('Meme update received:', payload);
-          
-          if (payload.eventType === 'UPDATE') {
-            setMemes(currentMemes => 
-              currentMemes.map(meme => 
-                meme.id === payload.new.id 
-                  ? {
-                      ...meme,
-                      upvotes: payload.new.upvotes || 0,
-                      downvotes: payload.new.downvotes || 0
-                    }
-                  : meme
-              )
-            );
-          } else {
-            // For INSERT and DELETE events, refresh the entire list
-            fetchMemes();
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
+  }, [sortBy]);
 
   return { memes, isLoading, fetchMemes, sortBy, setSortBy };
 };
