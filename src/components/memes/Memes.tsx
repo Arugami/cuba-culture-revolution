@@ -26,6 +26,8 @@ const Memes = () => {
 
   // Subscribe to real-time updates for both memes and votes
   useEffect(() => {
+    console.log('Setting up real-time subscriptions');
+    
     const memesChannel = supabase
       .channel('memes-changes')
       .on(
@@ -35,7 +37,8 @@ const Memes = () => {
           schema: 'public',
           table: 'memes'
         },
-        () => {
+        (payload) => {
+          console.log('Memes change received:', payload);
           fetchMemes();
         }
       )
@@ -50,13 +53,15 @@ const Memes = () => {
           schema: 'public',
           table: 'meme_votes'
         },
-        () => {
+        (payload) => {
+          console.log('Votes change received:', payload);
           fetchMemes();
         }
       )
       .subscribe();
 
     return () => {
+      console.log('Cleaning up real-time subscriptions');
       supabase.removeChannel(memesChannel);
       supabase.removeChannel(votesChannel);
     };

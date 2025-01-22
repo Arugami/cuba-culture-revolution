@@ -14,6 +14,7 @@ export const useVoteHandler = () => {
       if (!sessionId) return;
 
       try {
+        console.log('Loading initial votes for session:', sessionId);
         const { data: votes, error } = await supabase
           .from('meme_votes')
           .select('meme_id, vote_type')
@@ -25,6 +26,7 @@ export const useVoteHandler = () => {
         votes?.forEach(vote => {
           votesMap.set(vote.meme_id, vote.vote_type);
         });
+        console.log('Initial votes loaded:', Object.fromEntries(votesMap));
         setUserVotes(votesMap);
       } catch (error) {
         console.error('Error loading user votes:', error);
@@ -35,10 +37,7 @@ export const useVoteHandler = () => {
   }, []);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
-    if (isVoting) {
-      console.log('Already processing a vote');
-      return;
-    }
+    if (isVoting) return;
 
     try {
       setIsVoting(true);
@@ -54,7 +53,7 @@ export const useVoteHandler = () => {
       }
 
       const currentVote = userVotes.get(memeId);
-      console.log('Current vote state:', { currentVote, voteType, sessionId });
+      console.log('Processing vote:', { memeId, voteType, currentVote, sessionId });
 
       const { data: existingVote, error: fetchError } = await supabase
         .from('meme_votes')
@@ -65,11 +64,9 @@ export const useVoteHandler = () => {
 
       if (fetchError) throw fetchError;
 
-      console.log('Existing vote:', existingVote);
-
-      // If there's an existing vote and clicking the same type, remove it
+      // If clicking the same vote type, remove the vote
       if (existingVote && existingVote.vote_type === voteType) {
-        console.log('Removing existing vote');
+        console.log('Removing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
@@ -77,7 +74,6 @@ export const useVoteHandler = () => {
 
         if (deleteError) throw deleteError;
         
-        // Update local state to remove the vote
         const newVotes = new Map(userVotes);
         newVotes.delete(memeId);
         setUserVotes(newVotes);
@@ -99,7 +95,6 @@ export const useVoteHandler = () => {
 
         if (updateError) throw updateError;
         
-        // Update local state with the new vote type
         const newVotes = new Map(userVotes);
         newVotes.set(memeId, voteType);
         setUserVotes(newVotes);
@@ -123,7 +118,6 @@ export const useVoteHandler = () => {
 
       if (insertError) throw insertError;
       
-      // Update local state with the new vote
       const newVotes = new Map(userVotes);
       newVotes.set(memeId, voteType);
       setUserVotes(newVotes);

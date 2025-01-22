@@ -33,6 +33,7 @@ const MemeCard = ({
       if (!sessionId) {
         sessionId = uuidv4();
         localStorage.setItem('voteSessionId', sessionId);
+        console.log('New session initialized:', sessionId);
       }
     };
 
@@ -40,6 +41,7 @@ const MemeCard = ({
   }, []);
 
   const handleVoteClick = async (memeId: string, voteType: boolean) => {
+    console.log('Vote clicked:', { memeId, voteType, currentUserVote: userVote });
     await onVote(memeId, voteType);
   };
 
