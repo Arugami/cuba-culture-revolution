@@ -8,7 +8,10 @@ export const useVoteHandler = () => {
   const [isVoting, setIsVoting] = useState(false);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
-    if (isVoting) return;
+    if (isVoting) {
+      console.log('Already processing a vote');
+      return;
+    }
 
     try {
       setIsVoting(true);
@@ -17,21 +20,28 @@ export const useVoteHandler = () => {
       if (!sessionId) {
         toast({
           title: "Error",
-          description: "Session not initialized",
+          description: "Session not initialized. Please refresh the page.",
           variant: "destructive",
         });
         return;
       }
 
-      const { data: existingVote } = await supabase
+      console.log('Current vote state:', { userVote, voteType, sessionId });
+
+      const { data: existingVote, error: fetchError } = await supabase
         .from('meme_votes')
         .select('vote_type')
         .eq('meme_id', memeId)
         .eq('session_id', sessionId)
         .maybeSingle();
 
-      // Remove vote if clicking the same type
+      if (fetchError) throw fetchError;
+
+      console.log('Existing vote:', existingVote);
+
+      // If there's an existing vote and clicking the same type, remove it
       if (existingVote && existingVote.vote_type === voteType) {
+        console.log('Removing existing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
@@ -47,8 +57,9 @@ export const useVoteHandler = () => {
         return;
       }
 
-      // Update vote if different type
+      // If there's an existing vote but different type, update it
       if (existingVote) {
+        console.log('Changing vote type');
         const { error: updateError } = await supabase
           .from('meme_votes')
           .update({ vote_type: voteType })
@@ -64,7 +75,8 @@ export const useVoteHandler = () => {
         return;
       }
 
-      // Create new vote
+      // If no vote exists, create a new one
+      console.log('Creating new vote');
       const { error: insertError } = await supabase
         .from('meme_votes')
         .insert({
@@ -85,7 +97,7 @@ export const useVoteHandler = () => {
       console.error('Error handling vote:', error);
       toast({
         title: "Error",
-        description: error.message || "Failed to process vote",
+        description: error.message || "Failed to process vote. Please try again.",
         variant: "destructive",
       });
     } finally {

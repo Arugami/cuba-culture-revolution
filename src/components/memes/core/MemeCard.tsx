@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { v4 as uuidv4 } from 'uuid';
 import MemeImage from "./MemeImage";
 import VoteActions from "../votes/VoteActions";
@@ -39,6 +40,10 @@ const MemeCard = ({
     initializeSession();
   }, []);
 
+  const handleVoteClick = async (memeId: string, voteType: boolean) => {
+    await onVote(memeId, voteType);
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white relative group">
       <CardContent className="p-0">
@@ -57,7 +62,7 @@ const MemeCard = ({
               downvotes={downvotes}
               userVote={userVote}
               isVoting={isVoting}
-              onVote={onVote}
+              onVote={handleVoteClick}
             />
           </div>
         </div>
