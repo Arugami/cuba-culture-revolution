@@ -10,10 +10,12 @@ const Memes = () => {
   const { t } = useLanguage();
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
   const { handleVote } = useVoteManagement();
-  const { handleMemeCommand } = useChatMemeUpload({ onUploadSuccess: fetchMemes });
+  const { handleMemeCommand } = useChatMemeUpload({
+    onUploadSuccess: fetchMemes
+  });
 
-  const handleSortChange = (value: string) => {
-    setSortBy(value as SortOption);
+  const handleSortChange = (value: SortOption) => {
+    setSortBy(value);
   };
 
   return (
@@ -27,7 +29,7 @@ const Memes = () => {
             {t('memes.subtitle')}
           </p>
         </div>
-        
+
         <div className="flex justify-end mb-4 px-8">
           <Select value={sortBy} onValueChange={handleSortChange}>
             <SelectTrigger className="w-[180px]">
@@ -44,7 +46,7 @@ const Memes = () => {
         <div className="mb-8">
           {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
         </div>
-        
+
         <div className="mt-8 flex justify-center">
           <MemeUpload onUploadSuccess={fetchMemes} />
         </div>
