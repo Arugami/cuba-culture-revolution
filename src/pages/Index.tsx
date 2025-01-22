@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Header from "@/components/Header";
 import Loading from "@/components/Loading";
+import AudioPlayer from "@/components/AudioPlayer";
 
 // Lazy load components
 const Hero = React.lazy(() => import("@/components/Hero"));
@@ -17,6 +18,7 @@ const Index = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Header />
+      <AudioPlayer />
       <Suspense fallback={<Loading />}>
         <Hero />
         <ContinuousSlider />
