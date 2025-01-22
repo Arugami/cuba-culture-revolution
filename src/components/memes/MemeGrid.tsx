@@ -26,53 +26,63 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
     const existingMeme = localMemes.find(meme => meme.id === memeId);
     if (!existingMeme) return;
 
-    // Get the current vote state
-    const sessionId = localStorage.getItem('voteSessionId');
-    if (!sessionId) return;
+    try {
+      // Get the current vote state
+      const sessionId = localStorage.getItem('voteSessionId');
+      if (!sessionId) return;
 
-    const { data: existingVote } = await supabase
-      .from('meme_votes')
-      .select('vote_type')
-      .eq('meme_id', memeId)
-      .eq('session_id', sessionId)
-      .maybeSingle();
+      const { data: existingVote } = await supabase
+        .from('meme_votes')
+        .select('vote_type')
+        .eq('meme_id', memeId)
+        .eq('session_id', sessionId)
+        .maybeSingle();
 
-    // Calculate vote changes based on current state
-    let upvoteDelta = 0;
-    let downvoteDelta = 0;
+      // Only proceed with vote if:
+      // 1. No existing vote
+      // 2. Different vote type (switching vote)
+      // 3. Same vote type (removing vote)
+      if (!existingVote || existingVote.vote_type !== voteType || existingVote.vote_type === voteType) {
+        // Make the API call first
+        await onVote(memeId, voteType);
 
-    if (existingVote) {
-      if (existingVote.vote_type === voteType) {
-        // Removing vote
-        upvoteDelta = voteType ? -1 : 0;
-        downvoteDelta = voteType ? 0 : -1;
-      } else {
-        // Switching vote
-        upvoteDelta = voteType ? 1 : -1;
-        downvoteDelta = voteType ? -1 : 1;
-      }
-    } else {
-      // New vote
-      upvoteDelta = voteType ? 1 : 0;
-      downvoteDelta = voteType ? 0 : 1;
-    }
+        // Calculate vote changes based on current state
+        let upvoteDelta = 0;
+        let downvoteDelta = 0;
 
-    // Update UI optimistically
-    setLocalMemes(prevMemes =>
-      prevMemes.map(meme => {
-        if (meme.id === memeId) {
-          return {
-            ...meme,
-            upvotes: Math.max(0, (meme.upvotes || 0) + upvoteDelta),
-            downvotes: Math.max(0, (meme.downvotes || 0) + downvoteDelta)
-          };
+        if (existingVote) {
+          if (existingVote.vote_type === voteType) {
+            // Removing vote
+            upvoteDelta = voteType ? -1 : 0;
+            downvoteDelta = voteType ? 0 : -1;
+          } else {
+            // Switching vote
+            upvoteDelta = voteType ? 1 : -1;
+            downvoteDelta = voteType ? -1 : 1;
+          }
+        } else {
+          // New vote
+          upvoteDelta = voteType ? 1 : 0;
+          downvoteDelta = voteType ? 0 : 1;
         }
-        return meme;
-      })
-    );
 
-    // Make the actual API call
-    await onVote(memeId, voteType);
+        // Update UI only after successful API call
+        setLocalMemes(prevMemes =>
+          prevMemes.map(meme => {
+            if (meme.id === memeId) {
+              return {
+                ...meme,
+                upvotes: Math.max(0, (meme.upvotes || 0) + upvoteDelta),
+                downvotes: Math.max(0, (meme.downvotes || 0) + downvoteDelta)
+              };
+            }
+            return meme;
+          })
+        );
+      }
+    } catch (error) {
+      console.error('Error handling vote:', error);
+    }
   };
 
   if (!localMemes || localMemes.length === 0) {
