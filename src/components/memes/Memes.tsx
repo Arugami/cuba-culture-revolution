@@ -15,7 +15,7 @@ const Memes = () => {
   });
 
   const handleSortChange = (value: string) => {
-    setSortBy(value as 'newest' | 'most_upvoted' | 'most_downvoted');
+    setSortBy('newest');
   };
 
   // Subscribe to real-time updates
