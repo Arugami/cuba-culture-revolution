@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Meme } from "@/types/meme";
 import MemeCard from "./MemeCard";
 import {
@@ -12,11 +12,26 @@ import {
 interface MemeGridProps {
   memes: Meme[];
   onVote: (memeId: string, voteType: boolean) => Promise<void>;
-  getUserVote: (memeId: string) => boolean | null;
+  getUserVote: (memeId: string) => Promise<boolean | null>;
   isVoting: boolean;
 }
 
 const MemeGrid = ({ memes, onVote, getUserVote, isVoting }: MemeGridProps) => {
+  const [userVotes, setUserVotes] = useState<Map<string, boolean | null>>(new Map());
+
+  useEffect(() => {
+    const loadUserVotes = async () => {
+      const votes = new Map<string, boolean | null>();
+      for (const meme of memes) {
+        const vote = await getUserVote(meme.id);
+        votes.set(meme.id, vote);
+      }
+      setUserVotes(votes);
+    };
+
+    loadUserVotes();
+  }, [memes, getUserVote]);
+
   if (!memes || memes.length === 0) {
     return (
       <div className="w-full px-8 text-center text-gray-500">
@@ -40,7 +55,7 @@ const MemeGrid = ({ memes, onVote, getUserVote, isVoting }: MemeGridProps) => {
               <MemeCard 
                 {...meme} 
                 onVote={onVote}
-                userVote={getUserVote(meme.id)}
+                userVote={userVotes.get(meme.id) ?? null}
                 isVoting={isVoting}
               />
             </CarouselItem>

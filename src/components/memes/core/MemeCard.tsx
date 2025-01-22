@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from "react";
 import MemeImage from "./MemeImage";
 import VoteActions from "../votes/VoteActions";
 
@@ -27,21 +26,14 @@ const MemeCard = ({
   isVoting,
   onVote 
 }: MemeCardProps) => {
-  useEffect(() => {
-    const initializeSession = async () => {
-      let sessionId = localStorage.getItem('voteSessionId');
-      if (!sessionId) {
-        sessionId = uuidv4();
-        localStorage.setItem('voteSessionId', sessionId);
-        console.log('New session initialized:', sessionId);
-      }
-    };
+  const [currentUserVote, setCurrentUserVote] = useState<boolean | null>(userVote);
 
-    initializeSession();
-  }, []);
+  useEffect(() => {
+    setCurrentUserVote(userVote);
+  }, [userVote]);
 
   const handleVoteClick = async (memeId: string, voteType: boolean) => {
-    console.log('Vote clicked:', { memeId, voteType, currentUserVote: userVote });
+    console.log('Vote clicked:', { memeId, voteType, currentUserVote });
     await onVote(memeId, voteType);
   };
 
@@ -61,7 +53,7 @@ const MemeCard = ({
               image={image}
               upvotes={upvotes}
               downvotes={downvotes}
-              userVote={userVote}
+              userVote={currentUserVote}
               isVoting={isVoting}
               onVote={handleVoteClick}
             />
