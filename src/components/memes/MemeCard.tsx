@@ -28,6 +28,7 @@ const MemeCard = ({
   const [userVote, setUserVote] = useState<boolean | null>(null);
   const [localUpvotes, setLocalUpvotes] = useState<number>(upvotes);
   const [localDownvotes, setLocalDownvotes] = useState<number>(downvotes);
+  const [isVoting, setIsVoting] = useState(false);
 
   useEffect(() => {
     const checkExistingVote = async () => {
@@ -52,7 +53,11 @@ const MemeCard = ({
   const handleVote = async (e: React.MouseEvent, voteType: boolean) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (isVoting) return;
+
     try {
+      setIsVoting(true);
       const sessionId = localStorage.getItem('voteSessionId');
       if (!sessionId) {
         toast({
@@ -129,6 +134,7 @@ const MemeCard = ({
 
       // Call parent onVote handler to sync state
       await onVote(id, voteType);
+
     } catch (error) {
       console.error('Error handling vote:', error);
       toast({
@@ -136,6 +142,8 @@ const MemeCard = ({
         description: "Failed to record your vote. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsVoting(false);
     }
   };
 
@@ -173,11 +181,7 @@ const MemeCard = ({
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <CardContent className="p-0">
         <div className="relative aspect-square">
-          <img
-            src={image}
-            alt={title}
-            className="object-cover w-full h-full"
-          />
+          <img src={image} alt={title} className="object-cover w-full h-full" />
           <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4">
             <h3 className="text-white font-patua text-lg truncate">{title}</h3>
             {description && (
@@ -188,6 +192,7 @@ const MemeCard = ({
                 <Button
                   variant="ghost"
                   size="sm"
+                  disabled={isVoting}
                   className={`text-white ${userVote === true ? 'bg-cuba-blue/20' : 'hover:text-cuba-blue'}`}
                   onClick={(e) => handleVote(e, true)}
                 >
@@ -197,6 +202,7 @@ const MemeCard = ({
                 <Button
                   variant="ghost"
                   size="sm"
+                  disabled={isVoting}
                   className={`text-white ${userVote === false ? 'bg-cuba-blue/20' : 'hover:text-cuba-blue'}`}
                   onClick={(e) => handleVote(e, false)}
                 >
