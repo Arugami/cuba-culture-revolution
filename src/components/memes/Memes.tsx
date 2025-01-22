@@ -1,6 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useMemes } from "@/hooks/memes/useMemes";
-import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -10,9 +9,6 @@ import { supabase } from "@/integrations/supabase/client";
 const Memes = () => {
   const { t } = useLanguage();
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
-  const { handleMemeCommand } = useChatMemeUpload({
-    onUploadSuccess: fetchMemes
-  });
 
   const handleSortChange = (value: string) => {
     setSortBy('newest');
