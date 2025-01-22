@@ -70,7 +70,7 @@ const MemeCard = ({
           title={title}
           description={description}
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200">
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
             <MemeActions
               id={id}

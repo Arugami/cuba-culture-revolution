@@ -63,7 +63,7 @@ const MemeActions = ({
   };
 
   return (
-    <div className="flex items-center gap-2 bg-black/60 rounded-full px-4 py-2">
+    <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
       <VoteButton
         icon={ThumbsUp}
         count={upvotes}
@@ -81,7 +81,7 @@ const MemeActions = ({
       <Button
         variant="ghost"
         size="sm"
-        className="text-white/80 hover:text-white"
+        className="text-white/90 hover:text-white hover:bg-white/10"
         onClick={handleDownload}
       >
         <Download className="w-4 h-4" />
