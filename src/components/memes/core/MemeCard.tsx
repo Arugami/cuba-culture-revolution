@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import MemeImage from "./MemeImage";
 import VoteButtons from "./VoteButtons";
+import DownloadButton from "../votes/DownloadButton";
 
 interface MemeCardProps {
   id: string;
@@ -28,11 +29,15 @@ const MemeCard = ({
             title={title}
             description={description}
           />
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
             <VoteButtons
               memeId={id}
               upvotes={upvotes}
               downvotes={downvotes}
+            />
+            <DownloadButton
+              image={image}
+              title={title}
             />
           </div>
         </div>
