@@ -24,7 +24,7 @@ const Memes = () => {
     setSortBy(value);
   };
 
-  // Subscribe to real-time updates for both memes and votes
+  // Subscribe to real-time updates
   useEffect(() => {
     console.log('Setting up real-time subscriptions');
     

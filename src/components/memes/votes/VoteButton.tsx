@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface VoteButtonProps {
   icon: LucideIcon;
@@ -15,11 +16,12 @@ const VoteButton = ({ icon: Icon, count, isActive, isDisabled, onClick }: VoteBu
       variant="ghost"
       size="sm"
       disabled={isDisabled}
-      className={`${
+      className={cn(
+        "transition-all duration-200",
         isActive 
-          ? 'text-cuba-blue bg-white/90' 
-          : 'text-white hover:text-cuba-blue hover:bg-white/90'
-      } transition-colors duration-200`}
+          ? 'text-cuba-blue bg-white/90 scale-110' 
+          : 'text-white hover:text-cuba-blue hover:bg-white/90 hover:scale-110'
+      )}
       onClick={onClick}
     >
       <Icon className="w-4 h-4 mr-1" />
