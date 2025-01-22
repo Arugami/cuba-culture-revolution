@@ -53,6 +53,11 @@ export const useVoteManagement = () => {
       const { error: actionError } = await action;
       if (actionError) throw actionError;
 
+      toast({
+        title: "Success",
+        description: `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
+      });
+
     } catch (error: any) {
       console.error('Error processing vote:', error);
       toast({

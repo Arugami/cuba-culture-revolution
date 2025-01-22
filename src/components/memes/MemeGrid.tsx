@@ -15,7 +15,32 @@ interface MemeGridProps {
 }
 
 const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
-  if (!memes || memes.length === 0) {
+  const [localMemes, setLocalMemes] = React.useState<Meme[]>(memes);
+
+  React.useEffect(() => {
+    setLocalMemes(memes);
+  }, [memes]);
+
+  const handleVote = async (memeId: string, voteType: boolean) => {
+    // Optimistically update the UI
+    setLocalMemes(prevMemes =>
+      prevMemes.map(meme => {
+        if (meme.id === memeId) {
+          return {
+            ...meme,
+            upvotes: voteType ? (meme.upvotes || 0) + 1 : meme.upvotes,
+            downvotes: !voteType ? (meme.downvotes || 0) + 1 : meme.downvotes,
+          };
+        }
+        return meme;
+      })
+    );
+
+    // Make the actual API call
+    await onVote(memeId, voteType);
+  };
+
+  if (!localMemes || localMemes.length === 0) {
     return (
       <div className="w-full px-8 text-center text-gray-500">
         No memes available yet
@@ -33,9 +58,9 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
         className="w-full"
       >
         <CarouselContent className="-ml-1">
-          {memes.map((meme) => (
+          {localMemes.map((meme) => (
             <CarouselItem key={meme.id} className="pl-1 basis-full md:basis-1/3 lg:basis-1/4">
-              <MemeCard {...meme} onVote={onVote} />
+              <MemeCard {...meme} onVote={handleVote} />
             </CarouselItem>
           ))}
         </CarouselContent>
