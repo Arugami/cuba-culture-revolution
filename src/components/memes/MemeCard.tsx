@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface MemeCardProps {
@@ -34,6 +34,42 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     }
   };
 
+  const handleShare = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const shareUrl = window.location.href;
+    const shareText = `Check out this $CUBA meme: ${title}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: title,
+          text: shareText,
+          url: shareUrl,
+        });
+        toast({
+          title: "Success",
+          description: "Share dialog opened successfully",
+        });
+      } else {
+        // Fallback to X share URL
+        const xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+        window.open(xShareUrl, '_blank');
+        toast({
+          title: "Success",
+          description: "Opening X to share the meme",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to share the meme. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <CardContent className="p-0">
@@ -49,23 +85,33 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
               <p className="text-white/80 text-sm line-clamp-2">{description}</p>
             )}
             <div className="flex justify-between mt-2">
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-cuba-blue"
+                  onClick={(e) => handleVote(e, true)}
+                >
+                  <ThumbsUp className="w-4 h-4 mr-1" />
+                  {upvotes}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-cuba-blue"
+                  onClick={(e) => handleVote(e, false)}
+                >
+                  <ThumbsDown className="w-4 h-4 mr-1" />
+                  {downvotes}
+                </Button>
+              </div>
               <Button
                 variant="ghost"
                 size="sm"
                 className="text-white hover:text-cuba-blue"
-                onClick={(e) => handleVote(e, true)}
+                onClick={handleShare}
               >
-                <ThumbsUp className="w-4 h-4 mr-1" />
-                {upvotes}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-white hover:text-cuba-blue"
-                onClick={(e) => handleVote(e, false)}
-              >
-                <ThumbsDown className="w-4 h-4 mr-1" />
-                {downvotes}
+                <Share2 className="w-4 h-4" />
               </Button>
             </div>
           </div>
