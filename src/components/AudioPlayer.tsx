@@ -14,16 +14,19 @@ const AudioPlayer = () => {
         audioRef.current.pause();
         toast({
           description: "Music paused",
+          duration: 2000, // 2 seconds
         });
       } else {
         audioRef.current.play().catch(() => {
           toast({
             variant: "destructive",
             description: "Unable to play Flip the Peso. Please try again.",
+            duration: 2000,
           });
         });
         toast({
           description: "Playing Flip the Peso 🎵",
+          duration: 2000,
         });
       }
       setIsPlaying(!isPlaying);
