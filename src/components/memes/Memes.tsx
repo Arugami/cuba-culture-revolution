@@ -58,7 +58,15 @@ const Memes = () => {
   }, [fetchMemes]);
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-cuba-blue/5 to-white">
+    <section 
+      className="w-full py-12 md:py-24 lg:py-32 relative"
+      style={{
+        backgroundImage: "url('/lovable-uploads/f14c7903-7179-446b-9b9e-4e5f34e80f93.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
           <h2 className="text-3xl font-patua text-cuba-blue sm:text-4xl md:text-5xl">
