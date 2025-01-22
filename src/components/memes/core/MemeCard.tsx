@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import MemeImage from "./MemeImage";
 import VoteButtons from "./VoteButtons";
 import DownloadButton from "../votes/DownloadButton";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MemeCardProps {
   id: string;
@@ -20,6 +21,8 @@ const MemeCard = ({
   upvotes = 0,
   downvotes = 0
 }: MemeCardProps) => {
+  const isMobile = useIsMobile();
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white relative group">
       <CardContent className="p-0">
@@ -29,7 +32,9 @@ const MemeCard = ({
             title={title}
             description={description}
           />
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 transition-opacity duration-200 ${
+            isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+          }`}>
             <VoteButtons
               memeId={id}
               upvotes={upvotes}
