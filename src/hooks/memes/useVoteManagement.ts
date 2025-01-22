@@ -11,7 +11,6 @@ export const useVoteManagement = () => {
     
     setIsVoting(true);
     try {
-      // Get or create session ID
       const sessionId = localStorage.getItem('voteSessionId') || crypto.randomUUID();
       localStorage.setItem('voteSessionId', sessionId);
 
@@ -30,7 +29,7 @@ export const useVoteManagement = () => {
             .from('meme_votes')
             .delete()
             .eq('id', existingVote.id)
-            .eq('session_id', sessionId); // Added session check for safety
+            .eq('session_id', sessionId);
 
           if (error) throw error;
         } else {
@@ -39,22 +38,11 @@ export const useVoteManagement = () => {
             .from('meme_votes')
             .update({ vote_type: voteType })
             .eq('id', existingVote.id)
-            .eq('session_id', sessionId); // Added session check for safety
+            .eq('session_id', sessionId);
 
           if (error) throw error;
         }
       } else {
-        // Check if there are any existing votes for this meme from this session
-        const { count } = await supabase
-          .from('meme_votes')
-          .select('*', { count: 'exact', head: true })
-          .eq('meme_id', memeId)
-          .eq('session_id', sessionId);
-
-        if (count && count > 0) {
-          throw new Error('You have already voted on this meme');
-        }
-
         // Create new vote
         const { error } = await supabase
           .from('meme_votes')

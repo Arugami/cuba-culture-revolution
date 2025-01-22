@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { v4 as uuidv4 } from 'uuid';
 import MemeImage from "./MemeImage";
 import VoteActions from "../votes/VoteActions";
-import { useVoteHandler } from "@/hooks/useVoteHandler";
+import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
 
 interface MemeCardProps {
   id: string;

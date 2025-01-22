@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useMemes, SortOption } from "@/hooks/useMemes";
-import { useVoteManagement } from "@/hooks/useVoteManagement";
+import { useMemes, SortOption } from "@/hooks/memes/useMemes";
+import { useVoteManagement } from "@/hooks/memes/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
