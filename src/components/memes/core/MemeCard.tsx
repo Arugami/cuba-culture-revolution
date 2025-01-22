@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { v4 as uuidv4 } from 'uuid';
 import MemeImage from "./MemeImage";
 import VoteActions from "../votes/VoteActions";
-import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
 
 interface MemeCardProps {
   id: string;
@@ -25,14 +24,6 @@ const MemeCard = ({
   downvotes = 0,
   onVote 
 }: MemeCardProps) => {
-  const {
-    userVote,
-    localUpvotes,
-    localDownvotes,
-    isVoting,
-    setUserVote
-  } = useVoteHandler(upvotes, downvotes);
-
   useEffect(() => {
     const initializeSession = async () => {
       let sessionId = localStorage.getItem('voteSessionId');
@@ -49,18 +40,15 @@ const MemeCard = ({
         .maybeSingle();
 
       if (data) {
-        setUserVote(data.vote_type);
+        // Update the parent's state through onVote if needed
+        console.log('Found existing vote:', data);
       }
     };
 
     initializeSession();
-  }, [id, setUserVote]);
+  }, [id]);
 
   const handleVoteClick = async (memeId: string, voteType: boolean) => {
-    if (isVoting) {
-      console.log('Vote in progress, please wait...');
-      return;
-    }
     await onVote(memeId, voteType);
   };
 
@@ -78,10 +66,10 @@ const MemeCard = ({
               id={id}
               title={title}
               image={image}
-              upvotes={localUpvotes}
-              downvotes={localDownvotes}
-              userVote={userVote}
-              isVoting={isVoting}
+              upvotes={upvotes}
+              downvotes={downvotes}
+              userVote={null} // This will now be managed by the parent component
+              isVoting={false} // This will now be managed by the parent component
               onVote={handleVoteClick}
             />
           </div>
