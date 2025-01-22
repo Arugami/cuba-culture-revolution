@@ -1,6 +1,7 @@
 import React from "react";
 import { Meme } from "@/types/meme";
 import MemeCard from "./MemeCard";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Carousel,
   CarouselContent,
