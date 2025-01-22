@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -24,6 +24,14 @@ const Header = () => {
     const footer = document.querySelector('footer');
     if (footer) {
       footer.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToMemes = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const memesSection = document.querySelector('#memes');
+    if (memesSection) {
+      memesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -61,6 +69,10 @@ const Header = () => {
             <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.about")}</a>
             <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.howToBuy")}</a>
             <a href="#faq" className="hover:text-cuba-red hover:font-semibold transition-all duration-200">FAQ</a>
+            <a href="#memes" onClick={scrollToMemes} className="hover:text-cuba-red hover:font-semibold transition-all duration-200 flex items-center gap-1">
+              <Image className="w-4 h-4" />
+              MEMES
+            </a>
             <a href="#contract" onClick={scrollToFooter} className="hover:text-cuba-red hover:font-semibold transition-all duration-200">{t("nav.contractAddress")}</a>
           </nav>
 
@@ -116,6 +128,7 @@ const Header = () => {
                   <p>{t("social.followX")}</p>
                 </TooltipContent>
               </Tooltip>
+
             </TooltipProvider>
 
             {user ? (
@@ -148,6 +161,14 @@ const Header = () => {
               <a href="#about" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.about")}</a>
               <a href="#how-to-buy" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>{t("nav.howToBuy")}</a>
               <a href="#faq" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={toggleMenu}>FAQ</a>
+              <a 
+                href="#memes" 
+                className="hover:text-cuba-red hover:font-semibold transition-all duration-200 flex items-center gap-1" 
+                onClick={(e) => { scrollToMemes(e); toggleMenu(); }}
+              >
+                <Image className="w-4 h-4" />
+                MEMES
+              </a>
               <a href="#contract" className="hover:text-cuba-red hover:font-semibold transition-all duration-200" onClick={(e) => { scrollToFooter(e); toggleMenu(); }}>{t("nav.contractAddress")}</a>
               
               <div className="flex gap-4 pt-2">
