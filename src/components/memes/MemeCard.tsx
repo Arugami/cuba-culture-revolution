@@ -38,40 +38,36 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     e.preventDefault();
     e.stopPropagation();
 
-    // Create a shareable URL that includes the meme ID
     const baseUrl = window.location.origin;
     const shareUrl = `${baseUrl}?meme=${id}`;
     const shareText = `Check out this $CUBA meme: ${title}`;
 
     try {
-      if (navigator.share && navigator.canShare) {
-        const shareData = {
+      // Try native sharing first
+      if (navigator.share) {
+        await navigator.share({
           title: title,
           text: shareText,
           url: shareUrl,
-        };
+        });
+        toast({
+          title: "Success",
+          description: "Share dialog opened successfully",
+        });
+        return;
+      }
 
-        if (navigator.canShare(shareData)) {
-          await navigator.share(shareData);
-          toast({
-            title: "Success",
-            description: "Share dialog opened successfully",
-          });
-        } else {
-          throw new Error("Content cannot be shared");
-        }
+      // Fallback to X share URL
+      const xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+      const newWindow = window.open(xShareUrl, '_blank');
+      
+      if (newWindow) {
+        toast({
+          title: "Success",
+          description: "Opening X to share the meme",
+        });
       } else {
-        // Fallback to X share URL
-        const xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-        const newWindow = window.open(xShareUrl, '_blank');
-        if (newWindow) {
-          toast({
-            title: "Success",
-            description: "Opening X to share the meme",
-          });
-        } else {
-          throw new Error("Popup blocked");
-        }
+        throw new Error("Popup blocked");
       }
     } catch (error) {
       console.error("Share error:", error);
