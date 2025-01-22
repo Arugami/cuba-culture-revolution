@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ThumbsUp, ThumbsDown, Share2 } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface MemeCardProps {
@@ -34,36 +34,31 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
     }
   };
 
-  const handleShare = (e: React.MouseEvent) => {
+  const handleDownload = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const shareText = encodeURIComponent(`Check out this $CUBA meme: ${title}`);
-    const shareUrl = encodeURIComponent(`${window.location.origin}?meme=${id}`);
-    const xShareUrl = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
-
-    // Open X share window
-    const width = 550;
-    const height = 400;
-    const left = (window.screen.width - width) / 2;
-    const top = (window.screen.height - height) / 2;
-    const windowFeatures = `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`;
-
     try {
-      const newWindow = window.open(xShareUrl, '_blank', windowFeatures);
-      if (newWindow) {
-        toast({
-          title: "Success",
-          description: "Opening X to share the meme",
-        });
-      } else {
-        throw new Error("Popup blocked");
-      }
+      const response = await fetch(image);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast({
+        title: "Success",
+        description: "Meme downloaded successfully",
+      });
     } catch (error) {
-      console.error("Share error:", error);
+      console.error("Download error:", error);
       toast({
         title: "Error",
-        description: "Failed to open share window. Please check your popup blocker settings.",
+        description: "Failed to download the meme. Please try again.",
         variant: "destructive",
       });
     }
@@ -108,9 +103,9 @@ const MemeCard = ({ id, image, title, description, upvotes = 0, downvotes = 0, o
                 variant="ghost"
                 size="sm"
                 className="text-white hover:text-cuba-blue"
-                onClick={handleShare}
+                onClick={handleDownload}
               >
-                <Share2 className="w-4 h-4" />
+                <Download className="w-4 h-4" />
               </Button>
             </div>
           </div>
