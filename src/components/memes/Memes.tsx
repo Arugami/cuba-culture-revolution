@@ -1,15 +1,18 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useMemes, SortOption } from "@/hooks/memes/useMemes";
-import { useVoteManagement } from "@/hooks/memes/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
 
 const Memes = () => {
   const { t } = useLanguage();
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
-  const { handleVote } = useVoteManagement();
+  const {
+    handleVote,
+    isVoting
+  } = useVoteHandler();
   const { handleMemeCommand } = useChatMemeUpload({
     onUploadSuccess: fetchMemes
   });

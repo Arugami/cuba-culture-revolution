@@ -30,7 +30,6 @@ const MemeCard = ({
     localUpvotes,
     localDownvotes,
     isVoting,
-    handleVote,
     setUserVote
   } = useVoteHandler(upvotes, downvotes);
 
@@ -58,7 +57,10 @@ const MemeCard = ({
   }, [id, setUserVote]);
 
   const handleVoteClick = async (memeId: string, voteType: boolean) => {
-    await handleVote(memeId, voteType);
+    if (isVoting) {
+      console.log('Vote in progress, please wait...');
+      return;
+    }
     await onVote(memeId, voteType);
   };
 
