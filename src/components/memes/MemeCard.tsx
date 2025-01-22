@@ -68,52 +68,33 @@ const MemeCard = ({
         return;
       }
 
-      // Check for existing vote
-      const { data: existingVote } = await supabase
-        .from('meme_votes')
-        .select('*')
-        .eq('meme_id', id)
-        .eq('session_id', sessionId)
-        .maybeSingle();
+      // If user has already voted with the same vote type, remove the vote
+      if (userVote === voteType) {
+        const { error } = await supabase
+          .from('meme_votes')
+          .delete()
+          .eq('meme_id', id)
+          .eq('session_id', sessionId);
 
-      if (existingVote) {
-        if (existingVote.vote_type === voteType) {
-          // Remove vote if clicking same button
-          const { error } = await supabase
-            .from('meme_votes')
-            .delete()
-            .eq('id', existingVote.id)
-            .eq('session_id', sessionId);
-
-          if (error) throw error;
-          
-          setUserVote(null);
-          if (voteType) {
-            setLocalUpvotes(prev => Math.max(0, prev - 1));
-          } else {
-            setLocalDownvotes(prev => Math.max(0, prev - 1));
-          }
+        if (error) throw error;
+        
+        setUserVote(null);
+        if (voteType) {
+          setLocalUpvotes(prev => Math.max(0, prev - 1));
         } else {
-          // Switch vote type
-          const { error } = await supabase
-            .from('meme_votes')
-            .update({ vote_type: voteType })
-            .eq('id', existingVote.id)
-            .eq('session_id', sessionId);
-
-          if (error) throw error;
-          
-          setUserVote(voteType);
-          if (voteType) {
-            setLocalUpvotes(prev => prev + 1);
-            setLocalDownvotes(prev => Math.max(0, prev - 1));
-          } else {
-            setLocalDownvotes(prev => prev + 1);
-            setLocalUpvotes(prev => Math.max(0, prev - 1));
-          }
+          setLocalDownvotes(prev => Math.max(0, prev - 1));
         }
       } else {
-        // Create new vote
+        // If user has already voted but with different type, first delete the old vote
+        if (userVote !== null) {
+          await supabase
+            .from('meme_votes')
+            .delete()
+            .eq('meme_id', id)
+            .eq('session_id', sessionId);
+        }
+
+        // Then insert the new vote
         const { error } = await supabase
           .from('meme_votes')
           .insert({
@@ -122,13 +103,25 @@ const MemeCard = ({
             vote_type: voteType
           });
 
-        if (error) throw error;
+        if (error) {
+          if (error.code === '23505') { // Unique violation code
+            toast({
+              title: "Error",
+              description: "You have already voted on this meme",
+              variant: "destructive",
+            });
+            return;
+          }
+          throw error;
+        }
         
         setUserVote(voteType);
         if (voteType) {
           setLocalUpvotes(prev => prev + 1);
+          if (userVote === false) setLocalDownvotes(prev => Math.max(0, prev - 1));
         } else {
           setLocalDownvotes(prev => prev + 1);
+          if (userVote === true) setLocalUpvotes(prev => Math.max(0, prev - 1));
         }
       }
 
