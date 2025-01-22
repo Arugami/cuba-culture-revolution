@@ -17,7 +17,7 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
   const downvotes = initialDownvotes + (userVote === 'downvote' ? 1 : 0);
 
   return (
-    <div className="flex items-center gap-2 bg-black/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+    <div className="flex items-center gap-2 bg-black/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg transition-opacity duration-200">
       <Button
         variant="ghost"
         size="sm"
