@@ -1,11 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 export const useVoteHandler = () => {
   const { toast } = useToast();
-  const [userVote, setUserVote] = useState<boolean | null>(null);
+  const [userVotes, setUserVotes] = useState<Map<string, boolean>>(new Map());
   const [isVoting, setIsVoting] = useState(false);
+
+  // Load initial vote states
+  useEffect(() => {
+    const loadUserVotes = async () => {
+      const sessionId = localStorage.getItem('voteSessionId');
+      if (!sessionId) return;
+
+      try {
+        const { data: votes, error } = await supabase
+          .from('meme_votes')
+          .select('meme_id, vote_type')
+          .eq('session_id', sessionId);
+
+        if (error) throw error;
+
+        const votesMap = new Map();
+        votes?.forEach(vote => {
+          votesMap.set(vote.meme_id, vote.vote_type);
+        });
+        setUserVotes(votesMap);
+      } catch (error) {
+        console.error('Error loading user votes:', error);
+      }
+    };
+
+    loadUserVotes();
+  }, []);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
     if (isVoting) {
@@ -26,7 +53,8 @@ export const useVoteHandler = () => {
         return;
       }
 
-      console.log('Current vote state:', { userVote, voteType, sessionId });
+      const currentVote = userVotes.get(memeId);
+      console.log('Current vote state:', { currentVote, voteType, sessionId });
 
       const { data: existingVote, error: fetchError } = await supabase
         .from('meme_votes')
@@ -49,7 +77,10 @@ export const useVoteHandler = () => {
 
         if (deleteError) throw deleteError;
         
-        setUserVote(null);
+        const newVotes = new Map(userVotes);
+        newVotes.delete(memeId);
+        setUserVotes(newVotes);
+        
         toast({
           title: "Success",
           description: "Vote removed"
@@ -67,7 +98,10 @@ export const useVoteHandler = () => {
 
         if (updateError) throw updateError;
         
-        setUserVote(voteType);
+        const newVotes = new Map(userVotes);
+        newVotes.set(memeId, voteType);
+        setUserVotes(newVotes);
+        
         toast({
           title: "Success",
           description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
@@ -87,7 +121,10 @@ export const useVoteHandler = () => {
 
       if (insertError) throw insertError;
       
-      setUserVote(voteType);
+      const newVotes = new Map(userVotes);
+      newVotes.set(memeId, voteType);
+      setUserVotes(newVotes);
+      
       toast({
         title: "Success",
         description: `Meme ${voteType ? 'upvoted' : 'downvoted'}`
@@ -105,10 +142,13 @@ export const useVoteHandler = () => {
     }
   };
 
+  const getUserVote = (memeId: string): boolean | null => {
+    return userVotes.has(memeId) ? userVotes.get(memeId)! : null;
+  };
+
   return {
-    userVote,
+    getUserVote,
     isVoting,
-    handleVote,
-    setUserVote
+    handleVote
   };
 };

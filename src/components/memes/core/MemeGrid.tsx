@@ -12,11 +12,11 @@ import {
 interface MemeGridProps {
   memes: Meme[];
   onVote: (memeId: string, voteType: boolean) => Promise<void>;
-  userVote: boolean | null;
+  getUserVote: (memeId: string) => boolean | null;
   isVoting: boolean;
 }
 
-const MemeGrid = ({ memes, onVote, userVote, isVoting }: MemeGridProps) => {
+const MemeGrid = ({ memes, onVote, getUserVote, isVoting }: MemeGridProps) => {
   if (!memes || memes.length === 0) {
     return (
       <div className="w-full px-8 text-center text-gray-500">
@@ -40,7 +40,7 @@ const MemeGrid = ({ memes, onVote, userVote, isVoting }: MemeGridProps) => {
               <MemeCard 
                 {...meme} 
                 onVote={onVote}
-                userVote={userVote}
+                userVote={getUserVote(meme.id)}
                 isVoting={isVoting}
               />
             </CarouselItem>

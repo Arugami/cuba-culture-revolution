@@ -14,7 +14,7 @@ const Memes = () => {
   const {
     handleVote,
     isVoting,
-    userVote
+    getUserVote
   } = useVoteHandler();
   const { handleMemeCommand } = useChatMemeUpload({
     onUploadSuccess: fetchMemes
@@ -24,9 +24,9 @@ const Memes = () => {
     setSortBy(value);
   };
 
-  // Subscribe to real-time updates for meme votes
+  // Subscribe to real-time updates for both memes and votes
   useEffect(() => {
-    const channel = supabase
+    const memesChannel = supabase
       .channel('memes-changes')
       .on(
         'postgres_changes',
@@ -36,14 +36,29 @@ const Memes = () => {
           table: 'memes'
         },
         () => {
-          // Refresh memes when votes change
+          fetchMemes();
+        }
+      )
+      .subscribe();
+
+    const votesChannel = supabase
+      .channel('votes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'meme_votes'
+        },
+        () => {
           fetchMemes();
         }
       )
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      supabase.removeChannel(memesChannel);
+      supabase.removeChannel(votesChannel);
     };
   }, [fetchMemes]);
 
@@ -77,7 +92,7 @@ const Memes = () => {
             <MemeGrid 
               memes={memes} 
               onVote={handleVote}
-              userVote={userVote}
+              getUserVote={getUserVote}
               isVoting={isVoting}
             />
           )}
