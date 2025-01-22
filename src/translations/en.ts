@@ -1,116 +1,112 @@
-export const en = {
+import { Translations } from './types';
+
+export const en: Translations = {
   nav: {
     home: "Home",
     about: "About",
     howToBuy: "How to Buy",
-    contractAddress: "Contract",
     buyNow: "Buy Now",
-    switchLanguage: "Switch Language"
+    community: "Community",
+    vision: "Vision",
+    contractAddress: "Contract Address",
+    switchLanguage: "Switch Language",
   },
   hero: {
-    title: "The First Country Takeover Token",
-    subtitle: "Join the revolution and be part of history",
-    description: "Experience the power of decentralized finance with $CUBA - the first token designed to facilitate a country's transition to financial freedom.",
-    buyNow: "Buy Now",
-    viewChart: "View Chart"
+    taglineStart: "THE ONLY",
+    taglineMiddle: "OFFICIAL",
+    taglineEnd: "CUBA MEME",
+    subtitle: "The First Ever Country Takeover. Join the Revolution!",
+    buyButton: "Buy $CUBA Now",
+    joinButton: "Join Community",
+    quote: "Make Cuba Great Again!",
+    flagAlt: "Hand holding Cuban flag",
   },
   about: {
-    title: "About $CUBA",
-    subtitle: "Leading the Revolution in Crypto",
-    description: "We're not just another meme coin - we're a movement. $CUBA represents the first-ever country takeover token, designed to make a real impact while providing opportunities for our community.",
-    features: {
-      community: {
-        title: "Community Driven",
-        description: "Built by the people, for the people. Our community is at the heart of everything we do."
-      },
-      secure: {
-        title: "Secure & Transparent",
-        description: "Built on Solana for maximum security and transparency. Every transaction is verifiable on the blockchain."
-      },
-      revolution: {
-        title: "Revolutionary",
-        description: "Leading the charge in combining crypto innovation with real-world impact."
-      }
-    }
+    title: "$CUBA",
+    subtitle: "The First Country Take Over",
+    paragraph1: "On January 20, 2025, the Cuban government launched a cryptocurrency, claiming it would revolutionize the nation's financial future. For a brief moment, it seemed like hope had arrived for the Cuban people. The coin skyrocketed to a $30 million market cap, and investors believed change was within reach.",
+    paragraph2: "But in a cruel twist, the project collapsed just hours later in a devastating rug pull. It wasn't just a financial loss—it was a betrayal of trust. The government's failed attempt left the Cuban people disillusioned and abandoned. And yet, the story didn't end there.",
+    paragraph3: "In the face of despair, a bold global community rose up. $CUBA was born—not as a government-backed project, but as a movement of the people.",
+    paragraph4: "$CUBA isn't just a token—it's a revolutionary symbol of resilience and hope. It represents a historic Country Takeover (CTO), proving that power can and should belong to the people.",
+    joinButton: "Join the $CUBA Revolution",
+    imageAlt: "Person holding $CUBA sign in front of colorful Cuban buildings",
   },
   howToBuy: {
-    title: "How to Buy $CUBA",
-    subtitle: "Join the revolution in 4 easy steps",
-    steps: {
-      wallet: {
-        title: "Create a Wallet",
-        description: "Download Phantom Wallet or any Solana-compatible wallet from your app store."
-      },
-      sol: {
-        title: "Get SOL",
-        description: "Buy SOL from an exchange and send it to your wallet."
-      },
-      raydium: {
-        title: "Visit Raydium",
-        description: "Connect your wallet to Raydium DEX."
-      },
-      swap: {
-        title: "Swap for $CUBA",
-        description: "Swap your SOL for $CUBA tokens and join the revolution!"
-      }
-    }
+    title: "How to Buy",
+    subtitle: "$CUBA",
+    step1: {
+      title: "Step 1",
+      description: "Install a Solana Wallet (e.g., Phantom)",
+    },
+    step2: {
+      title: "Step 2",
+      description: "Fund Your Wallet with SOL",
+    },
+    step3: {
+      title: "Step 3",
+      description: "Swap SOL for $CUBA",
+    },
+    contractAddress: "Solana Contract Address",
+    copyAddress: "Copy Address",
+    addressCopied: "Address Copied!",
+    addressCopiedDesc: "Contract address has been copied to clipboard",
+    copyError: "Error",
+    copyErrorDesc: "Failed to copy address",
+  },
+  social: {
+    joinTelegram: "Join Us on Telegram",
+    followX: "Follow Us on X",
   },
   community: {
-    title: "Join Our Community",
-    subtitle: "Be part of something bigger",
-    telegram: "Join Telegram",
-    twitter: "Follow on X"
+    buyNow: "Buy Now with a",
+    debitCard: "Debit Card or Crypto!",
+    buyButton: "BUY NOW",
+    buyEasily: "Buy Easily with",
   },
   revolution: {
-    title: "Join the Revolution",
-    subtitle: "Together we can make history",
-    description: "The $CUBA token represents more than just a cryptocurrency - it's a symbol of change and hope for a better future."
+    title: "Join the $CUBA Revolution!",
+    mission: "Mission",
+    description: "This is YOUR chance to join a movement that's all about empowering the Cuban people. $CUBA bridges digital innovation with real-world impact, fostering hope, freedom, and a brighter future. Together, we'll rewrite history! 🚀",
+  },
+  memes: {
+    title: "$CUBA Memes",
+    subtitle: "Join the fun and share your favorite $CUBA memes with our community!",
   },
   faq: {
     title: "Frequently Asked Questions",
-    subtitle: "Everything you need to know about $CUBA",
-    questions: {
-      what: {
-        question: "What is $CUBA?",
-        answer: "$CUBA is the first-ever country takeover token, built on the Solana blockchain. It represents a revolutionary approach to combining cryptocurrency with real-world impact."
-      },
-      why: {
-        question: "Why choose $CUBA?",
-        answer: "We offer a unique combination of meme coin fun with serious purpose. Our community-driven approach and transparent operations make us stand out in the crypto space."
-      },
-      how: {
-        question: "How can I buy $CUBA?",
-        answer: "You can buy $CUBA tokens on Raydium DEX using SOL. Check our 'How to Buy' section for detailed instructions."
-      },
-      safe: {
-        question: "Is $CUBA safe?",
-        answer: "Yes, $CUBA is built on the Solana blockchain with security as a priority. Our contract is verified and transparent."
-      }
-    }
+    what: {
+      question: "What is $CUBA?",
+      answer: "$CUBA is the first-ever 'Country Takeover' (CTO) meme coin, designed to empower the Cuban people and promote financial independence through decentralized technology.",
+    },
+    buy: {
+      question: "How can I buy $CUBA?",
+      answer: "You can buy $CUBA on Raydium by connecting your Solana wallet and using the contract address: 27T4BetBEXjxfqeUb7WWcCz8rKPUJuxNu2CGzApPpump.",
+    },
+    safe: {
+      question: "Is $CUBA safe to invest in?",
+      answer: "Like all cryptocurrencies, investing in $CUBA carries risks. Always do your own research and never invest more than you can afford to lose.",
+    },
+    join: {
+      question: "How can I join the $CUBA community?",
+      answer: "You can join our vibrant community on Telegram and X (formerly Twitter). Links to our social media platforms can be found in the Community section above.",
+    },
+    unique: {
+      question: "What makes $CUBA unique?",
+      answer: "$CUBA is unique as it's the first meme coin that aims to create a meaningful impact through the concept of 'Country Takeover' while incorporating elements of Cuban culture and community engagement.",
+    },
   },
   footer: {
-    rights: "All rights reserved",
-    contract: "Contract Address"
+    quickLinks: "Quick Links",
+    home: "Home",
+    about: "About",
+    howToBuy: "How to Buy",
+    faq: "FAQ",
+    contract: "Contract",
+    copyAddress: "Copy Address",
+    community: "Community",
+    telegram: "Telegram",
+    x: "X",
+    copyright: "© 2025 $CUBA",
+    madeBy: "Made by Arugami Labs",
   },
-  social: {
-    joinTelegram: "Join our Telegram community",
-    followX: "Follow us on X"
-  },
-  memes: {
-    title: "Meme Gallery",
-    subtitle: "Share and vote on your favorite memes",
-    upload: "Upload Meme",
-    yourMemes: "Your Memes",
-    signInToView: "Sign in to view your memes",
-    uploadTitle: "Upload Your Meme",
-    uploadSubtitle: "Share your creativity with the community",
-    dragDrop: "Drag and drop your image here, or click to select",
-    titleLabel: "Meme Title",
-    titlePlaceholder: "Enter a catchy title for your meme",
-    descriptionLabel: "Description (optional)",
-    descriptionPlaceholder: "Add a description for your meme",
-    uploadButton: "Upload Meme",
-    successMessage: "Meme uploaded successfully!",
-    errorMessage: "Failed to upload meme. Please try again."
-  }
 };

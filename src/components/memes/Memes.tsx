@@ -2,7 +2,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useMemes } from "@/hooks/memes/useMemes";
 import MemeUpload from "./upload/MemeUpload";
 import MemeGrid from "./core/MemeGrid";
-import UserMemes from "./UserMemes";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -77,8 +76,6 @@ const Memes = () => {
             {t('memes.subtitle')}
           </p>
         </div>
-
-        <UserMemes />
 
         <div className="flex justify-end mb-4 px-8">
           <Select value={sortBy} onValueChange={handleSortChange}>
