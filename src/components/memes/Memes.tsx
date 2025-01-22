@@ -11,7 +11,8 @@ const Memes = () => {
   const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
   const {
     handleVote,
-    isVoting
+    isVoting,
+    userVote
   } = useVoteHandler();
   const { handleMemeCommand } = useChatMemeUpload({
     onUploadSuccess: fetchMemes
@@ -47,7 +48,14 @@ const Memes = () => {
         </div>
 
         <div className="mb-8">
-          {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
+          {!isLoading && (
+            <MemeGrid 
+              memes={memes} 
+              onVote={handleVote}
+              userVote={userVote}
+              isVoting={isVoting}
+            />
+          )}
         </div>
 
         <div className="mt-8 flex justify-center">

@@ -12,6 +12,8 @@ interface MemeCardProps {
   description: string | null;
   upvotes?: number;
   downvotes?: number;
+  userVote: boolean | null;
+  isVoting: boolean;
   onVote: (memeId: string, voteType: boolean) => Promise<void>;
 }
 
@@ -22,6 +24,8 @@ const MemeCard = ({
   description, 
   upvotes = 0, 
   downvotes = 0,
+  userVote,
+  isVoting,
   onVote 
 }: MemeCardProps) => {
   useEffect(() => {
@@ -31,22 +35,10 @@ const MemeCard = ({
         sessionId = uuidv4();
         localStorage.setItem('voteSessionId', sessionId);
       }
-
-      const { data } = await supabase
-        .from('meme_votes')
-        .select('vote_type')
-        .eq('meme_id', id)
-        .eq('session_id', sessionId)
-        .maybeSingle();
-
-      if (data) {
-        // Update the parent's state through onVote if needed
-        console.log('Found existing vote:', data);
-      }
     };
 
     initializeSession();
-  }, [id]);
+  }, []);
 
   const handleVoteClick = async (memeId: string, voteType: boolean) => {
     await onVote(memeId, voteType);
@@ -68,8 +60,8 @@ const MemeCard = ({
               image={image}
               upvotes={upvotes}
               downvotes={downvotes}
-              userVote={null} // This will now be managed by the parent component
-              isVoting={false} // This will now be managed by the parent component
+              userVote={userVote}
+              isVoting={isVoting}
               onVote={handleVoteClick}
             />
           </div>

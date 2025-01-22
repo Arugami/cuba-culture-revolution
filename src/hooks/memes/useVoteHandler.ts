@@ -2,11 +2,9 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
+export const useVoteHandler = () => {
   const { toast } = useToast();
   const [userVote, setUserVote] = useState<boolean | null>(null);
-  const [localUpvotes, setLocalUpvotes] = useState<number>(initialUpvotes);
-  const [localDownvotes, setLocalDownvotes] = useState<number>(initialDownvotes);
   const [isVoting, setIsVoting] = useState(false);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
@@ -41,8 +39,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
 
       console.log('Existing vote:', existingVote);
 
-      // If clicking the currently active vote, remove it
-      if (existingVote && userVote === voteType) {
+      // If there's an existing vote and clicking the same type, remove it
+      if (existingVote && existingVote.vote_type === voteType) {
         console.log('Removing existing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
@@ -52,12 +50,6 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         if (deleteError) throw deleteError;
         
         setUserVote(null);
-        if (voteType) {
-          setLocalUpvotes(prev => Math.max(0, prev - 1));
-        } else {
-          setLocalDownvotes(prev => Math.max(0, prev - 1));
-        }
-
         toast({
           title: "Success",
           description: "Vote removed"
@@ -76,14 +68,6 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         if (updateError) throw updateError;
         
         setUserVote(voteType);
-        if (voteType) {
-          setLocalUpvotes(prev => prev + 1);
-          setLocalDownvotes(prev => Math.max(0, prev - 1));
-        } else {
-          setLocalDownvotes(prev => prev + 1);
-          setLocalUpvotes(prev => Math.max(0, prev - 1));
-        }
-
         toast({
           title: "Success",
           description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
@@ -104,17 +88,10 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
       if (insertError) throw insertError;
       
       setUserVote(voteType);
-      if (voteType) {
-        setLocalUpvotes(prev => prev + 1);
-      } else {
-        setLocalDownvotes(prev => prev + 1);
-      }
-
       toast({
         title: "Success",
         description: `Meme ${voteType ? 'upvoted' : 'downvoted'}`
       });
-      return;
 
     } catch (error: any) {
       console.error('Error handling vote:', error);
@@ -130,8 +107,6 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
 
   return {
     userVote,
-    localUpvotes,
-    localDownvotes,
     isVoting,
     handleVote,
     setUserVote
