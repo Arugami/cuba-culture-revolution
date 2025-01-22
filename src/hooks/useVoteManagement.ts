@@ -55,7 +55,11 @@ export const useVoteManagement = () => {
 
       toast({
         title: "Success",
-        description: `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
+        description: existingVote 
+          ? existingVote.vote_type === voteType 
+            ? "Vote removed successfully"
+            : "Vote changed successfully"
+          : `Successfully ${voteType ? 'upvoted' : 'downvoted'} the meme`,
       });
 
     } catch (error: any) {
