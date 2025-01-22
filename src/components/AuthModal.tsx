@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/components/ui/use-toast";
 
 interface AuthModalProps {
   trigger?: React.ReactNode;
@@ -23,21 +24,74 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [currentMode, setCurrentMode] = useState(mode);
   const { signIn, signUp } = useAuth();
+  const { toast } = useToast();
+
+  const validatePassword = (password: string): boolean => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return (
+      password.length >= minLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasNumbers &&
+      hasSpecialChar
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     try {
+      if (currentMode === "sign-up" && !validatePassword(password)) {
+        toast({
+          title: "Invalid Password",
+          description: "Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       if (currentMode === "sign-in") {
         await signIn(email, password);
+        toast({
+          title: "Welcome back!",
+          description: "Successfully signed in.",
+        });
       } else {
         await signUp(email, password);
+        toast({
+          title: "Account created",
+          description: "Please check your email to confirm your account.",
+        });
       }
       setIsOpen(false);
       setEmail("");
       setPassword("");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Auth error:", error);
+      let errorMessage = "An unexpected error occurred";
+      
+      // Handle common auth errors
+      if (error.message.includes("Invalid login credentials")) {
+        errorMessage = "Invalid email or password";
+      } else if (error.message.includes("Email not confirmed")) {
+        errorMessage = "Please confirm your email address";
+      } else if (error.message.includes("User already registered")) {
+        errorMessage = "This email is already registered";
+      } else if (error.message.includes("Too many requests")) {
+        errorMessage = "Too many login attempts. Please try again later";
+      }
+
+      toast({
+        title: "Authentication Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -69,6 +123,7 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-label="Email input"
             />
           </div>
           <div className="space-y-2">
@@ -79,13 +134,28 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              aria-label="Password input"
             />
+            {currentMode === "sign-up" && (
+              <p className="text-sm text-gray-500">
+                Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters.
+              </p>
+            )}
           </div>
           <div className="flex flex-col space-y-4">
-            <Button type="submit" disabled={isLoading}>
+            <Button 
+              type="submit" 
+              disabled={isLoading}
+              aria-label={isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
+            >
               {isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
             </Button>
-            <Button type="button" variant="ghost" onClick={toggleMode}>
+            <Button 
+              type="button" 
+              variant="ghost" 
+              onClick={toggleMode}
+              aria-label={currentMode === "sign-in" ? "Switch to Sign Up" : "Switch to Sign In"}
+            >
               {currentMode === "sign-in"
                 ? "Don't have an account? Sign Up"
                 : "Already have an account? Sign In"}
