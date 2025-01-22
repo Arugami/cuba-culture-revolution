@@ -15,7 +15,11 @@ const VoteButton = ({ icon: Icon, count, isActive, isDisabled, onClick }: VoteBu
       variant="ghost"
       size="sm"
       disabled={isDisabled}
-      className={`${isActive ? 'text-cuba-blue bg-cuba-blue/10' : 'text-gray-600 hover:text-cuba-blue'}`}
+      className={`${
+        isActive 
+          ? 'text-cuba-blue bg-white/90' 
+          : 'text-white hover:text-cuba-blue hover:bg-white/90'
+      } transition-colors duration-200`}
       onClick={onClick}
     >
       <Icon className="w-4 h-4 mr-1" />

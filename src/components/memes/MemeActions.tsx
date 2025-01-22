@@ -63,27 +63,25 @@ const MemeActions = ({
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex gap-2">
-        <VoteButton
-          icon={ThumbsUp}
-          count={upvotes}
-          isActive={userVote === true}
-          isDisabled={isVoting}
-          onClick={(e) => handleVote(e, true)}
-        />
-        <VoteButton
-          icon={ThumbsDown}
-          count={downvotes}
-          isActive={userVote === false}
-          isDisabled={isVoting}
-          onClick={(e) => handleVote(e, false)}
-        />
-      </div>
+    <div className="flex items-center gap-2 bg-black/60 rounded-full px-4 py-2">
+      <VoteButton
+        icon={ThumbsUp}
+        count={upvotes}
+        isActive={userVote === true}
+        isDisabled={isVoting}
+        onClick={(e) => handleVote(e, true)}
+      />
+      <VoteButton
+        icon={ThumbsDown}
+        count={downvotes}
+        isActive={userVote === false}
+        isDisabled={isVoting}
+        onClick={(e) => handleVote(e, false)}
+      />
       <Button
         variant="ghost"
         size="sm"
-        className="text-gray-600 hover:text-cuba-blue"
+        className="text-white/80 hover:text-white"
         onClick={handleDownload}
       >
         <Download className="w-4 h-4" />

@@ -4,15 +4,13 @@ interface MemeImageProps {
   description: string | null;
 }
 
-const MemeImage = ({ image, title, description }: MemeImageProps) => {
+const MemeImage = ({ image, title }: MemeImageProps) => {
   return (
-    <div className="relative">
-      <img 
-        src={image} 
-        alt={title} 
-        className="w-full h-[300px] object-cover rounded-t-lg"
-      />
-    </div>
+    <img 
+      src={image} 
+      alt={title} 
+      className="w-full aspect-square object-cover"
+    />
   );
 };
 
