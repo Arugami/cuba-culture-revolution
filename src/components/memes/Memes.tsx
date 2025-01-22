@@ -3,7 +3,7 @@ import { useMemes, SortOption } from "@/hooks/useMemes";
 import { useVoteManagement } from "@/hooks/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./MemeUpload";
-import MemeGrid from "./memes/MemeGrid";
+import MemeGrid from "./MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Memes = () => {

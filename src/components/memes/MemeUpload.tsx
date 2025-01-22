@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
-import { AuthModal } from "./AuthModal";
+import { AuthModal } from "../AuthModal";
 import {
   Dialog,
   DialogContent,
