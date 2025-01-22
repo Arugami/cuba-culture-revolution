@@ -6,6 +6,7 @@ import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useVoteHandler } from "@/hooks/memes/useVoteHandler";
 import { useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Memes = () => {
   const { t } = useLanguage();
