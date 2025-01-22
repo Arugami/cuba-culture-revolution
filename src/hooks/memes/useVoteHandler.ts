@@ -10,11 +10,15 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
   const [isVoting, setIsVoting] = useState(false);
 
   const handleVote = async (memeId: string, voteType: boolean) => {
-    if (isVoting) return;
+    if (isVoting) {
+      console.log('Already processing a vote');
+      return;
+    }
 
     try {
       setIsVoting(true);
       const sessionId = localStorage.getItem('voteSessionId');
+      
       if (!sessionId) {
         toast({
           title: "Error",
@@ -24,16 +28,23 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         return;
       }
 
+      console.log('Current vote state:', { userVote, voteType, sessionId });
+
       // Check if a vote exists
-      const { data: existingVote } = await supabase
+      const { data: existingVote, error: fetchError } = await supabase
         .from('meme_votes')
         .select('vote_type')
         .eq('meme_id', memeId)
         .eq('session_id', sessionId)
         .maybeSingle();
 
+      if (fetchError) throw fetchError;
+
+      console.log('Existing vote:', existingVote);
+
       // If clicking the same vote type, remove the vote
       if (existingVote && existingVote.vote_type === voteType) {
+        console.log('Removing existing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
@@ -53,6 +64,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           description: "Vote removed"
         });
       } else if (existingVote) {
+        console.log('Changing vote type');
         // If changing vote type, update the existing vote
         const { error: updateError } = await supabase
           .from('meme_votes')
@@ -75,6 +87,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
         });
       } else {
+        console.log('Creating new vote');
         // If no vote exists, create a new one
         const { error: insertError } = await supabase
           .from('meme_votes')
