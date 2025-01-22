@@ -17,21 +17,21 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
   const downvotes = initialDownvotes + (userVote === 'downvote' ? 1 : 0);
 
   return (
-    <div className="flex items-center gap-2 bg-black/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg transition-opacity duration-200">
+    <div className="flex items-center gap-1 bg-black/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg">
       <Button
         variant="ghost"
         size="sm"
         onClick={() => vote('upvote')}
         disabled={isLoading}
         className={cn(
-          "hover:bg-transparent",
+          "h-7 px-2 hover:bg-transparent",
           userVote === 'upvote' 
             ? "text-green-500" 
             : "text-gray-300 hover:text-green-500"
         )}
       >
-        <ThumbsUp className="w-5 h-5 mr-1.5" />
-        <span className="text-sm font-medium">{upvotes}</span>
+        <ThumbsUp className="w-4 h-4 mr-1" />
+        <span className="text-sm">{upvotes}</span>
       </Button>
 
       <div className="w-px h-4 bg-gray-600" />
@@ -42,14 +42,14 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
         onClick={() => vote('downvote')}
         disabled={isLoading}
         className={cn(
-          "hover:bg-transparent",
+          "h-7 px-2 hover:bg-transparent",
           userVote === 'downvote' 
             ? "text-red-500" 
             : "text-gray-300 hover:text-red-500"
         )}
       >
-        <ThumbsDown className="w-5 h-5 mr-1.5" />
-        <span className="text-sm font-medium">{downvotes}</span>
+        <ThumbsDown className="w-4 h-4 mr-1" />
+        <span className="text-sm">{downvotes}</span>
       </Button>
     </div>
   );
