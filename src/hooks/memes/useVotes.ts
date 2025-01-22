@@ -24,7 +24,7 @@ export const useVotes = (memeId: string) => {
         .select('vote_type')
         .eq('meme_id', memeId)
         .eq('user_id', user?.id)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       setUserVote(data?.vote_type as 'upvote' | 'downvote' | null);
