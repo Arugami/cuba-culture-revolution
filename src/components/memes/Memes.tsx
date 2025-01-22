@@ -2,8 +2,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useMemes, SortOption } from "@/hooks/useMemes";
 import { useVoteManagement } from "@/hooks/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
-import MemeUpload from "./MemeUpload";
-import MemeGrid from "./MemeGrid";
+import MemeUpload from "./upload/MemeUpload";
+import MemeGrid from "./core/MemeGrid";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Memes = () => {
