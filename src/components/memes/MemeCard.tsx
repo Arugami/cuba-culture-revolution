@@ -63,23 +63,29 @@ const MemeCard = ({
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white">
       <CardContent className="p-0">
         <MemeImage
           image={image}
           title={title}
           description={description}
         />
-        <MemeActions
-          id={id}
-          title={title}
-          image={image}
-          upvotes={localUpvotes}
-          downvotes={localDownvotes}
-          userVote={userVote}
-          isVoting={isVoting}
-          onVote={handleVoteClick}
-        />
+        <div className="p-4 space-y-2">
+          <h3 className="text-xl font-patua text-cuba-blue truncate">{title}</h3>
+          {description && (
+            <p className="text-gray-600 text-sm line-clamp-2">{description}</p>
+          )}
+          <MemeActions
+            id={id}
+            title={title}
+            image={image}
+            upvotes={localUpvotes}
+            downvotes={localDownvotes}
+            userVote={userVote}
+            isVoting={isVoting}
+            onVote={handleVoteClick}
+          />
+        </div>
       </CardContent>
     </Card>
   );

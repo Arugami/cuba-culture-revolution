@@ -63,7 +63,7 @@ const MemeActions = ({
   };
 
   return (
-    <div className="flex justify-between mt-2">
+    <div className="flex justify-between items-center">
       <div className="flex gap-2">
         <VoteButton
           icon={ThumbsUp}
@@ -83,7 +83,7 @@ const MemeActions = ({
       <Button
         variant="ghost"
         size="sm"
-        className="text-white hover:text-cuba-blue"
+        className="text-gray-600 hover:text-cuba-blue"
         onClick={handleDownload}
       >
         <Download className="w-4 h-4" />
