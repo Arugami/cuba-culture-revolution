@@ -37,13 +37,13 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
       .eq('session_id', sessionId)
       .maybeSingle();
 
-    // Calculate the vote delta based on the current state and action
+    // Calculate vote changes based on current state
     let upvoteDelta = 0;
     let downvoteDelta = 0;
 
     if (existingVote) {
       if (existingVote.vote_type === voteType) {
-        // Removing the vote
+        // Removing vote
         upvoteDelta = voteType ? -1 : 0;
         downvoteDelta = voteType ? 0 : -1;
       } else {
@@ -57,7 +57,7 @@ const MemeGrid = ({ memes, onVote }: MemeGridProps) => {
       downvoteDelta = voteType ? 0 : 1;
     }
 
-    // Optimistically update the UI
+    // Update UI optimistically
     setLocalMemes(prevMemes =>
       prevMemes.map(meme => {
         if (meme.id === memeId) {

@@ -28,30 +28,33 @@ export const useVoteManagement = () => {
       if (existingVote) {
         if (existingVote.vote_type === voteType) {
           // Remove vote if clicking the same button
-          action = supabase
+          const { error } = await supabase
             .from('meme_votes')
             .delete()
             .eq('id', existingVote.id);
+          
+          if (error) throw error;
         } else {
           // Update vote if changing from up to down or vice versa
-          action = supabase
+          const { error } = await supabase
             .from('meme_votes')
             .update({ vote_type: voteType })
             .eq('id', existingVote.id);
+          
+          if (error) throw error;
         }
       } else {
         // Create new vote
-        action = supabase
+        const { error } = await supabase
           .from('meme_votes')
           .insert({
             meme_id: memeId,
             session_id: sessionId,
             vote_type: voteType
           });
+        
+        if (error) throw error;
       }
-
-      const { error: actionError } = await action;
-      if (actionError) throw actionError;
 
       toast({
         title: "Success",
