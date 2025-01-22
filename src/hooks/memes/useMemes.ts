@@ -33,7 +33,9 @@ export const useMemes = () => {
           id: meme.id,
           image: meme.image_url,
           title: meme.title,
-          description: meme.description
+          description: meme.description,
+          upvotes: meme.upvotes || 0,
+          downvotes: meme.downvotes || 0
         }));
         
         setMemes(formattedMemes);
