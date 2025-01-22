@@ -29,7 +29,7 @@ const MemeCard = ({
             title={title}
             description={description}
           />
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <VoteButtons
               memeId={id}
               upvotes={upvotes}
