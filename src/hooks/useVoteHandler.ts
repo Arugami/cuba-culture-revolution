@@ -29,9 +29,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
-          .eq('meme_id', memeId)
-          .eq('session_id', sessionId)
-          .single();
+          .match({ meme_id: memeId, session_id: sessionId })
+          .maybeSingle();
 
         if (deleteError) throw deleteError;
         
@@ -47,8 +46,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           await supabase
             .from('meme_votes')
             .delete()
-            .eq('meme_id', memeId)
-            .eq('session_id', sessionId);
+            .match({ meme_id: memeId, session_id: sessionId })
+            .maybeSingle();
         }
 
         // Insert new vote
@@ -59,7 +58,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
             session_id: sessionId,
             vote_type: voteType
           })
-          .single();
+          .select()
+          .maybeSingle();
 
         if (insertError) throw insertError;
         
