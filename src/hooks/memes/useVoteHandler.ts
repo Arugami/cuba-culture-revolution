@@ -41,8 +41,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
 
       console.log('Existing vote:', existingVote);
 
-      // If clicking the same vote type as current userVote, remove the vote
-      if (userVote === voteType) {
+      // If clicking the currently active vote, remove it
+      if (existingVote && userVote === voteType) {
         console.log('Removing existing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
@@ -65,7 +65,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         return;
       }
 
-      // If changing vote type, update the existing vote
+      // If there's an existing vote but different type, update it
       if (existingVote) {
         console.log('Changing vote type');
         const { error: updateError } = await supabase
