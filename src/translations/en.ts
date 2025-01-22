@@ -100,6 +100,7 @@ export const en: Translations = {
     home: "Home",
     about: "About",
     howToBuy: "How to Buy",
+    memes: "Memes",
     faq: "FAQ",
     contract: "Contract",
     copyAddress: "Copy Address",

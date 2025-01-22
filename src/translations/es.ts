@@ -100,6 +100,7 @@ export const es: Translations = {
     home: "Inicio",
     about: "Acerca",
     howToBuy: "Cómo Comprar",
+    memes: "Memes",
     faq: "Preguntas Frecuentes",
     contract: "Contrato",
     copyAddress: "Copiar Dirección",

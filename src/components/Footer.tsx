@@ -52,6 +52,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#memes" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
+                  {t("footer.memes")}
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="hover:text-cuba-red transition-colors duration-300 flex items-center gap-2">
                   {t("footer.faq")}
                 </a>
@@ -108,6 +113,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
+
         </div>
 
         <div className="text-center pt-6 md:pt-8 border-t border-gray-800 relative">
