@@ -34,9 +34,26 @@ const Memes = () => {
       )
       .subscribe();
 
+    const votesChannel = supabase
+      .channel('votes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'meme_votes'
+        },
+        (payload) => {
+          console.log('Vote change received:', payload);
+          fetchMemes();
+        }
+      )
+      .subscribe();
+
     return () => {
       console.log('Cleaning up real-time subscriptions');
       supabase.removeChannel(memesChannel);
+      supabase.removeChannel(votesChannel);
     };
   }, [fetchMemes]);
 
