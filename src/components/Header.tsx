@@ -128,7 +128,6 @@ const Header = () => {
                   <p>{t("social.followX")}</p>
                 </TooltipContent>
               </Tooltip>
-
             </TooltipProvider>
 
             {user ? (
@@ -177,7 +176,7 @@ const Header = () => {
                   className="text-gray-600 hover:text-cuba-red transition-colors p-2 rounded-full hover:bg-gray-100"
                 >
                   <span className="text-xl">
-                    {language === "en" ? "🇺🇸" : "🇨🇺"}
+                    {language === "en" ? "🇨🇺" : "🇺🇸"}
                   </span>
                   <span className="sr-only">
                     {t("nav.switchLanguage")}
