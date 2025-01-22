@@ -41,8 +41,8 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
 
       console.log('Existing vote:', existingVote);
 
-      // If clicking the same vote type, remove the vote
-      if (existingVote && existingVote.vote_type === voteType) {
+      // If clicking the same vote type as current userVote, remove the vote
+      if (userVote === voteType) {
         console.log('Removing existing vote');
         const { error: deleteError } = await supabase
           .from('meme_votes')
@@ -62,7 +62,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           title: "Success",
           description: "Vote removed"
         });
-        return; // Add return to prevent further execution
+        return;
       }
 
       // If changing vote type, update the existing vote
@@ -88,7 +88,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
           title: "Success",
           description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
         });
-        return; // Add return to prevent further execution
+        return;
       }
 
       // If no vote exists, create a new one
@@ -114,7 +114,7 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         title: "Success",
         description: `Meme ${voteType ? 'upvoted' : 'downvoted'}`
       });
-      return; // Add return for consistency
+      return;
 
     } catch (error: any) {
       console.error('Error handling vote:', error);
