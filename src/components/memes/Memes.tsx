@@ -59,6 +59,7 @@ const Memes = () => {
 
   return (
     <section 
+      id="memes"
       className="w-full py-12 md:py-24 lg:py-32 relative"
       style={{
         backgroundImage: "url('/lovable-uploads/f14c7903-7179-446b-9b9e-4e5f34e80f93.png')",
