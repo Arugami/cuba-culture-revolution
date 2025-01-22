@@ -4,6 +4,7 @@ import { ThumbsUp, ThumbsDown, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { v4 as uuidv4 } from 'uuid';
 
 interface MemeCardProps {
   id: string;
@@ -31,10 +32,14 @@ const MemeCard = ({
   const [isVoting, setIsVoting] = useState(false);
 
   useEffect(() => {
-    const checkExistingVote = async () => {
-      const sessionId = localStorage.getItem('voteSessionId');
-      if (!sessionId) return;
+    const initializeSession = async () => {
+      let sessionId = localStorage.getItem('voteSessionId');
+      if (!sessionId) {
+        sessionId = uuidv4();
+        localStorage.setItem('voteSessionId', sessionId);
+      }
 
+      // Check existing vote
       const { data } = await supabase
         .from('meme_votes')
         .select('vote_type')
@@ -47,7 +52,7 @@ const MemeCard = ({
       }
     };
 
-    checkExistingVote();
+    initializeSession();
   }, [id]);
 
   const handleVote = async (e: React.MouseEvent, voteType: boolean) => {
@@ -62,7 +67,7 @@ const MemeCard = ({
       if (!sessionId) {
         toast({
           title: "Error",
-          description: "No session ID found. Unable to record your vote.",
+          description: "Session not initialized. Please refresh the page.",
           variant: "destructive",
         });
         return;
@@ -70,13 +75,13 @@ const MemeCard = ({
 
       // If user has already voted with the same vote type, remove the vote
       if (userVote === voteType) {
-        const { error } = await supabase
+        const { error: deleteError } = await supabase
           .from('meme_votes')
           .delete()
           .eq('meme_id', id)
           .eq('session_id', sessionId);
 
-        if (error) throw error;
+        if (deleteError) throw deleteError;
         
         setUserVote(null);
         if (voteType) {
@@ -94,8 +99,8 @@ const MemeCard = ({
             .eq('session_id', sessionId);
         }
 
-        // Then insert the new vote
-        const { error } = await supabase
+        // Insert the new vote
+        const { error: insertError } = await supabase
           .from('meme_votes')
           .insert({
             meme_id: id,
@@ -103,17 +108,7 @@ const MemeCard = ({
             vote_type: voteType
           });
 
-        if (error) {
-          if (error.code === '23505') { // Unique violation code
-            toast({
-              title: "Error",
-              description: "You have already voted on this meme",
-              variant: "destructive",
-            });
-            return;
-          }
-          throw error;
-        }
+        if (insertError) throw insertError;
         
         setUserVote(voteType);
         if (voteType) {
@@ -128,11 +123,18 @@ const MemeCard = ({
       // Call parent onVote handler to sync state
       await onVote(id, voteType);
 
-    } catch (error) {
+      toast({
+        title: "Success",
+        description: userVote === voteType 
+          ? "Vote removed" 
+          : `Meme ${voteType ? 'upvoted' : 'downvoted'}`
+      });
+
+    } catch (error: any) {
       console.error('Error handling vote:', error);
       toast({
         title: "Error",
-        description: "Failed to record your vote. Please try again.",
+        description: error.message || "Failed to process vote. Please try again.",
         variant: "destructive",
       });
     } finally {
