@@ -33,16 +33,21 @@ const MemeCard = ({
             description={description}
           />
           {isMobile ? (
-            <div className="flex items-center justify-center gap-2 p-4 bg-white">
-              <VoteButtons
-                memeId={id}
-                upvotes={upvotes}
-                downvotes={downvotes}
-              />
-              <DownloadButton
-                image={image}
-                title={title}
-              />
+            <div className="flex flex-col space-y-2 p-4 bg-white border-t border-gray-100">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-medium text-gray-900 truncate">{title}</h3>
+                <DownloadButton
+                  image={image}
+                  title={title}
+                />
+              </div>
+              <div className="flex justify-center">
+                <VoteButtons
+                  memeId={id}
+                  upvotes={upvotes}
+                  downvotes={downvotes}
+                />
+              </div>
             </div>
           ) : (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">

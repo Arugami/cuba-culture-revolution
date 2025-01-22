@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface DownloadButtonProps {
   image: string;
@@ -9,6 +10,7 @@ interface DownloadButtonProps {
 
 const DownloadButton = ({ image, title }: DownloadButtonProps) => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const handleDownload = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,10 +46,14 @@ const DownloadButton = ({ image, title }: DownloadButtonProps) => {
     <Button
       variant="ghost"
       size="sm"
-      className="text-white/90 hover:text-white hover:bg-white/10"
+      className={`${
+        isMobile 
+          ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100" 
+          : "text-white/90 hover:text-white hover:bg-white/10"
+      }`}
       onClick={handleDownload}
     >
-      <Download className="w-4 h-4" />
+      <Download className={`${isMobile ? "w-5 h-5" : "w-4 h-4"}`} />
     </Button>
   );
 };
