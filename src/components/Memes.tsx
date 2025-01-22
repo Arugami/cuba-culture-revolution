@@ -1,15 +1,20 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useMemes } from "@/hooks/useMemes";
+import { useMemes, SortOption } from "@/hooks/useMemes";
 import { useVoteManagement } from "@/hooks/useVoteManagement";
 import { useChatMemeUpload } from "@/hooks/useChatMemeUpload";
 import MemeUpload from "./MemeUpload";
 import MemeGrid from "./memes/MemeGrid";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Memes = () => {
   const { t } = useLanguage();
-  const { memes, isLoading, fetchMemes } = useMemes();
+  const { memes, isLoading, fetchMemes, sortBy, setSortBy } = useMemes();
   const { handleVote } = useVoteManagement();
   const { handleMemeCommand } = useChatMemeUpload({ onUploadSuccess: fetchMemes });
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value as SortOption);
+  };
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-cuba-blue/5 to-white">
@@ -23,6 +28,19 @@ const Memes = () => {
           </p>
         </div>
         
+        <div className="flex justify-end mb-4 px-8">
+          <Select value={sortBy} onValueChange={handleSortChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort by..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="newest">Newest First</SelectItem>
+              <SelectItem value="most_upvoted">Most Upvoted</SelectItem>
+              <SelectItem value="most_downvoted">Most Downvoted</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <div className="mb-8">
           {!isLoading && <MemeGrid memes={memes} onVote={handleVote} />}
         </div>

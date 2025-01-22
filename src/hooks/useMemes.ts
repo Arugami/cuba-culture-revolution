@@ -3,18 +3,34 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Meme } from "@/types/meme";
 
+export type SortOption = 'newest' | 'most_upvoted' | 'most_downvoted';
+
 export const useMemes = () => {
   const { toast } = useToast();
   const [memes, setMemes] = useState<Meme[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<SortOption>('newest');
 
   const fetchMemes = async () => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from("memes")
-        .select("*")
-        .order("created_at", { ascending: false });
+        .select("*");
+
+      switch (sortBy) {
+        case 'most_upvoted':
+          query = query.order('upvotes', { ascending: false });
+          break;
+        case 'most_downvoted':
+          query = query.order('downvotes', { ascending: false });
+          break;
+        case 'newest':
+        default:
+          query = query.order('created_at', { ascending: false });
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
 
@@ -44,7 +60,9 @@ export const useMemes = () => {
 
   useEffect(() => {
     fetchMemes();
+  }, [sortBy]); // Re-fetch when sort option changes
 
+  useEffect(() => {
     const channel = supabase
       .channel('memes-realtime')
       .on(
@@ -82,5 +100,5 @@ export const useMemes = () => {
     };
   }, []);
 
-  return { memes, isLoading, fetchMemes };
+  return { memes, isLoading, fetchMemes, sortBy, setSortBy };
 };
