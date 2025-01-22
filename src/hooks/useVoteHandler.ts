@@ -32,50 +32,48 @@ export const useVoteHandler = (initialUpvotes = 0, initialDownvotes = 0) => {
         .eq('session_id', sessionId)
         .maybeSingle();
 
-      if (existingVote) {
-        // If clicking the same vote type, remove the vote
-        if (existingVote.vote_type === voteType) {
-          const { error: deleteError } = await supabase
-            .from('meme_votes')
-            .delete()
-            .match({ meme_id: memeId, session_id: sessionId });
+      // If clicking the same vote type, remove the vote
+      if (existingVote && existingVote.vote_type === voteType) {
+        const { error: deleteError } = await supabase
+          .from('meme_votes')
+          .delete()
+          .match({ meme_id: memeId, session_id: sessionId });
 
-          if (deleteError) throw deleteError;
-          
-          setUserVote(null);
-          if (voteType) {
-            setLocalUpvotes(prev => Math.max(0, prev - 1));
-          } else {
-            setLocalDownvotes(prev => Math.max(0, prev - 1));
-          }
-
-          toast({
-            title: "Success",
-            description: "Vote removed"
-          });
+        if (deleteError) throw deleteError;
+        
+        setUserVote(null);
+        if (voteType) {
+          setLocalUpvotes(prev => Math.max(0, prev - 1));
         } else {
-          // If changing vote type, update the existing vote
-          const { error: updateError } = await supabase
-            .from('meme_votes')
-            .update({ vote_type: voteType })
-            .match({ meme_id: memeId, session_id: sessionId });
-
-          if (updateError) throw updateError;
-          
-          setUserVote(voteType);
-          if (voteType) {
-            setLocalUpvotes(prev => prev + 1);
-            setLocalDownvotes(prev => Math.max(0, prev - 1));
-          } else {
-            setLocalDownvotes(prev => prev + 1);
-            setLocalUpvotes(prev => Math.max(0, prev - 1));
-          }
-
-          toast({
-            title: "Success",
-            description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
-          });
+          setLocalDownvotes(prev => Math.max(0, prev - 1));
         }
+
+        toast({
+          title: "Success",
+          description: "Vote removed"
+        });
+      } else if (existingVote) {
+        // If changing vote type, update the existing vote
+        const { error: updateError } = await supabase
+          .from('meme_votes')
+          .update({ vote_type: voteType })
+          .match({ meme_id: memeId, session_id: sessionId });
+
+        if (updateError) throw updateError;
+        
+        setUserVote(voteType);
+        if (voteType) {
+          setLocalUpvotes(prev => prev + 1);
+          setLocalDownvotes(prev => Math.max(0, prev - 1));
+        } else {
+          setLocalDownvotes(prev => prev + 1);
+          setLocalUpvotes(prev => Math.max(0, prev - 1));
+        }
+
+        toast({
+          title: "Success",
+          description: `Vote changed to ${voteType ? 'upvote' : 'downvote'}`
+        });
       } else {
         // If no vote exists, create a new one
         const { error: insertError } = await supabase
