@@ -24,10 +24,10 @@ const Memes = () => {
     setSortBy(value);
   };
 
-  // Subscribe to real-time updates for meme votes
   useEffect(() => {
+    // Subscribe to real-time updates for both memes and votes
     const channel = supabase
-      .channel('memes-changes')
+      .channel('memes-votes-changes')
       .on(
         'postgres_changes',
         {
@@ -36,7 +36,17 @@ const Memes = () => {
           table: 'memes'
         },
         () => {
-          // Refresh memes when votes change
+          fetchMemes();
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'meme_votes'
+        },
+        () => {
           fetchMemes();
         }
       )
