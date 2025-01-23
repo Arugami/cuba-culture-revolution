@@ -27,7 +27,7 @@ const SliderItem = React.memo(({ item, idx }: { item: typeof items[0], idx: stri
           className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 rounded-full object-contain md:object-cover"
         />
       ) : (
-        <span className="whitespace-nowrap text-sm sm:text-base md:text-lg lg:text-2xl font-patua text-white text-center">
+        <span className="whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-3xl xl:text-4xl font-patua text-white text-center">
           {item.content}
         </span>
       )}
