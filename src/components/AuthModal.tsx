@@ -120,60 +120,68 @@ export function AuthModal({ trigger, mode = "sign-in", open, onOpenChange }: Aut
       <DialogTrigger asChild>
         {trigger || <Button variant="outline">Sign In</Button>}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>
-            {currentMode === "sign-in" ? "Sign In" : "Create Account"}
-          </DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              aria-label="Email input"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              aria-label="Password input"
-            />
-            {currentMode === "sign-up" && (
-              <p className="text-sm text-gray-500">
-                Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters.
-              </p>
-            )}
-          </div>
-          <div className="flex flex-col space-y-4">
-            <Button 
-              type="submit" 
-              disabled={isLoading}
-              aria-label={isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
-            >
-              {isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
-            </Button>
-            <Button 
-              type="button" 
-              variant="ghost" 
-              onClick={toggleMode}
-              aria-label={currentMode === "sign-in" ? "Switch to Sign Up" : "Switch to Sign In"}
-            >
-              {currentMode === "sign-in"
-                ? "Don't have an account? Sign Up"
-                : "Already have an account? Sign In"}
-            </Button>
-          </div>
-        </form>
+      <DialogContent 
+        className="sm:max-w-[425px] bg-[url('/lovable-uploads/5cfc9436-5af1-4040-8c8b-f965bbba05f2.png')] bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-white/90"
+      >
+        <div className="relative z-10">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">
+              {currentMode === "sign-in" ? "Sign In" : "Create Account"}
+            </DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-3 py-2 border rounded-md"
+                aria-label="Email input"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full px-3 py-2 border rounded-md"
+                aria-label="Password input"
+              />
+              {currentMode === "sign-up" && (
+                <p className="text-sm text-gray-500">
+                  Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters.
+                </p>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                className="w-full bg-cuba-blue hover:bg-blue-700 text-white"
+                aria-label={isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
+              >
+                {isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
+              </Button>
+              <Button 
+                type="button" 
+                variant="ghost" 
+                onClick={toggleMode}
+                className="text-cuba-blue hover:text-blue-700"
+                aria-label={currentMode === "sign-in" ? "Switch to Sign Up" : "Switch to Sign In"}
+              >
+                {currentMode === "sign-in"
+                  ? "Don't have an account? Sign Up"
+                  : "Already have an account? Sign In"}
+              </Button>
+            </div>
+          </form>
+        </div>
       </DialogContent>
     </Dialog>
   );
