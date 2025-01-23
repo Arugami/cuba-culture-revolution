@@ -37,11 +37,6 @@ export const useVotes = (memeId: string) => {
 
   const vote = async (voteType: 'upvote' | 'downvote') => {
     if (!user) {
-      toast({
-        title: "Authentication required",
-        description: "Please sign in to vote",
-        variant: "destructive",
-      });
       return;
     }
 
