@@ -100,6 +100,7 @@ export interface Translations {
     home: string;
     about: string;
     howToBuy: string;
+    memes: string;
     faq: string;
     contract: string;
     copyAddress: string;
