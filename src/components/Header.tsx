@@ -14,7 +14,8 @@ import { AuthModal } from "./AuthModal";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLanguage = () => setLanguage(language === "en" ? "es" : "en");
@@ -138,7 +139,7 @@ const Header = () => {
                 Sign Out
               </Button>
             ) : (
-              <AuthModal />
+              <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
             )}
 
             <Button
@@ -227,7 +228,7 @@ const Header = () => {
                 </Button>
               ) : (
                 <div className="mt-2">
-                  <AuthModal />
+                  <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
                 </div>
               )}
             </nav>

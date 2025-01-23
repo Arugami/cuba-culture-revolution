@@ -15,9 +15,11 @@ import { useToast } from "@/components/ui/use-toast";
 interface AuthModalProps {
   trigger?: React.ReactNode;
   mode?: "sign-in" | "sign-up";
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
+export function AuthModal({ trigger, mode = "sign-in", open, onOpenChange }: AuthModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +27,11 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
   const [currentMode, setCurrentMode] = useState(mode);
   const { signIn, signUp } = useAuth();
   const { toast } = useToast();
+
+  const handleOpenChange = (newOpen: boolean) => {
+    setIsOpen(newOpen);
+    onOpenChange?.(newOpen);
+  };
 
   const validatePassword = (password: string): boolean => {
     const minLength = 8;
@@ -69,7 +76,7 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
           description: "Please check your email to confirm your account.",
         });
       }
-      setIsOpen(false);
+      handleOpenChange(false);
       setEmail("");
       setPassword("");
     } catch (error: any) {
@@ -102,8 +109,10 @@ export function AuthModal({ trigger, mode = "sign-in" }: AuthModalProps) {
     setPassword("");
   };
 
+  const controlledOpen = open !== undefined ? open : isOpen;
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={controlledOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         {trigger || <Button variant="outline">Sign In</Button>}
       </DialogTrigger>
