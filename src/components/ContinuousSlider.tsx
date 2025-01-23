@@ -18,7 +18,10 @@ const items = [
 const SliderItem = React.memo(({ item, idx }: { item: typeof items[0], idx: string }) => {
   return (
     <div 
-      className="flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center px-2 sm:px-3 md:px-4"
+      className={cn(
+        "flex items-center shrink-0 py-2 sm:py-3 md:py-4 justify-center px-2 sm:px-3 md:px-4",
+        item.type === "text" && "flex-1 min-w-[200px] sm:min-w-[250px] md:min-w-[300px]"
+      )}
     >
       {item.type === "image" ? (
         <img
@@ -27,7 +30,7 @@ const SliderItem = React.memo(({ item, idx }: { item: typeof items[0], idx: stri
           className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 rounded-full object-contain md:object-cover"
         />
       ) : (
-        <span className="whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-3xl xl:text-4xl font-patua text-white text-center">
+        <span className="whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-3xl xl:text-4xl font-patua text-white text-center w-full">
           {item.content}
         </span>
       )}
