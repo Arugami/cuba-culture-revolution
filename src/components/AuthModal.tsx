@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
+import { X } from "lucide-react";
 
 interface AuthModalProps {
   trigger?: React.ReactNode;
@@ -120,16 +121,21 @@ export function AuthModal({ trigger, mode = "sign-in", open, onOpenChange }: Aut
       <DialogTrigger asChild>
         {trigger || <Button variant="outline">Sign In</Button>}
       </DialogTrigger>
-      <DialogContent 
-        className="sm:max-w-[425px] bg-[url('/lovable-uploads/5cfc9436-5af1-4040-8c8b-f965bbba05f2.png')] bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-white/90"
-      >
-        <div className="relative z-10">
+      <DialogContent className="sm:max-w-[425px] p-0 bg-white">
+        <div className="relative p-6">
+          <button
+            onClick={() => handleOpenChange(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </button>
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">
               {currentMode === "sign-in" ? "Sign In" : "Create Account"}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          <form onSubmit={handleSubmit} className="space-y-6 mt-6">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium">Email</Label>
               <Input
@@ -138,8 +144,8 @@ export function AuthModal({ trigger, mode = "sign-in", open, onOpenChange }: Aut
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-3 py-2 border rounded-md"
-                aria-label="Email input"
+                className="w-full px-3 py-2 border rounded-md border-[#E5E7EB]"
+                placeholder="Enter your email"
               />
             </div>
             <div className="space-y-2">
@@ -150,34 +156,30 @@ export function AuthModal({ trigger, mode = "sign-in", open, onOpenChange }: Aut
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-3 py-2 border rounded-md"
-                aria-label="Password input"
+                className="w-full px-3 py-2 border rounded-md border-[#E5E7EB]"
+                placeholder="Enter your password"
               />
               {currentMode === "sign-up" && (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 mt-1">
                   Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters.
                 </p>
               )}
             </div>
-            <div className="flex flex-col space-y-4">
+            <div className="space-y-4">
               <Button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full bg-cuba-blue hover:bg-blue-700 text-white"
-                aria-label={isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
+                className="w-full bg-cuba-blue hover:bg-blue-700 text-white py-2 rounded-md"
               >
                 {isLoading ? "Loading..." : currentMode === "sign-in" ? "Sign In" : "Sign Up"}
               </Button>
               <Button 
                 type="button" 
-                variant="ghost" 
+                variant="ghost"
                 onClick={toggleMode}
-                className="text-cuba-blue hover:text-blue-700"
-                aria-label={currentMode === "sign-in" ? "Switch to Sign Up" : "Switch to Sign In"}
+                className="w-full text-cuba-blue hover:text-blue-700"
               >
-                {currentMode === "sign-in"
-                  ? "Don't have an account? Sign Up"
-                  : "Already have an account? Sign In"}
+                {currentMode === "sign-in" ? "Don't have an account? Sign Up" : "Already have an account? Sign In"}
               </Button>
             </div>
           </form>
