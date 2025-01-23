@@ -14,7 +14,7 @@ import { AuthModal } from "./AuthModal";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
