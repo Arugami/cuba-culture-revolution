@@ -15,7 +15,7 @@ interface VoteButtonsProps {
 const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvotes }: VoteButtonsProps) => {
   const { userVote, vote, isLoading } = useVotes(memeId);
   const { user } = useAuth();
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   // Calculate current vote counts based on user's vote
   const upvotes = initialUpvotes + (userVote === 'upvote' ? 1 : 0);
@@ -23,7 +23,7 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
 
   const handleVote = (voteType: 'upvote' | 'downvote') => {
     if (!user) {
-      setShowAuthModal(true);
+      setIsAuthModalOpen(true);
       return;
     }
     vote(voteType);
@@ -67,8 +67,8 @@ const VoteButtons = ({ memeId, upvotes: initialUpvotes, downvotes: initialDownvo
         </Button>
       </div>
       <AuthModal 
-        open={showAuthModal} 
-        onOpenChange={setShowAuthModal}
+        open={isAuthModalOpen}
+        onOpenChange={setIsAuthModalOpen}
       />
     </>
   );
