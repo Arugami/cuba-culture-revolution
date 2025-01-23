@@ -23,14 +23,17 @@ const Hero = () => {
           </p>
 
           {/* Image shown on mobile only */}
-          <div className="block lg:hidden w-full px-2 sm:px-8 py-4 sm:py-6 relative">
+          <div className="block lg:hidden w-full px-2 sm:px-8 py-4 sm:py-6">
             <img 
               src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
               alt={t("hero.flagAlt")}
               className="w-full h-auto max-w-md mx-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
             />
-            {/* Quote on mobile - moved inside the image container */}
-            <p className="text-white/60 italic text-xl sm:text-2xl mt-4">
+          </div>
+
+          {/* Quote on mobile */}
+          <div className="block lg:hidden">
+            <p className="text-white/60 italic text-xl sm:text-2xl mb-6">
               {t("hero.quote")}
             </p>
           </div>
@@ -60,18 +63,21 @@ const Hero = () => {
           <ContractAddress />
         </div>
 
-        {/* Right side - Image and quote (desktop only) */}
-        <div className="hidden lg:block w-2/5 relative">
+        {/* Right side - Image (desktop only) */}
+        <div className="hidden lg:block w-2/5">
           <img 
             src="/lovable-uploads/ac63db1b-a80e-4ac4-ae92-d8513c944579.png" 
             alt={t("hero.flagAlt")}
             className="w-full h-auto object-contain transform -rotate-12 hover:rotate-0 transition-transform duration-500"
           />
-          {/* Quote on desktop - moved closer to the image */}
-          <p className="text-white/60 italic text-xl absolute bottom-4 right-4">
-            {t("hero.quote")}
-          </p>
         </div>
+      </div>
+
+      {/* Quote on desktop */}
+      <div className="absolute bottom-8 right-8 hidden lg:block">
+        <p className="text-white/60 italic text-xl">
+          {t("hero.quote")}
+        </p>
       </div>
     </section>
   );
