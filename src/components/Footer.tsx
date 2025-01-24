@@ -104,7 +104,7 @@ const Footer = () => {
                 {t("footer.telegram")}
               </a>
               <a
-                href="https://x.com/cubacoin"
+                href="https://x.com/CubaCTO"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-cuba-red transition-colors duration-300"
