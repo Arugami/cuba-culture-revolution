@@ -5,5 +5,4 @@ export interface Meme {
   description: string | null;
   upvotes: number;
   downvotes: number;
-  userId: string | null;
 }
