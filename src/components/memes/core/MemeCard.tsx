@@ -57,7 +57,7 @@ const MemeCard = ({
           {!isMobile && (
             <button
               onClick={handleDelete}
-              className="absolute top-2 right-2 z-10 p-2 bg-red-500 hover:bg-red-600 rounded-full shadow-lg"
+              className="absolute top-2 right-2 z-10 p-2 bg-red-500 hover:bg-red-600 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             >
               <Trash2 className="h-5 w-5 text-white" />
             </button>
@@ -90,7 +90,7 @@ const MemeCard = ({
               </div>
             </div>
           ) : (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <VoteButtons
                 memeId={id}
                 upvotes={upvotes}
