@@ -41,7 +41,6 @@ const MemeCard = ({
       if (error) throw error;
       
       toast.success('Meme deleted successfully');
-      // The real-time subscription in the Memes component will handle the UI update
     } catch (error) {
       console.error('Error deleting meme:', error);
       toast.error('Failed to delete meme');
@@ -73,7 +72,7 @@ const MemeCard = ({
                       variant="ghost"
                       size="icon"
                       onClick={handleDelete}
-                      className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-100"
+                      className="h-8 w-8 bg-red-500 hover:bg-red-600 text-white"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -103,7 +102,7 @@ const MemeCard = ({
                   variant="ghost"
                   size="icon"
                   onClick={handleDelete}
-                  className="absolute top-2 right-2 h-8 w-8 bg-red-500 hover:bg-red-600 text-white"
+                  className="absolute top-2 right-2 h-8 w-8 bg-red-500 hover:bg-red-600 text-white shadow-md"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
