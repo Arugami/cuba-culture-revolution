@@ -92,7 +92,7 @@ const Memes = () => {
         </div>
 
         <div className="mb-8">
-          {!isLoading && <MemeGrid memes={memes} onMemeDelete={fetchMemes} />}
+          {!isLoading && <MemeGrid memes={memes} />}
         </div>
 
         <div className="mt-8 flex justify-center">

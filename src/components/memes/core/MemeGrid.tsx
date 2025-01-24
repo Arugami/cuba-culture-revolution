@@ -12,10 +12,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MemeGridProps {
   memes: Meme[];
-  onMemeDelete?: () => void;
 }
 
-const MemeGrid = ({ memes, onMemeDelete }: MemeGridProps) => {
+const MemeGrid = ({ memes }: MemeGridProps) => {
   const isMobile = useIsMobile();
 
   if (!memes || memes.length === 0) {
@@ -31,7 +30,7 @@ const MemeGrid = ({ memes, onMemeDelete }: MemeGridProps) => {
       <div className="w-full px-4 grid grid-cols-1 gap-4">
         {memes.map((meme) => (
           <div key={meme.id}>
-            <MemeCard {...meme} onDelete={onMemeDelete} />
+            <MemeCard {...meme} />
           </div>
         ))}
       </div>
@@ -50,7 +49,7 @@ const MemeGrid = ({ memes, onMemeDelete }: MemeGridProps) => {
         <CarouselContent className="-ml-1">
           {memes.map((meme) => (
             <CarouselItem key={meme.id} className="pl-1 basis-1/4">
-              <MemeCard {...meme} onDelete={onMemeDelete} />
+              <MemeCard {...meme} />
             </CarouselItem>
           ))}
         </CarouselContent>
