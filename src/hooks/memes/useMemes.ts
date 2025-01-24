@@ -41,7 +41,8 @@ export const useMemes = () => {
           title: meme.title,
           description: meme.description,
           upvotes: meme.upvotes || 0,
-          downvotes: meme.downvotes || 0
+          downvotes: meme.downvotes || 0,
+          userId: meme.user_id
         }));
         
         setMemes(formattedMemes);
