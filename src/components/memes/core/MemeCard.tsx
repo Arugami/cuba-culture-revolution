@@ -54,12 +54,14 @@ const MemeCard = ({
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white relative group">
       <CardContent className="p-0">
         <div className="relative">
-          <button
-            onClick={handleDelete}
-            className="absolute top-2 right-2 z-10 p-2 bg-red-500 hover:bg-red-600 rounded-full shadow-lg"
-          >
-            <Trash2 className="h-5 w-5 text-white" />
-          </button>
+          {!isMobile && (
+            <button
+              onClick={handleDelete}
+              className="absolute top-2 right-2 z-10 p-2 bg-red-500 hover:bg-red-600 rounded-full shadow-lg"
+            >
+              <Trash2 className="h-5 w-5 text-white" />
+            </button>
+          )}
           <MemeImage
             image={image}
             title={title}
