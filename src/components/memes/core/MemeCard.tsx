@@ -76,6 +76,16 @@ const MemeCard = ({
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white relative group">
       <CardContent className="p-0">
         <div className="relative">
+          {user && user.id === userId && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleDelete}
+              className="absolute top-2 right-2 z-10 bg-white/80 hover:bg-white text-red-500 hover:text-red-700"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
           <MemeImage
             image={image}
             title={title}
@@ -89,22 +99,10 @@ const MemeCard = ({
                   upvotes={upvotes}
                   downvotes={downvotes}
                 />
-                <div className="flex items-center gap-2">
-                  {user && user.id === userId && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={handleDelete}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  )}
-                  <DownloadButton
-                    image={image}
-                    title={title}
-                  />
-                </div>
+                <DownloadButton
+                  image={image}
+                  title={title}
+                />
               </div>
             </div>
           ) : (
@@ -114,16 +112,6 @@ const MemeCard = ({
                 upvotes={upvotes}
                 downvotes={downvotes}
               />
-              {user && user.id === userId && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={handleDelete}
-                  className="text-red-500 hover:text-red-700 bg-white"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              )}
               <DownloadButton
                 image={image}
                 title={title}
