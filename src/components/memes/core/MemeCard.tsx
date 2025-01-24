@@ -103,7 +103,7 @@ const MemeCard = ({
                   variant="ghost"
                   size="icon"
                   onClick={handleDelete}
-                  className="absolute top-2 right-2 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/50 hover:bg-black/70 text-white"
+                  className="absolute top-2 right-2 h-8 w-8 bg-red-500 hover:bg-red-600 text-white"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
