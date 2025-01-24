@@ -11,11 +11,11 @@ interface VoteButtonsProps {
 
 const VoteButtons = ({ memeId, upvotes, downvotes }: VoteButtonsProps) => {
   const { user } = useAuth();
-  const { userVote, vote } = useVotes(memeId);
+  const { userVote, handleVote } = useVotes(memeId);
 
   const handleVoteClick = (voteType: 'upvote' | 'downvote') => {
     if (!user) return;
-    vote(voteType);
+    handleVote(voteType);
   };
 
   return (
