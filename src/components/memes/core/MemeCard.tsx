@@ -91,22 +91,8 @@ const MemeCard = ({
             title={title}
             description={description}
           />
-          {isMobile ? (
-            <div className="p-4 bg-white border-t border-gray-100">
-              <div className="flex items-center justify-between gap-2">
-                <VoteButtons
-                  memeId={id}
-                  upvotes={upvotes}
-                  downvotes={downvotes}
-                />
-                <DownloadButton
-                  image={image}
-                  title={title}
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className={`${isMobile ? 'p-4 bg-white border-t border-gray-100' : 'absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200'}`}>
+            <div className="flex items-center gap-2">
               <VoteButtons
                 memeId={id}
                 upvotes={upvotes}
@@ -117,7 +103,7 @@ const MemeCard = ({
                 title={title}
               />
             </div>
-          )}
+          </div>
         </div>
       </CardContent>
     </Card>
